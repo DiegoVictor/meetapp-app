@@ -19,11 +19,16 @@ export default function() {
         <Route
           path="/"
           exact
-          render={props => (
-            <Default>
-              <SignIn {...props} />
-            </Default>
-          )}
+          render={props => {
+            if (signed) {
+              return <Redirect to="/dashboard" />;
+            }
+            return (
+              <Default>
+                <SignIn {...props} />
+              </Default>
+            );
+          }}
         />
 
         <Route
