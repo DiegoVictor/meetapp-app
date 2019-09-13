@@ -10,8 +10,11 @@ export default (state = initial_state, action) => {
     case '@user/SIGN_IN_SUCCESS':
       return produce(state, draft => {
         draft.token = action.payload.token;
-        draft.user = action.payload.user;
+        draft.profile = action.payload.user;
       });
+
+    case '@user/SIGN_OUT':
+      return initial_state;
 
     default:
       return state;

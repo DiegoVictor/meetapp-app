@@ -11,3 +11,9 @@ export function SignInSuccess(token, user) {
     payload: { token, user },
   };
 }
+
+export function SignOut() {
+  return {
+    type: '@user/SIGN_OUT',
+  };
+}

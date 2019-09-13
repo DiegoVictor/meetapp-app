@@ -5,6 +5,9 @@ export default (state = initial_state, action) => {
     case '@user/SIGN_IN_SUCCESS':
       return true;
 
+    case '@user/SIGN_OUT':
+      return false;
+
     default:
       return state;
   }
