@@ -16,9 +16,11 @@ export default createGlobalStyle`
 
   html, body, #root {
     height: 100%;
+    min-height: 100%;
   }
 
   body {
+    height: 100vh;
     -webkit-font-smoothing: antialiased;
   }
 
@@ -54,5 +56,11 @@ export default createGlobalStyle`
     margin-bottom: 10px;
     padding: 14px 20px;
     width: 100%;
+  }
+
+  h2 {
+    color: #fff;
+    font-size: 32px;
+    line-height: 37px;
   }
 `;

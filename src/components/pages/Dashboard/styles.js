@@ -37,12 +37,6 @@ export const Header = styled.div`
   justify-content: space-between;
   margin-bottom: 48px;
 
-  h2 {
-    color: #fff;
-    font-size: 32px;
-    line-height: 37px;
-  }
-
   a {
     font-weight: bold;
   }
