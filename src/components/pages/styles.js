@@ -34,7 +34,7 @@ export default createGlobalStyle`
     list-style: none;
   }
 
-  button {
+  button, .btn {
     background-color: #d44059;
     border: 0px;
     border-radius: 4px;
