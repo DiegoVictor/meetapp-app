@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@rocketseat/unform": "^1.5.1",
     "history": "^4.10.0",
     "immer": "^4.0.0",
     "prop-types": "^15.7.2",
