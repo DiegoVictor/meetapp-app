@@ -28,7 +28,7 @@ export default function SignUp() {
             Cadastrar
           </button>
         </Form>
-        <Link to="/sigin">Já tenho conta</Link>
+        <Link to="/">Já tenho conta</Link>
       </Box>
     </Centralize>
   );
