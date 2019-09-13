@@ -44,7 +44,20 @@ export default function() {
       {!signed ? (
         <Redirect to="/" />
       ) : (
-        [Dashboard, Details, Create, Profile].map(Component => (
+        <Route
+          path="/meetups/:id"
+          render={props => (
+            <Default>
+              <Details {...props} />
+            </Default>
+          )}
+        />
+      )}
+
+      {!signed ? (
+        <Redirect to="/" />
+      ) : (
+        [Dashboard, Create, Profile].map(Component => (
           <Route
             key={Component.name}
             path={`/${Component.name.toLowerCase()}`}
