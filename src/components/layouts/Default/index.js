@@ -6,11 +6,11 @@ import { Container, Header } from './styles';
 import Logo from '../../../assets/logo.svg';
 
 export default function Default({ children }) {
-  const user = useSelector(state => state.user);
+  const signed = useSelector(state => state.signed);
 
   return (
     <Container>
-      {user && (
+      {signed && (
         <Header>
           <div>
             <Link to="/dashboard">
