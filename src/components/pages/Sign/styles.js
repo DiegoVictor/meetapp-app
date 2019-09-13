@@ -12,16 +12,28 @@ export const Box = styled.div`
     width: 42px;
   }
 
-  button {
-    margin-bottom: 20px;
-    margin-top: 5px;
-    font-size: 18px;
-    width: 100%;
-  }
-
   a {
     color: rgba(255, 255, 255, 0.6);
     font-size: 16px;
     line-height: 19px;
+  }
+
+  form {
+    display: flex;
+    flex-direction: column;
+
+    button {
+      margin-bottom: 20px;
+      margin-top: 5px;
+      font-size: 18px;
+      width: 100%;
+    }
+
+    span {
+      align-self: flex-start;
+      color: #fb6f91;
+      font-weight: bold;
+      margin: 0px 0px 20px;
+    }
   }
 `;

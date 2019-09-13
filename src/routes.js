@@ -1,6 +1,7 @@
 import React from 'react';
-import { Switch, Route, Redirect, BrowserRouter } from 'react-router-dom';
+import { Route, Redirect, Router } from 'react-router-dom';
 import { useSelector } from 'react-redux';
+import history from './services/history';
 
 import SignIn from './components/pages/Sign/In';
 import SignUp from './components/pages/Sign/Up';
@@ -14,49 +15,47 @@ export default function() {
   const signed = useSelector(state => state.signed);
 
   return (
-    <BrowserRouter>
-      <Switch>
-        <Route
-          path="/"
-          exact
-          render={props => {
-            if (signed) {
-              return <Redirect to="/dashboard" />;
-            }
-            return (
-              <Default>
-                <SignIn {...props} />
-              </Default>
-            );
-          }}
-        />
-
-        <Route
-          path="/signup"
-          exact
-          render={props => (
+    <Router history={history}>
+      <Route
+        path="/"
+        exact
+        render={props => {
+          if (signed) {
+            return <Redirect to="/dashboard" />;
+          }
+          return (
             <Default>
-              <SignUp {...props} />
+              <SignIn {...props} />
             </Default>
-          )}
-        />
+          );
+        }}
+      />
 
-        {!signed ? (
-          <Redirect to="/" />
-        ) : (
-          [Dashboard, Details, Create, Profile].map(Component => (
-            <Route
-              key={Component.name}
-              path={`/${Component.name.toLowerCase()}`}
-              render={props => (
-                <Default>
-                  <Component {...props} />
-                </Default>
-              )}
-            />
-          ))
+      <Route
+        path="/signup"
+        exact
+        render={props => (
+          <Default>
+            <SignUp {...props} />
+          </Default>
         )}
-      </Switch>
-    </BrowserRouter>
+      />
+
+      {!signed ? (
+        <Redirect to="/" />
+      ) : (
+        [Dashboard, Details, Create, Profile].map(Component => (
+          <Route
+            key={Component.name}
+            path={`/${Component.name.toLowerCase()}`}
+            render={props => (
+              <Default>
+                <Component {...props} />
+              </Default>
+            )}
+          />
+        ))
+      )}
+    </Router>
   );
 }

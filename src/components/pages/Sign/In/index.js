@@ -26,7 +26,7 @@ export default function SignIn() {
       <Box>
         <img src={Logo} alt="Meetapp" />
         <Form
-          shcema={schema}
+          schema={schema}
           onSubmit={() => dispatch(SignInRequest(email, password))}
         >
           <Input
@@ -46,7 +46,7 @@ export default function SignIn() {
 
           <button type="submit">Entrar</button>
         </Form>
-        <Link to="/sigup">Criar conta gratuita</Link>
+        <Link to="/signup">Criar conta gratuita</Link>
       </Box>
     </Centralize>
   );
