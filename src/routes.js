@@ -2,8 +2,8 @@ import React from 'react';
 import { Switch, Route, Router } from 'react-router-dom';
 import { createBrowserHistory } from 'history';
 
-import SignIn from './components/pages/SignIn';
-import SignUp from './components/pages/SignUp';
+import SignIn from './components/pages/Sign/In';
+import SignUp from './components/pages/Sign/Up';
 import Dashboard from './components/pages/Dashboard';
 import Details from './components/pages/Details';
 import Create from './components/pages/Create';
@@ -24,17 +24,19 @@ export default function() {
           )}
         />
 
-        {[SignUp, Dashboard, Details, Create, Profile].map(Component => (
-          <Route
-            key={Component.name}
-            path={`/${Component.name.toLowerCase()}`}
-            render={props => (
-              <Default>
-                <Component {...props} />
-              </Default>
-            )}
-          />
-        ))}
+        {[SignUp, Dashboard, Details, Create, Profile].map(Component => {
+          return (
+            <Route
+              key={Component.name}
+              path={`/${Component.name.toLowerCase()}`}
+              render={props => (
+                <Default>
+                  <Component {...props} />
+                </Default>
+              )}
+            />
+          );
+        })}
       </Switch>
     </Router>
   );
