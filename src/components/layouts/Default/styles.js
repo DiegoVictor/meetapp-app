@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 export const Container = styled.div`
   background: linear-gradient(180deg, #22202c, #402845);
-  height: 100vh;
+  height: 100%;
 `;
 
 export const Header = styled.div`
@@ -42,6 +42,8 @@ export const Header = styled.div`
 
       button {
         display: inline-block;
+        font-size: 12px;
+        font-weight: bold;
         margin-left: 30px;
         margin-top: 2px;
       }
