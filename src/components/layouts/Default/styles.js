@@ -14,7 +14,7 @@ export const Header = styled.div`
     height: 64px;
     justify-content: space-between;
     margin: auto;
-    max-width: 900px;
+    max-width: 940px;
     width: 100%;
 
     aside {

@@ -1,4 +1,5 @@
 import { createStore, combineReducers, applyMiddleware } from 'redux';
+import { all } from 'redux-saga/effects';
 import storage from 'redux-persist/lib/storage';
 import createSagaMiddleware from 'redux-saga';
 import { persistReducer } from 'redux-persist';
@@ -20,6 +21,8 @@ const persisted = persistReducer(
 
 const store = createStore(persisted, applyMiddleware(sagaMiddlewware));
 
-sagaMiddlewware.run(...sagas);
+sagaMiddlewware.run(function* saga() {
+  return yield all(sagas);
+});
 
 export default store;

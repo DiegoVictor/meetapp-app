@@ -2,7 +2,6 @@ import { produce } from 'immer';
 
 const initial_state = {
   token: null,
-  user: null,
 };
 
 export default (state = initial_state, action) => {
@@ -10,7 +9,14 @@ export default (state = initial_state, action) => {
     case '@user/SIGN_IN_SUCCESS':
       return produce(state, draft => {
         draft.token = action.payload.token;
-        draft.profile = action.payload.user;
+        draft.name = action.payload.user.name;
+        draft.email = action.payload.user.email;
+      });
+
+    case '@user/UPDATE_USER_SUCCESS':
+      return produce(state, draft => {
+        draft.name = action.payload.name;
+        draft.email = action.payload.email;
       });
 
     case '@user/SIGN_OUT':

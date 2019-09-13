@@ -17,3 +17,17 @@ export function SignOut() {
     type: '@user/SIGN_OUT',
   };
 }
+
+export function updateUserRequest(payload) {
+  return {
+    type: '@user/UPDATE_USER_REQUEST',
+    payload,
+  };
+}
+
+export function updateProfileSuccess(payload) {
+  return {
+    type: '@user/UPDATE_USER_SUCCESS',
+    payload,
+  };
+}
