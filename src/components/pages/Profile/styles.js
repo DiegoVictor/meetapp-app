@@ -22,11 +22,8 @@ export const Container = styled.div`
 
   form {
     > div {
-      text-align: right;
-
-      button {
-        font-weight: bold;
-      }
+      display: flex;
+      justify-content: right;
     }
   }
 `;

@@ -23,6 +23,7 @@ export const Box = styled.div`
     flex-direction: column;
 
     button {
+      justify-content: center;
       margin-bottom: 20px;
       margin-top: 5px;
       font-size: 18px;
