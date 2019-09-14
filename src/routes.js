@@ -1,5 +1,5 @@
 import React from 'react';
-import { Route, Redirect, Router } from 'react-router-dom';
+import { Route, Redirect, Router, Switch } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import history from './services/history';
 
@@ -44,30 +44,36 @@ export default function() {
       {!signed ? (
         <Redirect to="/" />
       ) : (
-        <Route
-          path="/meetups/:id"
-          render={props => (
-            <Default>
-              <Details {...props} />
-            </Default>
-          )}
-        />
-      )}
-
-      {!signed ? (
-        <Redirect to="/" />
-      ) : (
-        [Dashboard, Create, Profile].map(Component => (
+        <Switch>
           <Route
-            key={Component.name}
-            path={`/${Component.name.toLowerCase()}`}
+            path="/meetups/:id/edit"
             render={props => (
               <Default>
-                <Component {...props} />
+                <Create {...props} />
               </Default>
             )}
           />
-        ))
+          <Route
+            path="/meetups/:id"
+            render={props => (
+              <Default>
+                <Details {...props} />
+              </Default>
+            )}
+          />
+
+          {[Dashboard, Create, Profile].map(Component => (
+            <Route
+              key={Component.name}
+              path={`/${Component.name.toLowerCase()}`}
+              render={props => (
+                <Default>
+                  <Component {...props} />
+                </Default>
+              )}
+            />
+          ))}
+        </Switch>
       )}
     </Router>
   );
