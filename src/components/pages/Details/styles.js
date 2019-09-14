@@ -7,6 +7,7 @@ export const Container = styled.div`
 
   img {
     margin-bottom: 25px;
+    width: 100%;
   }
 `;
 
@@ -37,12 +38,12 @@ export const Header = styled.div`
 
     button,
     a {
-    margin-left: 15px;
+      margin-left: 15px;
 
-    &.blue {
-      background-color: #4dbaf9;
+      &.blue {
+        background-color: #4dbaf9;
+      }
     }
-  }
   }
 `;
 
