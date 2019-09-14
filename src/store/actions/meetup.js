@@ -4,3 +4,10 @@ export function cancelMeetup(id) {
     payload: { id },
   };
 }
+
+export function upsertMeetup(payload) {
+  return {
+    type: '@meetup/UPSERT_MEETUP',
+    payload,
+  };
+}
