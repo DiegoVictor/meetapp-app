@@ -1,7 +1,15 @@
 import React, { useState, useEffect, useMemo } from 'react';
 import { useDispatch } from 'react-redux';
+import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { format, parseISO, isBefore } from 'date-fns';
+import {
+  MdEdit,
+  MdDelete,
+  MdEvent,
+  MdPlace,
+  MdArrowBack,
+} from 'react-icons/md';
 import pt from 'date-fns/locale/pt-BR';
 import { Container, Header, Description, Footer } from './styles';
 import api from '../../../services/api';
@@ -37,15 +45,22 @@ export default function Details({ match }) {
   return (
     <Container>
       <Header>
-        <h2>{meetup.title}</h2>
+        <h2>
+          <Link to="/dashboard">
+            <MdArrowBack size="24" color="#FFF" />
+          </Link>
+          {meetup.title}
+        </h2>
         <div>
           {!past && (
-            <button type="button" className="blue">
+            <Link to={`/meetups/${id}/edit`} className="btn blue">
+              <MdEdit size="17" />
               Editar
-            </button>
+            </Link>
           )}
           {!past && (
             <button onClick={() => dispatch(cancelMeetup(id))} type="button">
+              <MdDelete size="17" />
               Cancelar
             </button>
           )}
@@ -57,8 +72,14 @@ export default function Details({ match }) {
       <Description>{meetup.description}</Description>
 
       <Footer>
-        <time>{meetup.formatted_date}</time>
-        <span>{meetup.localization}</span>
+        <time>
+          <MdEvent size="16" />
+          <span>{meetup.formatted_date}</span>
+        </time>
+        <span>
+          <MdPlace size="16" />
+          <span>{meetup.localization}</span>
+        </span>
       </Footer>
     </Container>
   );

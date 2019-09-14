@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { format, parseISO } from 'date-fns';
 import pt from 'date-fns/locale/pt-BR';
+import { MdAddCircleOutline, MdChevronRight } from 'react-icons/md';
 import { Container, Header } from './styles';
 import api from '../../../services/api';
 
@@ -27,6 +28,7 @@ export default function Dashboard() {
       <Header>
         <h2>Meus meetups</h2>
         <Link to="/create" className="btn">
+          <MdAddCircleOutline size="17" />
           Novo meetup
         </Link>
       </Header>
@@ -36,7 +38,10 @@ export default function Dashboard() {
           {meetups.map(meetup => (
             <Link to={`/meetups/${meetup.id}`}>
               <span>{meetup.title}</span>
-              <time>{meetup.formatted_date}</time>
+              <time>
+                {meetup.formatted_date}
+                <MdChevronRight size="24" color="#FFF" />
+              </time>
             </Link>
           ))}
         </li>

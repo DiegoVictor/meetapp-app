@@ -23,9 +23,15 @@ export const Container = styled.div`
         }
 
         time {
+          align-items: center;
           color: rgba(255, 255, 255, 0.6);
+          display: flex;
           font-size: 16px;
           line-height: 19px;
+
+          svg {
+            margin-left: 30px;
+          }
         }
       }
     }
@@ -36,8 +42,4 @@ export const Header = styled.div`
   display: flex;
   justify-content: space-between;
   margin-bottom: 48px;
-
-  a {
-    font-weight: bold;
-  }
 `;

@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
+import { MdExitToApp } from 'react-icons/md';
 import PropTypes from 'prop-types';
 import { Container, Header } from './styles';
 import Logo from '../../../assets/logo.svg';
@@ -26,6 +27,7 @@ export default function Default({ children }) {
                 <Link to="/profile">Meu Perfil</Link>
               </div>
               <button type="button" onClick={() => dispatch(SignOut())}>
+                <MdExitToApp size="15" />
                 Sair
               </button>
             </aside>

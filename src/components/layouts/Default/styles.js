@@ -41,9 +41,7 @@ export const Header = styled.div`
       }
 
       button {
-        display: inline-block;
-        font-size: 12px;
-        font-weight: bold;
+        font-size: 13px;
         margin-left: 30px;
         margin-top: 2px;
       }

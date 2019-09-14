@@ -1,15 +1,26 @@
 import React from 'react';
 import { Form, Input } from '@rocketseat/unform';
 import { useSelector, useDispatch } from 'react-redux';
+import { MdSave, MdArrowBack } from 'react-icons/md';
+import PropTypes from 'prop-types';
 import { Container } from './styles';
 import { updateUserRequest } from '../../../store/actions/user';
 
-export default function Profile() {
+export default function Profile({ history }) {
   const user = useSelector(state => state.user);
   const dispatch = useDispatch();
 
   return (
     <Container>
+      <div>
+        <button
+          type="button"
+          className="unstyled"
+          onClick={() => history.goBack()}
+        >
+          <MdArrowBack color="#FFF" size="24" />
+        </button>
+      </div>
       <Form
         initialData={user}
         onSubmit={data => {
@@ -41,9 +52,18 @@ export default function Profile() {
         />
 
         <div>
-          <button type="submit">Atualizar Perfil</button>
+          <button type="submit">
+            <MdSave size="17" />
+            Atualizar Perfil
+          </button>
         </div>
       </Form>
     </Container>
   );
 }
+
+Profile.propTypes = {
+  history: PropTypes.shape({
+    goBack: PropTypes.func.isRequired,
+  }).isRequired,
+};

@@ -36,12 +36,24 @@ export default createGlobalStyle`
   }
 
   button, .btn {
+    align-items: center;
     background-color: #d44059;
     border: 0px;
     border-radius: 4px;
     color: #fff;
     cursor: pointer;
-    padding: 12px 20px;
+    display: flex;
+    font-weight: bold;
+    padding: 12px 20px 12px 12px;
+
+    > svg {
+      margin-right: 5px;
+    }
+
+    &.unstyled {
+      background-color: transparent;
+      padding: 0px;
+    }
   }
 
   input {
