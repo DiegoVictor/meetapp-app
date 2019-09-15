@@ -1,8 +1,13 @@
 import React, { forwardRef } from 'react';
-import { FormInput } from './styles';
+import { FormInput, Error } from './styles';
 
-function Input({ ...props }, ref) {
-  return <FormInput ref={ref} {...props} />;
+function Input({ error, ...props }, ref) {
+  return (
+    <>
+      <FormInput ref={ref} {...props} />
+      {error && <Error>{error}</Error>}
+    </>
+  );
 }
 
 export default forwardRef(Input);
