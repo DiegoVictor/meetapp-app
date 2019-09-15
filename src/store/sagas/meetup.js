@@ -1,48 +1,34 @@
-import { takeLatest, call, all } from 'redux-saga/effects';
+import { takeLatest, call, all, put } from 'redux-saga/effects';
 import { Alert } from 'react-native';
-import { navigate } from '../../services/navigator';
 import api from '../../services/api';
+import {
+  SubscribeMeetupSuccess,
+  UnsubscribeMeetupSuccess,
+} from '../actions/meetup';
 
-function* cancelMeetup({ payload }) {
+function* UnsubscribeMeetup({ payload }) {
   try {
     const { id } = payload;
-    yield call(api.delete, `meetups/${id}`);
-    navigate('Dashboard');
+    yield call(api.delete, `/subscriptions/${id}`);
+    yield put(UnsubscribeMeetupSuccess(id));
+    Alert.alert('Inscrição cancelada com sucesso!');
   } catch (err) {
     Alert.alert('Ops! Alguma coisa deu errado, tente novamente!');
   }
 }
 
-function* upsertMeetup({ payload }) {
+function* SubscribeMeetup({ payload }) {
   try {
-    if (typeof payload.id === 'string') {
-      const { id, title, description, localization, date, banner_id } = payload;
-      yield call(api.put, `/meetups/${id}`, {
-        title,
-        description,
-        localization,
-        date,
-        banner_id,
-      });
-      Alert.alert('Meetup atualizado com sucesso!');
-    } else {
-      const { title, description, localization, date, banner_id } = payload;
-
-      const response = yield call(api.post, 'meetups', {
-        title,
-        description,
-        localization,
-        date,
-        banner_id,
-      });
-      navigate('Detail', response.data.id);
-    }
+    const { id } = payload;
+    yield call(api.post, `/subscriptions`, { meetup_id: id });
+    yield put(SubscribeMeetupSuccess(id));
+    Alert.alert('Inscrição efetuada com sucesso!');
   } catch (err) {
     Alert.alert('Ops! Alguma coisa deu errado, tente novamente!');
   }
 }
 
 export default all([
-  takeLatest('@meetup/CANCEL_MEETUP', cancelMeetup),
-  takeLatest('@meetup/UPSERT_MEETUP', upsertMeetup),
+  takeLatest('@meetup/UNSUBSCRIBE_MEETUP_REQUEST', UnsubscribeMeetup),
+  takeLatest('@meetup/SUBSCRIBE_MEETUP_REQUEST', SubscribeMeetup),
 ]);

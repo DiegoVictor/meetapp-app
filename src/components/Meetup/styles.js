@@ -1,6 +1,5 @@
 import styled from 'styled-components/native';
 import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
-import Button from '../Button';
 
 export const Container = styled.View`
   background-color: #fff;
@@ -26,10 +25,6 @@ export const Title = styled.Text`
   font-weight: bold;
   line-height: 21px;
   margin: 20px 20px 10px;
-`;
-
-export const Subscribe = styled(Button)`
-  margin-top: 15px;
 `;
 
 export const Item = styled.View`

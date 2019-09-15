@@ -5,6 +5,8 @@ import createSagaMiddleware from 'redux-saga';
 import { persistReducer } from 'redux-persist';
 
 import user from './reducers/user';
+import meetups from './reducers/meetups';
+import subscriptions from './reducers/subscriptions';
 import signed from './reducers/signed';
 import sagas from './sagas';
 
@@ -34,7 +36,7 @@ const persisted = persistReducer(
     storage: AsyncStorage,
     whitelist: ['signed', 'user'],
   },
-  combineReducers({ user, signed })
+  combineReducers({ user, meetups, signed, subscriptions })
 );
 
 const store = createStore(persisted, enhancer);
