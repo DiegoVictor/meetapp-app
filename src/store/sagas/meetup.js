@@ -1,13 +1,13 @@
 import { takeLatest, call, all } from 'redux-saga/effects';
 import { Alert } from 'react-native';
-// import history from '../../services/history';
+import { navigate } from '../../services/navigator';
 import api from '../../services/api';
 
 function* cancelMeetup({ payload }) {
   try {
     const { id } = payload;
     yield call(api.delete, `meetups/${id}`);
-    // history.push('/dashboard');
+    navigate('Dashboard');
   } catch (err) {
     Alert.alert('Ops! Alguma coisa deu errado, tente novamente!');
   }
@@ -28,15 +28,14 @@ function* upsertMeetup({ payload }) {
     } else {
       const { title, description, localization, date, banner_id } = payload;
 
-      // const response =
-      yield call(api.post, 'meetups', {
+      const response = yield call(api.post, 'meetups', {
         title,
         description,
         localization,
         date,
         banner_id,
       });
-      // history.push(`/meetups/${response.data.id}`);
+      navigate('Detail', response.data.id);
     }
   } catch (err) {
     Alert.alert('Ops! Alguma coisa deu errado, tente novamente!');

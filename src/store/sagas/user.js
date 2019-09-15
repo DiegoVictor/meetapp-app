@@ -1,6 +1,6 @@
 import { takeLatest, call, put, all } from 'redux-saga/effects';
 import { Alert } from 'react-native';
-// import history from '../../services/history';
+import { navigate } from '../../services/navigator';
 import api from '../../services/api';
 import { SignInSuccess, updateProfileSuccess } from '../actions/user';
 
@@ -23,7 +23,7 @@ function* signUp({ payload }) {
     const { name, email, password } = payload;
     yield call(api.post, 'users', { name, email, password });
 
-    // history.push('/');
+    navigate('SignIn');
   } catch (err) {
     Alert.alert('Ops! Alguma coisa deu errado, tente novamente!');
   }
