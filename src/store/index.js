@@ -29,6 +29,7 @@ const enhancer = (() => {
 
 const persisted = persistReducer(
   {
+    timeout: 0,
     key: 'meetapp',
     storage: AsyncStorage,
     whitelist: ['signed', 'user'],
