@@ -1,28 +1,28 @@
-export function UnsubscribeMeetupRequest(id) {
+export function UnsubscribeMeetupRequest(payload) {
   return {
     type: '@meetup/UNSUBSCRIBE_MEETUP_REQUEST',
-    payload: { id },
+    payload,
   };
 }
 
-export function UnsubscribeMeetupSuccess(id) {
+export function UnsubscribeMeetupSuccess(payload) {
   return {
     type: '@meetup/UNSUBSCRIBE_MEETUP_SUCCESS',
-    payload: { id },
+    payload,
   };
 }
 
-export function SubscribeMeetupRequets(id) {
+export function SubscribeMeetupRequets(payload) {
   return {
     type: '@meetup/SUBSCRIBE_MEETUP_REQUEST',
-    payload: { id },
+    payload,
   };
 }
 
-export function SubscribeMeetupSuccess(id) {
+export function SubscribeMeetupSuccess(payload) {
   return {
     type: '@meetup/SUBSCRIBE_MEETUP_SUCCESS',
-    payload: { id },
+    payload,
   };
 }
 

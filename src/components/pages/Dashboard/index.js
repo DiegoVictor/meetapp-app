@@ -91,7 +91,7 @@ export default function Dashboard() {
         }}
         renderItem={({ item }) => (
           <Meetup data={item}>
-            <Button onPress={() => dispatch(SubscribeMeetupRequets(item.id))}>
+            <Button onPress={() => dispatch(SubscribeMeetupRequets(item))}>
               Realizar Inscrição
             </Button>
           </Meetup>

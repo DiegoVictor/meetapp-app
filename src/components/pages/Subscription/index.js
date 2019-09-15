@@ -40,7 +40,7 @@ export default function Subscription() {
         keyExtractor={item => String(item.id)}
         renderItem={({ item }) => (
           <Meetup data={item}>
-            <Button onPress={() => dispatch(UnsubscribeMeetupRequest(item.id))}>
+            <Button onPress={() => dispatch(UnsubscribeMeetupRequest(item))}>
               Cancelar inscrição
             </Button>
           </Meetup>

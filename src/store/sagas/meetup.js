@@ -10,7 +10,7 @@ function* UnsubscribeMeetup({ payload }) {
   try {
     const { id } = payload;
     yield call(api.delete, `/subscriptions/${id}`);
-    yield put(UnsubscribeMeetupSuccess(id));
+    yield put(UnsubscribeMeetupSuccess(payload));
     Alert.alert('Inscrição cancelada com sucesso!');
   } catch (err) {
     Alert.alert('Ops! Alguma coisa deu errado, tente novamente!');
@@ -21,7 +21,7 @@ function* SubscribeMeetup({ payload }) {
   try {
     const { id } = payload;
     yield call(api.post, `/subscriptions`, { meetup_id: id });
-    yield put(SubscribeMeetupSuccess(id));
+    yield put(SubscribeMeetupSuccess(payload));
     Alert.alert('Inscrição efetuada com sucesso!');
   } catch (err) {
     Alert.alert('Ops! Alguma coisa deu errado, tente novamente!');
