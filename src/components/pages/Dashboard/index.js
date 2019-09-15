@@ -52,13 +52,13 @@ export default function Dashboard() {
           </TouchableOpacity>
         </Header>
 
-        {meetups.map(meetup => (
-          <Meetup
-            key={String(meetup.id)}
-            data={meetup}
-            onSubscribe={id => {}}
-          />
-        ))}
+        <Meetups
+          data={meetups}
+          keyExtractor={item => String(item.id)}
+          renderItem={({ item }) => (
+            <Meetup data={item} onSubscribe={id => {}} />
+          )}
+        />
       </ScrollView>
     </Container>
   );
