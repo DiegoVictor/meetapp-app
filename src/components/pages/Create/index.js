@@ -30,14 +30,16 @@ export default function Create({ match, history }) {
 
   useEffect(() => {
     (async () => {
-      const { data } = await api.get(`scheduled/${id}`);
-      const dt = parseISO(data.date);
+      if (id) {
+        const { data } = await api.get(`scheduled/${id}`);
+        const dt = parseISO(data.date);
 
-      setMeetup(data);
-      setDate(format(dt, "yyyy'-'MM'-'dd"));
-      setTime(format(dt, "HH':'mm"));
-      setPreview(data.banner.url);
-      setBannerId(data.banner_id);
+        setMeetup(data);
+        setDate(format(dt, "yyyy'-'MM'-'dd"));
+        setTime(format(dt, "HH':'mm"));
+        setPreview(data.banner.url);
+        setBannerId(data.banner_id);
+      }
     })();
   }, [id]);
 
