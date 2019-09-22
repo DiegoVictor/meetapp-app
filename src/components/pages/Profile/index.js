@@ -1,6 +1,7 @@
 import React, { useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import Icon from 'react-native-vector-icons/MaterialIcons';
+import { ScrollView } from 'react-native';
 import * as Yup from 'yup';
 
 import Input from '../../Input';
@@ -40,75 +41,81 @@ export default function Profile() {
   const dispatch = useDispatch();
 
   return (
-    <Container>
-      <Form
-        initialValues={user}
-        validationSchema={schema}
-        onSubmit={values => {
-          dispatch(updateUserRequest(values));
-        }}
-        render={props => (
-          <>
-            <Input
-              autoCorrect={false}
-              placeholder="Nome completo"
-              returnKeyType="next"
-              onSubmitEditing={() => email_ref.current.focus()}
-              onChangeText={props.handleChange('name')}
-              value={props.values.name}
-              error={props.errors.name}
-            />
+    <ScrollView>
+      <Container>
+        <Form
+          initialValues={user}
+          validationSchema={schema}
+          onSubmit={values => {
+            dispatch(updateUserRequest(values));
+          }}
+          render={props => (
+            <>
+              <Input
+                autoCorrect={false}
+                placeholder="Nome completo"
+                returnKeyType="next"
+                onSubmitEditing={() => email_ref.current.focus()}
+                onChangeText={props.handleChange('name')}
+                value={props.values.name}
+                error={props.errors.name}
+              />
 
-            <Input
-              keyboardType="email-address"
-              autoCorrect={false}
-              autoCapitalize="none"
-              placeholder="Digite seu email"
-              returnKeyType="next"
-              onSubmitEditing={() => old_password_ref.current.focus()}
-              onChangeText={props.handleChange('email')}
-              value={props.values.email}
-              error={props.errors.email}
-            />
+              <Input
+                keyboardType="email-address"
+                autoCorrect={false}
+                autoCapitalize="none"
+                placeholder="Digite seu email"
+                returnKeyType="next"
+                onSubmitEditing={() => old_password_ref.current.focus()}
+                onChangeText={props.handleChange('email')}
+                value={props.values.email}
+                error={props.errors.email}
+              />
 
-            <Separator />
+              <Separator />
 
-            <Input
-              secureTextEntry
-              placeholder="Sua senha atual"
-              ref={old_password_ref}
-              returnKeyType="next"
-              onSubmitEditing={() => password_ref.current.focus()}
-              onChangeText={props.handleChange('old_password')}
-              error={props.errors.old_password}
-            />
+              <Input
+                secureTextEntry
+                placeholder="Sua senha atual"
+                ref={old_password_ref}
+                returnKeyType="next"
+                onSubmitEditing={() => password_ref.current.focus()}
+                onChangeText={props.handleChange('old_password')}
+                error={props.errors.old_password}
+              />
 
-            <Input
-              secureTextEntry
-              placeholder="Sua nova senha"
-              ref={password_ref}
-              returnKeyType="next"
-              onSubmitEditing={() => confirm_password_ref.current.focus()}
-              onChangeText={props.handleChange('password')}
-              error={props.errors.password}
-            />
+              <Input
+                secureTextEntry
+                placeholder="Sua nova senha"
+                ref={password_ref}
+                returnKeyType="next"
+                onSubmitEditing={() => confirm_password_ref.current.focus()}
+                onChangeText={props.handleChange('password')}
+                error={props.errors.password}
+              />
 
-            <Input
-              secureTextEntry
-              placeholder="Confirme sua nova senha"
-              ref={confirm_password_ref}
-              returnKeyType="send"
-              onSubmitEditing={props.handleSubmit}
-              onChangeText={props.handleChange('confirm_password')}
-              error={props.errors.confirm_password}
-            />
+              <Input
+                secureTextEntry
+                placeholder="Confirme sua nova senha"
+                ref={confirm_password_ref}
+                returnKeyType="send"
+                onSubmitEditing={props.handleSubmit}
+                onChangeText={props.handleChange('confirm_password')}
+                error={props.errors.confirm_password}
+              />
 
-            <FormButton onPress={props.handleSubmit}>Salvar perfil</FormButton>
-            <FormButton onPress={() => dispatch(SignOut())}>Logout</FormButton>
-          </>
-        )}
-      />
-    </Container>
+              <FormButton onPress={props.handleSubmit}>
+                Salvar perfil
+              </FormButton>
+              <FormButton onPress={() => dispatch(SignOut())}>
+                Logout
+              </FormButton>
+            </>
+          )}
+        />
+      </Container>
+    </ScrollView>
   );
 }
 
