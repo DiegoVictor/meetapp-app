@@ -32,6 +32,7 @@ function Routes() {
               style: {
                 backgroundColor: '#2B1A2F',
                 border: 0,
+                borderTopColor: '#2B1A2F',
                 fontSize: 12,
                 lineHeight: 14,
                 paddingBottom: 5,
