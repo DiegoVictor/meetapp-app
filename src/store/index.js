@@ -1,4 +1,4 @@
-import { createStore, combineReducers, applyMiddleware } from 'redux';
+import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
 import { all } from 'redux-saga/effects';
 import storage from 'redux-persist/lib/storage';
 import createSagaMiddleware from 'redux-saga';
@@ -8,7 +8,14 @@ import user from './reducers/user';
 import signed from './reducers/signed';
 import sagas from './sagas';
 
-const sagaMiddlewware = createSagaMiddleware();
+const sagaMiddleware = createSagaMiddleware({
+  sagaMonitor: (() => {
+    if (process.env.NODE_ENV === 'development') {
+      return console.tron.createSagaMonitor();
+    }
+    return null;
+  })(),
+});
 
 const persisted = persistReducer(
   {
@@ -19,9 +26,19 @@ const persisted = persistReducer(
   combineReducers({ user, signed })
 );
 
-const store = createStore(persisted, applyMiddleware(sagaMiddlewware));
+const enhancer = (() => {
+  if (process.env.NODE_ENV === 'development') {
+    return compose(
+      console.tron.createEnhancer(),
+      applyMiddleware(sagaMiddleware)
+    );
+  }
+  return applyMiddleware(sagaMiddleware);
+})();
 
-sagaMiddlewware.run(function* saga() {
+const store = createStore(persisted, enhancer);
+
+sagaMiddleware.run(function* saga() {
   return yield all(sagas);
 });
 
