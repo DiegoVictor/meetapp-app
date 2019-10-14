@@ -21,9 +21,19 @@ export const Container = styled.div`
   }
 
   form {
+    display: flex;
+    flex-direction: column;
+
     > div {
       display: flex;
       justify-content: right;
+    }
+
+    > span {
+      align-self: flex-start;
+      color: #fb6f91;
+      font-weight: bold;
+      margin: 0px 0px 20px;
     }
   }
 `;
