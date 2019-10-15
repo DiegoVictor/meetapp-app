@@ -6,8 +6,8 @@ import * as Yup from 'yup';
 import { parseISO, format } from 'date-fns';
 import { MdArrowBack, MdSave, MdCameraAlt } from 'react-icons/md';
 import { Container, ImagePicker } from './styles';
-import api from '../../../services/api';
-import { upsertMeetup } from '../../../store/actions/meetup';
+import api from '~/services/api';
+import { upsertMeetup } from '~/store/actions/meetup';
 
 const schema = Yup.object().shape({
   title: Yup.string()

@@ -3,11 +3,11 @@ import { useDispatch } from 'react-redux';
 import { Form, Input } from '@rocketseat/unform';
 import { Link } from 'react-router-dom';
 import * as Yup from 'yup';
-import Logo from '../../../../assets/logo.svg';
+import Logo from '~/assets/logo.svg';
 import { Box } from '../styles';
 
-import Centralize from '../../../Centralize';
-import { SignUpRequest } from '../../../../store/actions/user';
+import Centralize from '~/components/Centralize';
+import { SignUpRequest } from '~/store/actions/user';
 
 const schema = Yup.object().shape({
   name: Yup.string().required('O campo nome é obrigatório'),

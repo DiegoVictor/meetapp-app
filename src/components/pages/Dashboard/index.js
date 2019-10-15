@@ -4,7 +4,7 @@ import { format, parseISO } from 'date-fns';
 import pt from 'date-fns/locale/pt-BR';
 import { MdAddCircleOutline, MdChevronRight } from 'react-icons/md';
 import { Container, Header } from './styles';
-import api from '../../../services/api';
+import api from '~/services/api';
 
 export default function Dashboard() {
   const [meetups, setMeetups] = useState([]);

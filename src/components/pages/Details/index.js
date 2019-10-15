@@ -12,8 +12,8 @@ import {
 } from 'react-icons/md';
 import pt from 'date-fns/locale/pt-BR';
 import { Container, Header, Description, Footer } from './styles';
-import api from '../../../services/api';
-import { cancelMeetup } from '../../../store/actions/meetup';
+import api from '~/services/api';
+import { cancelMeetup } from '~/store/actions/meetup';
 
 export default function Details({ match }) {
   const { id } = match.params;

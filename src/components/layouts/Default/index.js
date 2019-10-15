@@ -4,8 +4,8 @@ import { useSelector, useDispatch } from 'react-redux';
 import { MdExitToApp } from 'react-icons/md';
 import PropTypes from 'prop-types';
 import { Container, Header } from './styles';
-import Logo from '../../../assets/logo.svg';
-import { SignOut } from '../../../store/actions/user';
+import Logo from '~/assets/logo.svg';
+import { SignOut } from '~/store/actions/user';
 
 export default function Default({ children }) {
   const signed = useSelector(state => state.signed);

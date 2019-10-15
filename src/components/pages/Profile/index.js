@@ -5,7 +5,7 @@ import { MdSave, MdArrowBack } from 'react-icons/md';
 import PropTypes from 'prop-types';
 import * as Yup from 'yup';
 import { Container } from './styles';
-import { updateUserRequest } from '../../../store/actions/user';
+import { updateUserRequest } from '~/store/actions/user';
 
 // Test if is empty or have the minimun length required
 Yup.addMethod(Yup.string, 'emptyMin', function(min, message) {
