@@ -8,6 +8,7 @@ import api from '../../../services/api';
 
 export default function Dashboard() {
   const [meetups, setMeetups] = useState([]);
+
   useEffect(() => {
     (async () => {
       const response = await api.get('scheduled');
@@ -23,6 +24,7 @@ export default function Dashboard() {
       );
     })();
   }, []);
+
   return (
     <Container>
       <Header>
