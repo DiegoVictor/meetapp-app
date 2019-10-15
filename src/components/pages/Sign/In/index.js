@@ -34,7 +34,7 @@ export default function SignIn() {
             type="email"
             value={email}
             onChange={e => setEmail(e.target.value)}
-            placeholder="Digite seu melhor email"
+            placeholder="Digite seu e-mail"
           />
           <Input
             name="password"

@@ -92,7 +92,7 @@ export default function Create({ match, history }) {
           name="description"
           multiline
           rows="10"
-          placeholder="Descrição"
+          placeholder="Descrição completa"
           value={meetup.description}
           onChange={e => setMeetup({ ...meetup, description: e.target.value })}
         />

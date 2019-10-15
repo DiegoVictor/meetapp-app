@@ -30,11 +30,7 @@ export default function SignUp() {
           }
         >
           <Input name="name" type="text" placeholder="Nome completo" />
-          <Input
-            name="email"
-            type="email"
-            placeholder="Digite seu melhor email"
-          />
+          <Input name="email" type="email" placeholder="Digite seu e-mail" />
           <Input
             name="password"
             type="password"

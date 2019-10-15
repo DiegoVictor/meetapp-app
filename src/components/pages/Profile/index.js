@@ -78,26 +78,18 @@ export default function Profile({ history }) {
         />
 
         <hr />
-        <Input
-          name="old_password"
-          type="password"
-          placeholder="Sua senha atual"
-        />
-        <Input
-          name="password"
-          type="password"
-          placeholder="Sua senha secreta"
-        />
+        <Input name="old_password" type="password" placeholder="Senha atual" />
+        <Input name="password" type="password" placeholder="Nova senha" />
         <Input
           name="confirm_password"
           type="password"
-          placeholder="Confirme sua nova senha"
+          placeholder="Confirme de senha"
         />
 
         <div>
           <button type="submit">
             <MdSave size="17" />
-            Atualizar Perfil
+            Salvar Perfil
           </button>
         </div>
       </Form>

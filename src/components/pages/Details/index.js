@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import { format, parseISO, isBefore } from 'date-fns';
 import {
   MdEdit,
-  MdDelete,
+  MdDeleteForever,
   MdEvent,
   MdPlace,
   MdArrowBack,
@@ -60,7 +60,7 @@ export default function Details({ match }) {
           )}
           {!past && (
             <button onClick={() => dispatch(cancelMeetup(id))} type="button">
-              <MdDelete size="17" />
+              <MdDeleteForever size="17" />
               Cancelar
             </button>
           )}
