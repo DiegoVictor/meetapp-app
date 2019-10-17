@@ -29,10 +29,20 @@
     "start": "react-app-rewired start",
     "build": "react-app-rewired build",
     "test": "react-app-rewired test",
+    "jest": "jest --watchAll",
     "eject": "react-scripts eject"
   },
-  "eslintConfig": {
-    "extends": "react-app"
+  "jest": {
+    "setupFilesAfterEnv": [
+      "@testing-library/react/cleanup-after-each",
+      "@testing-library/jest-dom/extend-expect"
+    ],
+    "testMatch": [
+      "**/__tests__/**/*.test.js"
+    ],
+    "moduleNameMapper": {
+      "^~/(.*)": "<rootDir>/src/$1"
+    }
   },
   "browserslist": {
     "production": [
@@ -47,6 +57,9 @@
     ]
   },
   "devDependencies": {
+    "@testing-library/jest-dom": "^4.1.2",
+    "@testing-library/react": "^9.3.0",
+    "@types/jest": "^24.0.19",
     "babel-plugin-root-import": "^6.4.1",
     "customize-cra": "^0.8.0",
     "eslint": "^6.3.0",
