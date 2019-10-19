@@ -3,17 +3,18 @@ import { toast } from 'react-toastify';
 import history from '~/services/history';
 import api from '~/services/api';
 
-function* cancelMeetup({ payload }) {
+export function* cancelMeetup({ payload }) {
   try {
     const { id } = payload;
     yield call(api.delete, `meetups/${id}`);
+
     history.push('/dashboard');
   } catch (err) {
     toast.error('Ops! Alguma coisa deu errado, tente novamente!');
   }
 }
 
-function* upsertMeetup({ payload }) {
+export function* upsertMeetup({ payload }) {
   try {
     if (typeof payload.id === 'string') {
       const { id, title, description, localization, date, banner_id } = payload;
