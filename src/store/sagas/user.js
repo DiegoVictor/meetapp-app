@@ -4,7 +4,7 @@ import history from '~/services/history';
 import api from '~/services/api';
 import { SignInSuccess, updateProfileSuccess } from '~/store/actions/user';
 
-function* signIn({ payload }) {
+export function* signIn({ payload }) {
   try {
     const { email, password } = payload;
     const response = yield call(api.post, 'sessions', { email, password });
@@ -18,7 +18,7 @@ function* signIn({ payload }) {
   }
 }
 
-function* signUp({ payload }) {
+export function* signUp({ payload }) {
   try {
     const { name, email, password } = payload;
     yield call(api.post, 'users', { name, email, password });
@@ -29,7 +29,7 @@ function* signUp({ payload }) {
   }
 }
 
-function* updateUser({ payload }) {
+export function* updateUser({ payload }) {
   try {
     const { email, name, ...rest } = payload;
     const response = yield call(api.put, 'users', {
@@ -45,7 +45,7 @@ function* updateUser({ payload }) {
   }
 }
 
-function setToken({ payload }) {
+export function setToken({ payload }) {
   if (!payload) {
     return;
   }
