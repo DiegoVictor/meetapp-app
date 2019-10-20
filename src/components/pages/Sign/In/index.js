@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import { Form, Input } from '@rocketseat/unform';
 import * as Yup from 'yup';
 
+import { signInRequest } from '~/store/actions/user';
 import { Box } from '../styles';
 import Centralize from '~/components/Centralize';
 import Logo from '~/assets/logo.svg';

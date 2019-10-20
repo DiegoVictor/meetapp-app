@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import { Form, Input } from '@rocketseat/unform';
 import * as Yup from 'yup';
 
+import { signUpRequest } from '~/store/actions/user';
 import { Box } from '../styles';
 import Centralize from '~/components/Centralize';
 import Logo from '~/assets/logo.svg';
@@ -25,7 +26,7 @@ export default function SignUp() {
         <Form
           schema={schema}
           onSubmit={({ name, email, password }) =>
-            dispatch(SignUpRequest(name, email, password))
+            dispatch(signUpRequest(email, name, password))
           }
         >
           <Input name="name" placeholder="Nome completo" type="text" />
