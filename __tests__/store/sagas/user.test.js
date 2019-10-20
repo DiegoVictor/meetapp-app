@@ -6,9 +6,9 @@ import api from '~/services/api';
 import { signIn, signUp, updateUser, setToken } from '~/store/sagas/user';
 import history from '~/services/history';
 import {
-  SignInRequest,
-  SignInSuccess,
-  SignUpRequest,
+  signInRequest,
+  signInSuccess,
+  signUpRequest,
   updateUserRequest,
   updateProfileSuccess,
 } from '~/store/actions/user';
@@ -38,11 +38,11 @@ describe('User saga', () => {
     await runSaga(
       { dispatch },
       signIn,
-      SignInRequest(user.email, user.password)
+      signInRequest(user.email, user.password)
     ).toPromise();
 
     expect(api.defaults.headers.Authorization).toBe(`Bearer ${token}`);
-    expect(dispatch).toHaveBeenCalledWith(SignInSuccess(token, user));
+    expect(dispatch).toHaveBeenCalledWith(signInSuccess(token, user));
   });
 
   it('should not be able to login', async () => {
@@ -57,7 +57,7 @@ describe('User saga', () => {
     await runSaga(
       { dispatch },
       signIn,
-      SignInRequest(user.email, user.password)
+      signInRequest(user.email, user.password)
     ).toPromise();
 
     expect(toast.error).toHaveBeenCalledWith(
@@ -73,7 +73,11 @@ describe('User saga', () => {
     };
 
     api_mock.onPost('users').reply(200);
-    await runSaga({}, signUp, SignUpRequest(user)).toPromise();
+    await runSaga(
+      {},
+      signUp,
+      signUpRequest(user.email, user.name, user.password)
+    ).toPromise();
     expect(history.push).toHaveBeenCalledWith('/');
   });
 
@@ -85,7 +89,11 @@ describe('User saga', () => {
     };
 
     api_mock.onPost('users').reply(400);
-    await runSaga({}, signUp, SignUpRequest(user)).toPromise();
+    await runSaga(
+      {},
+      signUp,
+      signUpRequest(user.email, user.name, user.password)
+    ).toPromise();
     expect(toast.error).toHaveBeenCalledWith(
       'Ops! Alguma coisa deu errado, tente novamente!'
     );

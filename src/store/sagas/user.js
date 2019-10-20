@@ -1,18 +1,17 @@
 import { takeLatest, call, put, all } from 'redux-saga/effects';
 import { toast } from 'react-toastify';
-import history from '~/services/history';
+import { signInSuccess, updateProfileSuccess } from '~/store/actions/user';
 import api from '~/services/api';
-import { SignInSuccess, updateProfileSuccess } from '~/store/actions/user';
+import history from '~/services/history';
 
 export function* signIn({ payload }) {
   try {
     const { email, password } = payload;
     const response = yield call(api.post, 'sessions', { email, password });
-
     const { token, user } = response.data;
-    api.defaults.headers.Authorization = `Bearer ${token}`;
 
-    yield put(SignInSuccess(token, user));
+    api.defaults.headers.Authorization = `Bearer ${token}`;
+    yield put(signInSuccess(token, user));
   } catch (err) {
     toast.error('Ops! Alguma coisa deu errado, tente novamente!');
   }

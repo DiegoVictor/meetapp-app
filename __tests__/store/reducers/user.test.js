@@ -1,9 +1,9 @@
 import faker from 'faker';
 import reducer, { initial_state } from '~/store/reducers/user';
 import {
-  SignInSuccess,
+  signInSuccess,
   updateProfileSuccess,
-  SignOut,
+  signOut,
 } from '~/store/actions/user';
 
 describe('User reducer', () => {
@@ -18,7 +18,7 @@ describe('User reducer', () => {
       email: faker.internet.email(),
       name: faker.name.findName(),
     };
-    const state = reducer(initial_state, SignInSuccess(token, user));
+    const state = reducer(initial_state, signInSuccess(token, user));
 
     expect(state).toStrictEqual({ token, ...user });
   });
@@ -34,7 +34,7 @@ describe('User reducer', () => {
   });
 
   it('SIGN_OUT', () => {
-    const state = reducer(true, SignOut());
+    const state = reducer(true, signOut());
     expect(state).toStrictEqual(initial_state);
   });
 });
