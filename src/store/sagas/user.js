@@ -56,5 +56,5 @@ export default all([
   takeLatest('persist/REHYDRATE', setToken),
   takeLatest('@user/SIGN_IN_REQUEST', signIn),
   takeLatest('@user/SIGN_UP_REQUEST', signUp),
-  takeLatest('@user/UPDATE_USER_REQUEST', updateUser),
+  takeLatest('@user/UPDATE_PROFILE_REQUEST', updateUser),
 ]);

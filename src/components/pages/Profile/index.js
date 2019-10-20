@@ -5,7 +5,7 @@ import { Form, Input } from '@rocketseat/unform';
 import * as Yup from 'yup';
 import PropTypes from 'prop-types';
 
-import { updateUserRequest } from '~/store/actions/user';
+import { updateProfileRequest } from '~/store/actions/user';
 import { Container } from './styles';
 
 // Test if is empty or have the minimun length required
@@ -68,7 +68,7 @@ export default function Profile({ history }) {
         initialData={user}
         schema={schema}
         onSubmit={data => {
-          dispatch(updateUserRequest(data));
+          dispatch(updateProfileRequest(data));
         }}
       >
         <Input name="name" placeholder="Nome completo" type="text" />

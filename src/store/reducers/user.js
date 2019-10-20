@@ -13,7 +13,7 @@ export default (state = initial_state, action) => {
         draft.token = action.payload.token;
       });
 
-    case '@user/UPDATE_USER_SUCCESS':
+    case '@user/UPDATE_PROFILE_SUCCESS':
       return produce(state, draft => {
         draft.email = action.payload.email;
         draft.name = action.payload.name;

@@ -25,16 +25,16 @@ export function signUpRequest(email, name, password) {
   };
 }
 
-export function updateProfileSuccess(payload) {
+export function updateProfileRequest(payload) {
   return {
-    type: '@user/UPDATE_USER_SUCCESS',
+    type: '@user/UPDATE_PROFILE_REQUEST',
     payload,
   };
 }
 
-export function updateUserRequest(payload) {
+export function updateProfileSuccess(payload) {
   return {
-    type: '@user/UPDATE_USER_REQUEST',
+    type: '@user/UPDATE_PROFILE_SUCCESS',
     payload,
   };
 }

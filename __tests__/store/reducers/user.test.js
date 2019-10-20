@@ -23,7 +23,7 @@ describe('User reducer', () => {
     expect(state).toStrictEqual({ token, ...user });
   });
 
-  it('UPDATE_USER_SUCCESS', () => {
+  it('UPDATE_PROFILE_SUCCESS', () => {
     const user = {
       email: faker.internet.email(),
       name: faker.name.findName(),

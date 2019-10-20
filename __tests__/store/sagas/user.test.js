@@ -9,7 +9,7 @@ import {
   signInRequest,
   signInSuccess,
   signUpRequest,
-  updateUserRequest,
+  updateProfileRequest,
   updateProfileSuccess,
 } from '~/store/actions/user';
 
@@ -110,7 +110,7 @@ describe('User saga', () => {
     await runSaga(
       { dispatch },
       updateUser,
-      updateUserRequest(user)
+      updateProfileRequest(user)
     ).toPromise();
 
     expect(toast.success).toHaveBeenCalledWith(
@@ -131,7 +131,7 @@ describe('User saga', () => {
     await runSaga(
       { dispatch },
       updateUser,
-      updateUserRequest({
+      updateProfileRequest({
         ...user,
         old_password: faker.internet.password(),
         password,
@@ -152,7 +152,7 @@ describe('User saga', () => {
     };
 
     api_mock.onPut('users').reply(400, { message: 'Password does not match' });
-    await runSaga({}, updateUser, updateUserRequest(user)).toPromise();
+    await runSaga({}, updateUser, updateProfileRequest(user)).toPromise();
 
     expect(toast.error).toHaveBeenCalledWith(
       'Ops! Alguma coisa deu errado, tente novamente!'
