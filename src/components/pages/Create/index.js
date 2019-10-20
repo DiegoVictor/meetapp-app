@@ -1,32 +1,33 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
+import { format, parseISO } from 'date-fns';
+import { MdArrowBack, MdCameraAlt, MdSave } from 'react-icons/md';
 import { useDispatch } from 'react-redux';
 import { Form, Input } from '@rocketseat/unform';
-import PropTypes from 'prop-types';
 import * as Yup from 'yup';
-import { parseISO, format } from 'date-fns';
-import { MdArrowBack, MdSave, MdCameraAlt } from 'react-icons/md';
+import PropTypes from 'prop-types';
+
+import { upsertMeetup } from '~/store/actions/meetup';
 import { Container, ImagePicker } from './styles';
 import api from '~/services/api';
-import { upsertMeetup } from '~/store/actions/meetup';
 
 const schema = Yup.object().shape({
-  title: Yup.string()
-    .min(6, 'O título deve ter no minimo 6 caracteres')
-    .required('O campo título é obrigatório'),
   description: Yup.string()
     .min(10, 'Poxa, explica mais sobre esse meetup ;)')
     .required('O campo descrição é obrigatório'),
   localization: Yup.string().required('O campo localização é obrigatório'),
+  title: Yup.string()
+    .min(6, 'O título deve ter no minimo 6 caracteres')
+    .required('O campo título é obrigatório'),
 });
 
 export default function Create({ match, history }) {
+  const [banner_id, setBannerId] = useState('');
+  const [date, setDate] = useState('');
+  const dispatch = useDispatch();
   const { id } = match.params;
   const [meetup, setMeetup] = useState({});
-  const [date, setDate] = useState('');
-  const [time, setTime] = useState('');
-  const [banner_id, setBannerId] = useState('');
   const [preview, setPreview] = useState(null);
-  const dispatch = useDispatch();
+  const [time, setTime] = useState('');
 
   useEffect(() => {
     (async () => {
@@ -34,11 +35,11 @@ export default function Create({ match, history }) {
         const { data } = await api.get(`scheduled/${id}`);
         const dt = parseISO(data.date);
 
-        setMeetup(data);
-        setDate(format(dt, "yyyy'-'MM'-'dd"));
-        setTime(format(dt, "HH':'mm"));
-        setPreview(data.banner.url);
         setBannerId(data.banner_id);
+        setDate(format(dt, "yyyy'-'MM'-'dd"));
+        setMeetup(data);
+        setPreview(data.banner.url);
+        setTime(format(dt, "HH':'mm"));
       }
     })();
   }, [id]);
@@ -55,8 +56,8 @@ export default function Create({ match, history }) {
         </button>
       </div>
       <Form
-        schema={schema}
         initialData={meetup}
+        schema={schema}
         onSubmit={data => {
           dispatch(
             upsertMeetup({
@@ -118,17 +119,17 @@ export default function Create({ match, history }) {
   );
 }
 
+Create.defaultProps = {
+  match: { param: {} },
+};
+
 Create.propTypes = {
+  history: PropTypes.shape({
+    goBack: PropTypes.func.isRequired,
+  }).isRequired,
   match: PropTypes.shape({
     params: PropTypes.shape({
       id: PropTypes.string,
     }),
   }),
-  history: PropTypes.shape({
-    goBack: PropTypes.func.isRequired,
-  }).isRequired,
-};
-
-Create.defaultProps = {
-  match: { param: {} },
 };

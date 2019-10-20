@@ -1,8 +1,9 @@
-import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
 import { format, parseISO } from 'date-fns';
-import pt from 'date-fns/locale/pt-BR';
 import { MdAddCircleOutline, MdChevronRight } from 'react-icons/md';
+import { Link } from 'react-router-dom';
+import pt from 'date-fns/locale/pt-BR';
+
 import { Container, Header } from './styles';
 import api from '~/services/api';
 
@@ -42,7 +43,7 @@ export default function Dashboard() {
               <span>{meetup.title}</span>
               <time>
                 {meetup.formatted_date}
-                <MdChevronRight size="24" color="#FFF" />
+                <MdChevronRight color="#FFF" size="24" />
               </time>
             </Link>
           ))}

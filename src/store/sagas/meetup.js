@@ -1,7 +1,8 @@
-import { takeLatest, call, all } from 'redux-saga/effects';
 import { toast } from 'react-toastify';
-import history from '~/services/history';
+import { all, call, takeLatest } from 'redux-saga/effects';
+
 import api from '~/services/api';
+import history from '~/services/history';
 
 export function* cancelMeetup({ payload }) {
   try {
@@ -17,24 +18,24 @@ export function* cancelMeetup({ payload }) {
 export function* upsertMeetup({ payload }) {
   try {
     if (typeof payload.id === 'string') {
-      const { id, title, description, localization, date, banner_id } = payload;
+      const { banner_id, date, description, id, localization, title } = payload;
       yield call(api.put, `/meetups/${id}`, {
-        title,
+        banner_id,
+        date,
         description,
         localization,
-        date,
-        banner_id,
+        title,
       });
       toast.success('Meetup atualizado com sucesso!');
     } else {
-      const { title, description, localization, date, banner_id } = payload;
+      const { banner_id, date, description, localization, title } = payload;
 
       const response = yield call(api.post, 'meetups', {
-        title,
+        banner_id,
+        date,
         description,
         localization,
-        date,
-        banner_id,
+        title,
       });
       history.push(`/meetups/${response.data.id}`);
     }

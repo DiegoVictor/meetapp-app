@@ -1,15 +1,15 @@
 import React from 'react';
-import { Route, Redirect, Router, Switch } from 'react-router-dom';
+import { Redirect, Route, Router, Switch } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-import history from '~/services/history';
 
+import Create from '~/components/pages/Create';
+import Dashboard from '~/components/pages/Dashboard';
+import Default from '~/components/layouts/Default';
+import Details from '~/components/pages/Details';
+import Profile from '~/components/pages/Profile';
 import SignIn from '~/components/pages/Sign/In';
 import SignUp from '~/components/pages/Sign/Up';
-import Dashboard from '~/components/pages/Dashboard';
-import Details from '~/components/pages/Details';
-import Create from '~/components/pages/Create';
-import Profile from '~/components/pages/Profile';
-import Default from '~/components/layouts/Default';
+import history from '~/services/history';
 
 export default function() {
   const signed = useSelector(state => state.signed);
@@ -17,8 +17,8 @@ export default function() {
   return (
     <Router history={history}>
       <Route
-        path="/"
         exact
+        path="/"
         render={props => {
           if (signed) {
             return <Redirect to="/dashboard" />;
@@ -32,8 +32,8 @@ export default function() {
       />
 
       <Route
-        path="/signup"
         exact
+        path="/signup"
         render={props => (
           <Default>
             <SignUp {...props} />
@@ -62,7 +62,7 @@ export default function() {
             )}
           />
 
-          {[Dashboard, Create, Profile].map(Component => (
+          {[Create, Dashboard, Profile].map(Component => (
             <Route
               key={Component.name}
               path={`/${Component.name.toLowerCase()}`}

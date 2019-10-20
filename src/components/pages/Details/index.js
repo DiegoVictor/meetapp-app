@@ -1,24 +1,26 @@
-import React, { useState, useEffect, useMemo } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
+import { isBefore, format, parseISO } from 'date-fns';
+import {
+  MdArrowBack,
+  MdDeleteForever,
+  MdEdit,
+  MdEvent,
+  MdPlace,
+} from 'react-icons/md';
 import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import { format, parseISO, isBefore } from 'date-fns';
-import {
-  MdEdit,
-  MdDeleteForever,
-  MdEvent,
-  MdPlace,
-  MdArrowBack,
-} from 'react-icons/md';
 import pt from 'date-fns/locale/pt-BR';
-import { Container, Header, Description, Footer } from './styles';
-import api from '~/services/api';
+
 import { cancelMeetup } from '~/store/actions/meetup';
+import { Container, Description, Footer, Header } from './styles';
+import api from '~/services/api';
 
 export default function Details({ match }) {
+  const dispatch = useDispatch();
   const { id } = match.params;
   const [meetup, setMeetup] = useState({});
-  const dispatch = useDispatch();
+  const past = useMemo(() => isBefore(meetup.date, new Date()), [meetup]);
 
   useEffect(() => {
     (async () => {
@@ -40,14 +42,12 @@ export default function Details({ match }) {
     })();
   }, [id]);
 
-  const past = useMemo(() => isBefore(meetup.date, new Date()), [meetup]);
-
   return (
     <Container>
       <Header>
         <h2>
           <Link to="/dashboard">
-            <MdArrowBack size="24" color="#FFF" />
+            <MdArrowBack color="#FFF" size="24" />
           </Link>
           {meetup.title}
         </h2>
@@ -59,7 +59,7 @@ export default function Details({ match }) {
             </Link>
           )}
           {!past && (
-            <button onClick={() => dispatch(cancelMeetup(id))} type="button">
+            <button type="button" onClick={() => dispatch(cancelMeetup(id))}>
               <MdDeleteForever size="17" />
               Cancelar
             </button>

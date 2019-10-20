@@ -1,11 +1,12 @@
 import React from 'react';
+import { MdArrowBack, MdSave } from 'react-icons/md';
+import { useDispatch, useSelector } from 'react-redux';
 import { Form, Input } from '@rocketseat/unform';
-import { useSelector, useDispatch } from 'react-redux';
-import { MdSave, MdArrowBack } from 'react-icons/md';
-import PropTypes from 'prop-types';
 import * as Yup from 'yup';
-import { Container } from './styles';
+import PropTypes from 'prop-types';
+
 import { updateUserRequest } from '~/store/actions/user';
+import { Container } from './styles';
 
 // Test if is empty or have the minimun length required
 Yup.addMethod(Yup.string, 'emptyMin', function(min, message) {
@@ -45,12 +46,12 @@ const schema = Yup.object().shape(
         old_password ? field.required('Informe a nova senha') : field
       ),
   },
-  ['password', 'old_password']
+  ['old_password', 'password']
 );
 
 export default function Profile({ history }) {
-  const user = useSelector(state => state.user);
   const dispatch = useDispatch();
+  const user = useSelector(state => state.user);
 
   return (
     <Container>
@@ -64,26 +65,26 @@ export default function Profile({ history }) {
         </button>
       </div>
       <Form
-        schema={schema}
         initialData={user}
+        schema={schema}
         onSubmit={data => {
           dispatch(updateUserRequest(data));
         }}
       >
-        <Input name="name" type="text" placeholder="Nome completo" />
+        <Input name="name" placeholder="Nome completo" type="text" />
         <Input
           name="email"
-          type="email"
           placeholder="Digite seu melhor email"
+          type="email"
         />
 
         <hr />
-        <Input name="old_password" type="password" placeholder="Senha atual" />
-        <Input name="password" type="password" placeholder="Nova senha" />
+        <Input name="old_password" placeholder="Senha atual" type="password" />
+        <Input name="password" placeholder="Nova senha" type="password" />
         <Input
           name="confirm_password"
-          type="password"
           placeholder="Confirme de senha"
+          type="password"
         />
 
         <div>
