@@ -20,7 +20,7 @@ const schema = Yup.object().shape({
     .required('O campo título é obrigatório'),
 });
 
-export default function Create({ match, history }) {
+export default function Edit({ match, history }) {
   const [banner_id, setBannerId] = useState('');
   const [date, setDate] = useState('');
   const dispatch = useDispatch();
@@ -119,11 +119,11 @@ export default function Create({ match, history }) {
   );
 }
 
-Create.defaultProps = {
+Edit.defaultProps = {
   match: { param: {} },
 };
 
-Create.propTypes = {
+Edit.propTypes = {
   history: PropTypes.shape({
     goBack: PropTypes.func.isRequired,
   }).isRequired,

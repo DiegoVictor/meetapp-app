@@ -2,7 +2,7 @@ import React from 'react';
 import { Redirect, Route, Router, Switch } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
-import Create from '~/components/pages/Create';
+import Edit from '~/components/pages/Edit';
 import Dashboard from '~/components/pages/Dashboard';
 import Default from '~/components/layouts/Default';
 import Details from '~/components/pages/Details';
@@ -49,7 +49,7 @@ export default function() {
             path="/meetups/:id/edit"
             render={props => (
               <Default>
-                <Create {...props} />
+                <Edit {...props} />
               </Default>
             )}
           />
@@ -62,7 +62,7 @@ export default function() {
             )}
           />
 
-          {[Create, Dashboard, Profile].map(Component => (
+          {[Dashboard, Edit, Profile].map(Component => (
             <Route
               key={Component.name}
               path={`/${Component.name.toLowerCase()}`}
