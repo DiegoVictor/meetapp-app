@@ -30,7 +30,7 @@ export default function Dashboard() {
     <Container>
       <Header>
         <h2>Meus meetups</h2>
-        <Link to="/edit" className="btn">
+        <Link to="/edit" className="btn" data-testid="new">
           <MdAddCircleOutline size="17" />
           Novo meetup
         </Link>
@@ -39,9 +39,13 @@ export default function Dashboard() {
       <ul>
         <li>
           {meetups.map(meetup => (
-            <Link key={meetup.id} to={`/meetups/${meetup.id}`}>
-              <span>{meetup.title}</span>
-              <time>
+            <Link
+              key={meetup.id}
+              to={`/meetups/${meetup.id}`}
+              data-testid={`meetup_${meetup.id}`}
+            >
+              <span title={meetup.title}>{meetup.title}</span>
+              <time data-testid={`date_${meetup.id}`}>
                 {meetup.formatted_date}
                 <MdChevronRight color="#FFF" size="24" />
               </time>
