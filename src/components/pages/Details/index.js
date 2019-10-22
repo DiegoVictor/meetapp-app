@@ -30,7 +30,7 @@ export default function Details({ match }) {
         ...m,
         date,
         description: m.description.split(/\n/).map((text, index) => (
-          <p key={String(index)}>
+          <p key={String(index)} data-testid={`description_${index}`}>
             {text}
             <br />
           </p>
@@ -46,7 +46,7 @@ export default function Details({ match }) {
     <Container>
       <Header>
         <h2>
-          <Link to="/dashboard">
+          <Link to="/dashboard" data-testid="dashboard">
             <MdArrowBack color="#FFF" size="24" />
           </Link>
           {meetup.title}
@@ -74,11 +74,11 @@ export default function Details({ match }) {
       <Footer>
         <time>
           <MdEvent size="16" />
-          <span>{meetup.formatted_date}</span>
+          <span data-testid="date">{meetup.formatted_date}</span>
         </time>
         <span>
           <MdPlace size="16" />
-          <span>{meetup.localization}</span>
+          <span data-testid="localization">{meetup.localization}</span>
         </span>
       </Footer>
     </Container>
