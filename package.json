@@ -29,7 +29,6 @@
     "start": "react-app-rewired start",
     "build": "react-app-rewired build",
     "test": "react-app-rewired test",
-    "jest": "jest --watchAll",
     "eject": "react-scripts eject"
   },
   "jest": {
