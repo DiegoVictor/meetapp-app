@@ -18,7 +18,7 @@ export default function Default({ children }) {
       {signed && (
         <Header>
           <div>
-            <Link to="/dashboard">
+            <Link to="/dashboard" data-testid="dashboard">
               <img src={Logo} alt="Meetapp" />
             </Link>
 
