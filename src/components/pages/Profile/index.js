@@ -57,6 +57,7 @@ export default function Profile({ history }) {
     <Container>
       <div>
         <button
+          data-testid="back"
           type="button"
           className="unstyled"
           onClick={() => history.goBack()}
