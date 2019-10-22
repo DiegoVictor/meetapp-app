@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { Form, Input } from '@rocketseat/unform';
@@ -18,8 +18,6 @@ const schema = Yup.object().shape({
 
 export default function SignIn() {
   const dispatch = useDispatch();
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
 
   return (
     <Centralize>
@@ -27,21 +25,15 @@ export default function SignIn() {
         <img src={Logo} alt="Meetapp" />
         <Form
           schema={schema}
-          onSubmit={() => dispatch(signInRequest(email, password))}
+          onSubmit={({ email, password }) =>
+            dispatch(signInRequest(email, password))
+          }
         >
-          <Input
-            name="email"
-            placeholder="Digite seu e-mail"
-            type="email"
-            value={email}
-            onChange={e => setEmail(e.target.value)}
-          />
+          <Input name="email" placeholder="Digite seu e-mail" type="email" />
           <Input
             name="password"
             placeholder="Sua senha secreta"
             type="password"
-            value={password}
-            onChange={e => setPassword(e.target.value)}
           />
 
           <button type="submit">Entrar</button>
