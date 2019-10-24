@@ -41,7 +41,8 @@
       "!src/services/api.js",
       "!src/config/ReactotronConfig.js",
       "!src/routes.js",
-      "!src/components/pages/index.js"
+      "!src/components/pages/index.js",
+      "!src/store/index.js"
     ],
     "setupFilesAfterEnv": [
       "@testing-library/jest-dom/extend-expect"
