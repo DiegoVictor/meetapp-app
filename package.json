@@ -5,6 +5,7 @@
   "dependencies": {
     "@rocketseat/unform": "^1.5.1",
     "axios": "^0.19.0",
+    "babel-jest": "^24.9.0",
     "date-fns": "^2.2.1",
     "history": "^4.10.0",
     "immer": "^4.0.0",
@@ -30,9 +31,18 @@
     "start": "react-app-rewired start",
     "build": "react-app-rewired build",
     "test": "react-app-rewired test",
+    "coverage": "react-app-rewired test --coverage --watchAll=false",
     "eject": "react-scripts eject"
   },
   "jest": {
+    "coverageDirectory": "src/__tests__/coverage",
+    "collectCoverageFrom": [
+      "!src/index.js",
+      "!src/services/api.js",
+      "!src/config/ReactotronConfig.js",
+      "!src/routes.js",
+      "!src/components/pages/index.js"
+    ],
     "setupFilesAfterEnv": [
       "@testing-library/jest-dom/extend-expect"
     ],
