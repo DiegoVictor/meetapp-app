@@ -23,6 +23,12 @@ history.push = jest.fn();
 const api_mock = new MockAdapter(api);
 
 describe('User saga', () => {
+  beforeEach(() => {
+    if (typeof api.defaults.headers.Authorization === 'string') {
+      delete api.defaults.headers.Authorization;
+    }
+  });
+
   it('should be able to login', async () => {
     const token = faker.random.alphaNumeric(32);
     const dispatch = jest.fn();
@@ -164,5 +170,10 @@ describe('User saga', () => {
 
     setToken({ payload: { user: { token } } });
     expect(api.defaults.headers.Authorization).toBe(`Bearer ${token}`);
+  });
+
+  it('should not be able to store the token', async () => {
+    setToken({});
+    expect(api.defaults.headers.Authorization).toBeUndefined();
   });
 });
