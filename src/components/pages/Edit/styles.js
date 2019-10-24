@@ -19,7 +19,14 @@ export const Container = styled.div`
       justify-content: right;
     }
 
-    > span {
+    > label > span {
+      margin-bottom: 20px;
+      position: absolute;
+      bottom: -35px;
+    }
+
+    > span,
+    > label > span {
       align-self: flex-start;
       color: #fb6f91;
       font-weight: bold;
@@ -33,7 +40,7 @@ export const ImagePicker = styled.label`
   color: rgba(255, 255, 255, 0.3);
   font-weight: bold;
   line-height: 0px;
-  margin-bottom: 20px;
+  margin-bottom: 40px;
   min-height: 250px;
   position: relative;
 
