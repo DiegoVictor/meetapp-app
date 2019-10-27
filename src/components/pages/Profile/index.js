@@ -1,23 +1,14 @@
 import React, { useRef } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import Icon from 'react-native-vector-icons/MaterialIcons';
 import { ScrollView } from 'react-native';
+import { useDispatch, useSelector } from 'react-redux';
 import * as Yup from 'yup';
+import Icon from 'react-native-vector-icons/MaterialIcons';
 
+import { Container, Form, FormButton, Separator } from './styles';
 import { signOut, updateProfileRequest } from '~/store/actions/user';
 import Input from '~/components/Input';
 
 const schema = Yup.object().shape({
-  name: Yup.string('O nome precisa ser um texto'),
-  email: Yup.string('O email precisa ser um texto').email(
-    'O email precisa ser válido'
-  ),
-  old_password: Yup.string('A senha precisa ser um texto'),
-  password: Yup.string('A senha precisa ser um texto')
-    .min(6, 'A senha deve conter no minimo 6 caracteres')
-    .when('old_password', (old_password, field) =>
-      old_password ? field.required('O campo senha é obrigatório') : field
-    ),
   confirm_password: Yup.string(
     'A confirmmação da senha precisa ser um texto'
   ).when('password', (password, field) => {
@@ -27,17 +18,25 @@ const schema = Yup.object().shape({
           .oneOf([Yup.ref('password')])
       : field;
   }),
+  email: Yup.string('O email precisa ser um texto').email(
+    'O email precisa ser válido'
+  ),
+  name: Yup.string('O nome precisa ser um texto'),
+  old_password: Yup.string('A senha precisa ser um texto'),
+  password: Yup.string('A senha precisa ser um texto')
+    .min(6, 'A senha deve conter no minimo 6 caracteres')
+    .when('old_password', (old_password, field) =>
+      old_password ? field.required('O campo senha é obrigatório') : field
+    ),
 });
 
 export default function Profile() {
-  const user = useSelector(state => state.user);
-
+  const confirm_password_ref = useRef();
+  const dispatch = useDispatch();
   const email_ref = useRef();
   const old_password_ref = useRef();
   const password_ref = useRef();
-  const confirm_password_ref = useRef();
-
-  const dispatch = useDispatch();
+  const user = useSelector(state => state.user);
 
   return (
     <ScrollView>
@@ -46,68 +45,69 @@ export default function Profile() {
           initialValues={user}
           validationSchema={schema}
           onSubmit={values => {
-            dispatch(updateUserRequest(values));
+            dispatch(updateProfileRequest(values));
           }}
-          render={props => (
+          render={fields => (
             <>
               <Input
                 autoCorrect={false}
+                error={fields.errors.name}
+                onChangeText={fields.handleChange('name')}
+                onSubmitEditing={() => email_ref.current.focus()}
                 placeholder="Nome completo"
                 returnKeyType="next"
-                onSubmitEditing={() => email_ref.current.focus()}
-                onChangeText={props.handleChange('name')}
-                value={props.values.name}
-                error={props.errors.name}
+                value={fields.values.name}
               />
 
               <Input
-                keyboardType="email-address"
-                autoCorrect={false}
                 autoCapitalize="none"
+                autoCorrect={false}
+                error={fields.errors.email}
+                keyboardType="email-address"
+                onSubmitEditing={() => old_password_ref.current.focus()}
+                onChangeText={fields.handleChange('email')}
                 placeholder="Digite seu email"
                 returnKeyType="next"
-                onSubmitEditing={() => old_password_ref.current.focus()}
-                onChangeText={props.handleChange('email')}
-                value={props.values.email}
-                error={props.errors.email}
+                ref={email_ref}
+                value={fields.values.email}
               />
 
               <Separator />
 
               <Input
-                secureTextEntry
+                error={fields.errors.old_password}
+                onSubmitEditing={() => password_ref.current.focus()}
+                onChangeText={fields.handleChange('old_password')}
                 placeholder="Sua senha atual"
                 ref={old_password_ref}
                 returnKeyType="next"
-                onSubmitEditing={() => password_ref.current.focus()}
-                onChangeText={props.handleChange('old_password')}
-                error={props.errors.old_password}
+                secureTextEntry
               />
 
               <Input
-                secureTextEntry
+                error={fields.errors.password}
+                onChangeText={fields.handleChange('password')}
+                onSubmitEditing={() => confirm_password_ref.current.focus()}
                 placeholder="Sua nova senha"
                 ref={password_ref}
                 returnKeyType="next"
-                onSubmitEditing={() => confirm_password_ref.current.focus()}
-                onChangeText={props.handleChange('password')}
-                error={props.errors.password}
+                secureTextEntry
               />
 
               <Input
-                secureTextEntry
+                error={fields.errors.confirm_password}
+                onSubmitEditing={fields.handleSubmit}
+                onChangeText={fields.handleChange('confirm_password')}
                 placeholder="Confirme sua nova senha"
                 ref={confirm_password_ref}
                 returnKeyType="send"
-                onSubmitEditing={props.handleSubmit}
-                onChangeText={props.handleChange('confirm_password')}
-                error={props.errors.confirm_password}
+                secureTextEntry
               />
 
-              <FormButton onPress={props.handleSubmit}>
+              <FormButton onPress={fields.handleSubmit}>
                 Salvar perfil
               </FormButton>
-              <FormButton onPress={() => dispatch(SignOut())}>
+              <FormButton onPress={() => dispatch(signOut())}>
                 Logout
               </FormButton>
             </>

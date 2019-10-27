@@ -1,5 +1,7 @@
 import React, { forwardRef } from 'react';
-import { FormInput, Error } from './styles';
+import PropTypes from 'prop-types';
+
+import { Error, FormInput } from './styles';
 
 function Input({ error, ...props }, ref) {
   return (

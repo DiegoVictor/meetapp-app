@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import '~/config/ReactotronConfig';
 import { StatusBar } from 'react-native';
-import { PersistGate } from 'redux-persist/integration/react';
-import { persistStore } from 'redux-persist';
 import { Provider } from 'react-redux';
+import { persistStore } from 'redux-persist';
+import { PersistGate } from 'redux-persist/integration/react';
 import CodePush from 'react-native-code-push';
 import OneSignal from 'react-native-onesignal';
 
@@ -16,9 +16,9 @@ class App extends Component {
     super(props);
 
     OneSignal.init('e12369bb-f27f-40a8-aab3-98474c5ac789');
-    OneSignal.addEventListener('received', this.onReceived);
-    OneSignal.addEventListener('opened', this.onOpened);
     OneSignal.addEventListener('ids', this.onIds);
+    OneSignal.addEventListener('opened', this.onOpened);
+    OneSignal.addEventListener('received', this.onReceived);
   }
 
   componentWillMount() {

@@ -1,16 +1,17 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+
 import {
-  Container,
   Banner,
+  Container,
   Description,
-  Title,
-  Item,
   Icon,
+  Item,
   Text,
+  Title,
 } from './styles';
 
-export default function Meetup({ data, children }) {
+export default function Meetup({ children, data }) {
   return (
     <Container>
       <Banner source={{ uri: data.banner.url }} resizeMode="cover" />

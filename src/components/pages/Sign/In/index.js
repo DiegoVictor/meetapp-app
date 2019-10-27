@@ -1,8 +1,7 @@
-import React, { useState, useRef } from 'react';
-import { useDispatch } from 'react-redux';
+import React, { useRef, useState } from 'react';
 import { Image } from 'react-native';
+import { useDispatch } from 'react-redux';
 import PropTypes from 'prop-types';
-import Logo from '../../../../assets/logo.png';
 
 import { signInRequest } from '~/store/actions/user';
 import { Container, Form, TextLink } from '../styles';
@@ -11,8 +10,9 @@ import Input from '~/components/Input';
 import Logo from '~/assets/logo.png';
 
 export default function SignIn({ navigation }) {
-  const password_ref = useRef();
+  const dispatch = useDispatch();
   const [email, setEmail] = useState('');
+  const password_ref = useRef();
   const [password, setPassword] = useState('');
 
   function handleSubmit() {

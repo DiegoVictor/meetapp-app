@@ -1,14 +1,11 @@
-import React, { useState, useEffect, useMemo } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { format, parseISO, addDays, subDays } from 'date-fns';
-import pt from 'date-fns/locale/pt';
-import Icon from 'react-native-vector-icons/MaterialIcons';
+import React, { useEffect, useMemo, useState } from 'react';
+import { addDays, format, parseISO, subDays } from 'date-fns';
 import { TouchableOpacity } from 'react-native-gesture-handler';
-import api from '../../../services/api';
+import { useDispatch, useSelector } from 'react-redux';
+import Icon from 'react-native-vector-icons/MaterialIcons';
+import pt from 'date-fns/locale/pt';
 
-import Button from '../../Button';
-import Meetup from '../../Meetup';
-import { Container, Header, Text, Meetups } from './styles';
+import { Container, Header, Meetups, Text } from './styles';
 import {
   appendMeetups,
   setMeetups,
@@ -19,10 +16,10 @@ import Button from '~/components/Button';
 import Meetup from '~/components/Meetup';
 
 export default function Dashboard() {
-  const [page, setPage] = useState(1);
-  const meetups = useSelector(state => state.meetups);
   const [date, setDate] = useState(new Date());
   const dispatch = useDispatch();
+  const meetups = useSelector(state => state.meetups);
+  const [page, setPage] = useState(1);
 
   const formatted_date = useMemo(
     () => format(date, "dd 'de' MMMM", { locale: pt }),
@@ -56,11 +53,11 @@ export default function Dashboard() {
     <Container>
       <Header>
         <TouchableOpacity onPress={() => setDate(subDays(date, 1))}>
-          <Icon name="chevron-left" size={30} color="#FFF" />
+          <Icon color="#FFF" name="chevron-left" size={30} />
         </TouchableOpacity>
         <Text>{formatted_date}</Text>
         <TouchableOpacity onPress={() => setDate(addDays(date, 1))}>
-          <Icon name="chevron-right" size={30} color="#FFF" />
+          <Icon color="#FFF" name="chevron-right" size={30} />
         </TouchableOpacity>
       </Header>
 

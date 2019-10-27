@@ -1,8 +1,7 @@
-import React, { useState, useRef } from 'react';
-import { useDispatch } from 'react-redux';
+import React, { useRef, useState } from 'react';
 import { Image } from 'react-native';
+import { useDispatch } from 'react-redux';
 import PropTypes from 'prop-types';
-import Logo from '../../../../assets/logo.png';
 
 import { signUpRequest } from '~/store/actions/user';
 import { Container, Form, TextLink } from '../styles';
@@ -11,13 +10,13 @@ import Input from '~/components/Input';
 import Logo from '~/assets/logo.png';
 
 export default function SignUp({ navigation }) {
-  const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const email_ref = useRef();
-  const password_ref = useRef();
-
   const dispatch = useDispatch();
+  const email_ref = useRef();
+  const [email, setEmail] = useState('');
+  const [name, setName] = useState('');
+  const password_ref = useRef();
+  const [password, setPassword] = useState('');
+
   function handleSubmit() {
     dispatch(signUpRequest(email, name, password));
   }
@@ -28,32 +27,33 @@ export default function SignUp({ navigation }) {
       <Form>
         <Input
           autoCorrect={false}
+          onChangeText={setName}
+          onSubmitEditing={() => email_ref.current.focus()}
           placeholder="Nome completo"
           returnKeyType="next"
-          onSubmitEditing={() => email_ref.current.focus()}
           value={name}
-          onChangeText={setName}
         />
 
         <Input
-          keyboardType="email-address"
-          autoCorrect={false}
           autoCapitalize="none"
-          placeholder="Digite seu email"
-          returnKeyType="next"
-          onSubmitEditing={() => password_ref.current.focus()}
-          value={email}
+          autoCorrect={false}
+          keyboardType="email-address"
           onChangeText={setEmail}
+          onSubmitEditing={() => password_ref.current.focus()}
+          placeholder="Digite seu email"
+          ref={email_ref}
+          returnKeyType="next"
+          value={email}
         />
 
         <Input
-          secureTextEntry
+          onChangeText={setPassword}
+          onSubmitEditing={handleSubmit}
           placeholder="Sua senha secreta"
           ref={password_ref}
           returnKeyType="send"
+          secureTextEntry
           value={password}
-          onChangeText={setPassword}
-          onSubmitEditing={handleSubmit}
         />
 
         <Button onPress={handleSubmit}>Cadastrar</Button>

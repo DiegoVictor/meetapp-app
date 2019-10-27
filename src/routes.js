@@ -3,11 +3,11 @@ import { createAppContainer, createSwitchNavigator } from 'react-navigation';
 import { createBottomTabNavigator } from 'react-navigation-tabs';
 import { useSelector } from 'react-redux';
 
-import SignIn from './components/pages/Sign/In';
-import SignUp from './components/pages/Sign/Up';
-import Dashboard from './components/pages/Dashboard';
-import Subscription from './components/pages/Subscription';
-import Profile from './components/pages/Profile';
+import Dashboard from '~/components/pages/Dashboard';
+import Profile from '~/components/pages/Profile';
+import SignIn from '~/components/pages/Sign/In';
+import SignUp from '~/components/pages/Sign/Up';
+import Subscription from '~/components/pages/Subscription';
 
 function Routes() {
   const signed = useSelector(state => state.signed);
@@ -21,8 +21,8 @@ function Routes() {
         App: createBottomTabNavigator(
           {
             Dashboard,
-            Subscription,
             Profile,
+            Subscription,
           },
           {
             tabBarOptions: {
