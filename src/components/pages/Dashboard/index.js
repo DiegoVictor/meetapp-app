@@ -10,10 +10,13 @@ import Button from '../../Button';
 import Meetup from '../../Meetup';
 import { Container, Header, Text, Meetups } from './styles';
 import {
-  SubscribeMeetupRequets,
-  SetMeetups,
-  AppendMeetups,
-} from '../../../store/actions/meetup';
+  appendMeetups,
+  setMeetups,
+  subscribeMeetupRequets,
+} from '~/store/actions/meetup';
+import api from '~/services/api';
+import Button from '~/components/Button';
+import Meetup from '~/components/Meetup';
 
 export default function Dashboard() {
   const [page, setPage] = useState(1);

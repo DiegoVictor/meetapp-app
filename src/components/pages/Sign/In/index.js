@@ -7,7 +7,9 @@ import Logo from '../../../../assets/logo.png';
 import Input from '../../../Input';
 import Button from '../../../Button';
 import { Container, Form, TextLink } from '../styles';
-import { SignInRequest } from '../../../../store/actions/user';
+import Button from '~/components/Button';
+import Input from '~/components/Input';
+import Logo from '~/assets/logo.png';
 
 export default function SignIn({ navigation }) {
   const password_ref = useRef();

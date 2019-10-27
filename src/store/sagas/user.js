@@ -4,6 +4,9 @@ import { navigate } from '../../services/navigator';
 import api from '../../services/api';
 import { SignInSuccess, updateProfileSuccess } from '../actions/user';
 
+import { navigate } from '~/services/navigator';
+import api from '~/services/api';
+
 function* signIn({ payload }) {
   try {
     const { email, password } = payload;

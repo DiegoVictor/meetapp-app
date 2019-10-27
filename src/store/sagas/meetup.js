@@ -5,6 +5,7 @@ import {
   SubscribeMeetupSuccess,
   UnsubscribeMeetupSuccess,
 } from '../actions/meetup';
+import api from '~/services/api';
 
 function* UnsubscribeMeetup({ payload }) {
   try {

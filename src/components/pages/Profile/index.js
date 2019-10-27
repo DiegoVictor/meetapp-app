@@ -4,9 +4,8 @@ import Icon from 'react-native-vector-icons/MaterialIcons';
 import { ScrollView } from 'react-native';
 import * as Yup from 'yup';
 
-import Input from '../../Input';
-import { Container, Form, Separator, FormButton } from './styles';
-import { SignOut, updateUserRequest } from '../../../store/actions/user';
+import { signOut, updateProfileRequest } from '~/store/actions/user';
+import Input from '~/components/Input';
 
 const schema = Yup.object().shape({
   name: Yup.string('O nome precisa ser um texto'),

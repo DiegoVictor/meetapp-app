@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import '../config/ReactotronConfig';
+import '~/config/ReactotronConfig';
 import { StatusBar } from 'react-native';
 import { PersistGate } from 'redux-persist/integration/react';
 import { persistStore } from 'redux-persist';
@@ -7,10 +7,9 @@ import { Provider } from 'react-redux';
 import CodePush from 'react-native-code-push';
 import OneSignal from 'react-native-onesignal';
 
-import Navigator from '../services/navigator';
 import Default from './layouts/Default';
-import Routes from '../routes';
-import store from '../store';
+import Routes from '~/routes';
+import store from '~/store';
 
 class App extends Component {
   constructor(props) {

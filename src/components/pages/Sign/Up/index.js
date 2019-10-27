@@ -4,10 +4,11 @@ import { Image } from 'react-native';
 import PropTypes from 'prop-types';
 import Logo from '../../../../assets/logo.png';
 
-import Input from '../../../Input';
-import Button from '../../../Button';
+import { signUpRequest } from '~/store/actions/user';
 import { Container, Form, TextLink } from '../styles';
-import { SignUpRequest } from '../../../../store/actions/user';
+import Button from '~/components/Button';
+import Input from '~/components/Input';
+import Logo from '~/assets/logo.png';
 
 export default function SignUp({ navigation }) {
   const [name, setName] = useState('');

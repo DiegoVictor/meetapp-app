@@ -5,11 +5,12 @@ import pt from 'date-fns/locale/pt';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import api from '../../../services/api';
 
-import Meetup from '../../Meetup';
-import Button from '../../Button';
+import { setSubscriptions } from '~/store/actions/subscription';
+import { unsubscribeMeetupRequest } from '~/store/actions/meetup';
 import { Container, Meetups } from './styles';
-import { SetSubscriptions } from '../../../store/actions/subscription';
-import { UnsubscribeMeetupRequest } from '../../../store/actions/meetup';
+import api from '~/services/api';
+import Button from '~/components/Button';
+import Meetup from '~/components/Meetup';
 
 export default function Subscription() {
   const subscriptions = useSelector(state => state.subscriptions);
