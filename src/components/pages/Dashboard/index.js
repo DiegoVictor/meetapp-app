@@ -35,7 +35,7 @@ export default function Dashboard() {
         },
       });
       dispatch(
-        SetMeetups(
+        setMeetups(
           response.data.map(meetup => ({
             ...meetup,
             formatted_date: format(
@@ -76,7 +76,7 @@ export default function Dashboard() {
 
           if (response.data.length === 10) {
             setPage(next_page);
-            AppendMeetups([
+            appendMeetups([
               ...meetups,
               ...response.data.map(meetup => ({
                 ...meetup,
@@ -91,7 +91,7 @@ export default function Dashboard() {
         }}
         renderItem={({ item }) => (
           <Meetup data={item}>
-            <Button onPress={() => dispatch(SubscribeMeetupRequets(item))}>
+            <Button onPress={() => dispatch(subscribeMeetupRequets(item))}>
               Realizar Inscrição
             </Button>
           </Meetup>
