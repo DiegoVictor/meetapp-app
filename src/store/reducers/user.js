@@ -1,6 +1,6 @@
 import { produce } from 'immer';
 
-const initial_state = {
+export const initial_state = {
   token: null,
 };
 
