@@ -4,8 +4,7 @@ import { Image } from 'react-native';
 import PropTypes from 'prop-types';
 import Logo from '../../../../assets/logo.png';
 
-import Input from '../../../Input';
-import Button from '../../../Button';
+import { signInRequest } from '~/store/actions/user';
 import { Container, Form, TextLink } from '../styles';
 import Button from '~/components/Button';
 import Input from '~/components/Input';
@@ -16,9 +15,8 @@ export default function SignIn({ navigation }) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-  const dispatch = useDispatch();
   function handleSubmit() {
-    dispatch(SignInRequest(email, password));
+    dispatch(signInRequest(email, password));
   }
 
   return (

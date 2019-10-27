@@ -20,7 +20,7 @@ export default function Subscription() {
     (async () => {
       const response = await api.get('subscriptions');
       dispatch(
-        SetSubscriptions(
+        setSubscriptions(
           response.data.map(subscription => ({
             ...subscription,
             formatted_date: format(
@@ -41,7 +41,7 @@ export default function Subscription() {
         keyExtractor={item => String(item.id)}
         renderItem={({ item }) => (
           <Meetup data={item}>
-            <Button onPress={() => dispatch(UnsubscribeMeetupRequest(item))}>
+            <Button onPress={() => dispatch(unsubscribeMeetupRequest(item))}>
               Cancelar inscrição
             </Button>
           </Meetup>

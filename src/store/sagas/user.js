@@ -1,9 +1,7 @@
 import { takeLatest, call, put, all } from 'redux-saga/effects';
 import { Alert } from 'react-native';
-import { navigate } from '../../services/navigator';
-import api from '../../services/api';
-import { SignInSuccess, updateProfileSuccess } from '../actions/user';
 
+import { signInSuccess, updateProfileSuccess } from '../actions/user';
 import { navigate } from '~/services/navigator';
 import api from '~/services/api';
 
@@ -15,7 +13,7 @@ function* signIn({ payload }) {
     const { token, user } = response.data;
     api.defaults.headers.Authorization = `Bearer ${token}`;
 
-    yield put(SignInSuccess(token, user));
+    yield put(signInSuccess(token, user));
   } catch (err) {
     Alert.alert('Ops! Alguma coisa deu errado, tente novamente!');
   }
