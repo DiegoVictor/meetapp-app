@@ -5,7 +5,15 @@ import { signInSuccess, updateProfileSuccess } from '../actions/user';
 import { navigate } from '~/services/navigator';
 import api from '~/services/api';
 
-function* signIn({ payload }) {
+export function setToken({ payload }) {
+  if (!payload) {
+    return;
+  }
+  const { token } = payload.user;
+  api.defaults.headers.Authorization = `Bearer ${token}`;
+}
+
+export function* signIn({ payload }) {
   try {
     const { email, password } = payload;
     const response = yield call(api.post, 'sessions', { email, password });
@@ -19,7 +27,7 @@ function* signIn({ payload }) {
   }
 }
 
-function* signUp({ payload }) {
+export function* signUp({ payload }) {
   try {
     const { email, name, password } = payload;
     yield call(api.post, 'users', { email, name, password });
@@ -29,7 +37,7 @@ function* signUp({ payload }) {
   }
 }
 
-function* updateUser({ payload }) {
+export function* updateUser({ payload }) {
   try {
     const { name, email, ...rest } = payload;
     const response = yield call(api.put, 'users', {
@@ -43,14 +51,6 @@ function* updateUser({ payload }) {
   } catch (err) {
     Alert.alert('Ops! Alguma coisa deu errado, tente novamente!');
   }
-}
-
-function setToken({ payload }) {
-  if (!payload) {
-    return;
-  }
-  const { token } = payload.user;
-  api.defaults.headers.Authorization = `Bearer ${token}`;
 }
 
 export default all([
