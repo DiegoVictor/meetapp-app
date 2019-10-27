@@ -39,7 +39,7 @@ class App extends Component {
         <PersistGate persistor={persistStore(store)}>
           <StatusBar barStyle="light-content" backgroundColor="#191620" />
           <Default>
-            <Routes ref={nav => Navigator(nav)} />
+            <Routes/>
           </Default>
         </PersistGate>
       </Provider>

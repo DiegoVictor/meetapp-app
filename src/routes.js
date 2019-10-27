@@ -1,4 +1,4 @@
-import React, { forwardRef } from 'react';
+import React from 'react';
 import { createAppContainer, createSwitchNavigator } from 'react-navigation';
 import { createBottomTabNavigator } from 'react-navigation-tabs';
 import { useSelector } from 'react-redux';
@@ -53,7 +53,9 @@ function Routes() {
     )
   );
 
-  return <Router />;
+  return <Router ref={nav => {
+    setNavigator(nav);
+  }} />;
 }
 
-export default forwardRef(Routes);
+export default Routes;
