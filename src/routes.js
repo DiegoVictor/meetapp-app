@@ -3,6 +3,7 @@ import { createAppContainer, createSwitchNavigator } from 'react-navigation';
 import { createBottomTabNavigator } from 'react-navigation-tabs';
 import { useSelector } from 'react-redux';
 
+import { setNavigator } from '~/services/navigator';
 import Dashboard from '~/components/pages/Dashboard';
 import Profile from '~/components/pages/Profile';
 import SignIn from '~/components/pages/Sign/In';
