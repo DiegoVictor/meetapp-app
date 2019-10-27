@@ -12,4 +12,12 @@ function Input({ error, ...props }, ref) {
   );
 }
 
+Input.propTypes = {
+  error: PropTypes.string,
+};
+
+Input.defaultProps = {
+  error: '',
+};
+
 export default forwardRef(Input);
