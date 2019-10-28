@@ -8,6 +8,12 @@ Remember to update the `src/services/api.js` with the same server url and port c
 meetapp-api$ yarn dev
 ```
 
+# Install
+Install dependencies:
+```
+meetapp-app$ yarn
+```
+
 # OS
 This app was tested only with Android through USB connection, is strongly recommended to use the same operational system, but of course you can use an emulator or a real device connected through wifi or USB.
 
