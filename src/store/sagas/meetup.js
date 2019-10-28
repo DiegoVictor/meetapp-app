@@ -7,7 +7,7 @@ import {
 } from '../actions/meetup';
 import api from '~/services/api';
 
-function* UnsubscribeMeetup({ payload }) {
+function* unsubscribeMeetup({ payload }) {
   try {
     const { id } = payload;
 
@@ -20,7 +20,7 @@ function* UnsubscribeMeetup({ payload }) {
   }
 }
 
-function* SubscribeMeetup({ payload }) {
+function* subscribeMeetup({ payload }) {
   try {
     const { id } = payload;
 
@@ -34,6 +34,6 @@ function* SubscribeMeetup({ payload }) {
 }
 
 export default all([
-  takeLatest('@meetup/SUBSCRIBE_MEETUP_REQUEST', SubscribeMeetup),
-  takeLatest('@meetup/UNSUBSCRIBE_MEETUP_REQUEST', UnsubscribeMeetup),
+  takeLatest('@meetup/SUBSCRIBE_MEETUP_REQUEST', subscribeMeetup),
+  takeLatest('@meetup/UNSUBSCRIBE_MEETUP_REQUEST', unsubscribeMeetup),
 ]);
