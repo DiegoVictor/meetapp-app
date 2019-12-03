@@ -7,7 +7,7 @@ import pt from 'date-fns/locale/pt-BR';
 import { Container, Header } from './styles';
 import api from '~/services/api';
 
-export default function Dashboard() {
+export default () => {
   const [meetups, setMeetups] = useState([]);
 
   useEffect(() => {
@@ -55,4 +55,4 @@ export default function Dashboard() {
       </ul>
     </Container>
   );
-}
+};

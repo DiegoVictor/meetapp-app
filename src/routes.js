@@ -11,7 +11,7 @@ import SignIn from '~/components/pages/Sign/In';
 import SignUp from '~/components/pages/Sign/Up';
 import history from '~/services/history';
 
-export default function() {
+export default () => {
   const signed = useSelector(state => state.signed);
 
   return (
@@ -77,4 +77,4 @@ export default function() {
       )}
     </Router>
   );
-}
+};

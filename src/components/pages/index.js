@@ -10,7 +10,7 @@ import Routes from '~/routes';
 import store from '~/store';
 import Style from './styles';
 
-function App() {
+export default () => {
   return (
     <Provider store={store}>
       <PersistGate persistor={persistStore(store)}>
@@ -20,6 +20,4 @@ function App() {
       </PersistGate>
     </Provider>
   );
-}
-
-export default App;
+};
