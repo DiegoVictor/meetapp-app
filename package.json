@@ -39,10 +39,14 @@
     "collectCoverageFrom": [
       "!src/index.js",
       "!src/services/api.js",
+      "!src/services/history.js",
       "!src/config/ReactotronConfig.js",
       "!src/routes.js",
       "!src/components/pages/index.js",
-      "!src/store/index.js"
+      "!src/store/index.js",
+      "!src/components/pages/styles.js",
+      "!src/components/Datepicker/index.js",
+      "!src/components/Datepicker/style.js"
     ],
     "setupFilesAfterEnv": [
       "@testing-library/jest-dom/extend-expect"
