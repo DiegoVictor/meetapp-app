@@ -2,6 +2,7 @@ import React from 'react';
 import { Redirect, Route, Router, Switch } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
+import Create from '~/components/pages/Create';
 import Edit from '~/components/pages/Edit';
 import Dashboard from '~/components/pages/Dashboard';
 import Default from '~/components/layouts/Default';
@@ -62,7 +63,7 @@ export default () => {
             )}
           />
 
-          {[Dashboard, Edit, Profile].map(Component => (
+          {[Create, Dashboard, Profile].map(Component => (
             <Route
               key={Component.name}
               path={`/${Component.name.toLowerCase()}`}
