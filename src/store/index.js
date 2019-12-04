@@ -3,6 +3,7 @@ import { all } from 'redux-saga/effects';
 import storage from 'redux-persist/lib/storage';
 import createSagaMiddleware from 'redux-saga';
 import { persistReducer } from 'redux-persist';
+import Reactotron from 'reactotron-react-js';
 
 import user from './reducers/user';
 import signed from './reducers/signed';
@@ -11,7 +12,7 @@ import sagas from './sagas';
 const sagaMiddleware = createSagaMiddleware({
   sagaMonitor: (() => {
     if (process.env.NODE_ENV === 'development') {
-      return console.tron.createSagaMonitor();
+      return Reactotron.createSagaMonitor();
     }
     return null;
   })(),
@@ -29,7 +30,7 @@ const persisted = persistReducer(
 const enhancer = (() => {
   if (process.env.NODE_ENV === 'development') {
     return compose(
-      console.tron.createEnhancer(),
+      Reactotron.createEnhancer(),
       applyMiddleware(sagaMiddleware)
     );
   }
