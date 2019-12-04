@@ -30,7 +30,7 @@ export default () => {
     <Container>
       <Header>
         <h2>Meus meetups</h2>
-        <Link to="/edit" className="btn" data-testid="new">
+        <Link to="/create" className="btn" data-testid="new">
           <MdAddCircleOutline size="17" />
           Novo meetup
         </Link>
