@@ -17,8 +17,9 @@ export function* cancelMeetup({ payload }) {
 
 export function* upsertMeetup({ payload }) {
   try {
-    if (typeof payload.id === 'string') {
+    if (typeof payload.id !== 'undefined') {
       const { banner_id, date, description, id, localization, title } = payload;
+
       yield call(api.put, `/meetups/${id}`, {
         banner_id,
         date,
@@ -26,6 +27,7 @@ export function* upsertMeetup({ payload }) {
         localization,
         title,
       });
+
       toast.success('Meetup atualizado com sucesso!');
     } else {
       const { banner_id, date, description, localization, title } = payload;
