@@ -5,9 +5,9 @@ import createSagaMiddleware from 'redux-saga';
 import { persistReducer } from 'redux-persist';
 import Reactotron from 'reactotron-react-js';
 
-import user from './reducers/user';
-import signed from './reducers/signed';
-import sagas from './sagas';
+import user from '~/store/reducers/user';
+import signed from '~/store/reducers/signed';
+import sagas from '~/store/sagas';
 
 const sagaMiddleware = createSagaMiddleware({
   sagaMonitor: (() => {

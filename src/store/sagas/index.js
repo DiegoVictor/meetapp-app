@@ -1,4 +1,4 @@
-import meetup from './meetup';
-import user from './user';
+import meetup from '~/store/sagas/meetup';
+import user from '~/store/sagas/user';
 
 export default [meetup, user];
