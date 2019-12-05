@@ -10,19 +10,20 @@ import { signOut } from '~/store/actions/user';
 
 jest.mock('react-redux');
 
+const dispatch = jest.fn();
+useDispatch.mockReturnValue(dispatch);
+
+useSelector.mockImplementation(cb =>
+  cb({
+    signed: true,
+    user: {
+      name: faker.name.findName(),
+    },
+  })
+);
+
 describe('Default layout', () => {
   it('should be able to go to dashboard', async () => {
-    const dispatch = jest.fn();
-    useDispatch.mockReturnValue(dispatch);
-    useSelector.mockImplementation(cb =>
-      cb({
-        signed: true,
-        user: {
-          name: faker.name.findName(),
-        },
-      })
-    );
-
     const { getByTestId } = render(
       <Router history={history}>
         <Default>
@@ -36,17 +37,6 @@ describe('Default layout', () => {
   });
 
   it('should be able to go to profile', async () => {
-    const dispatch = jest.fn();
-    useDispatch.mockReturnValue(dispatch);
-    useSelector.mockImplementation(cb =>
-      cb({
-        signed: true,
-        user: {
-          name: faker.name.findName(),
-        },
-      })
-    );
-
     const { getByText } = render(
       <Router history={history}>
         <Default>
@@ -60,17 +50,6 @@ describe('Default layout', () => {
   });
 
   it('should be able to logout', async () => {
-    const dispatch = jest.fn();
-    useDispatch.mockReturnValue(dispatch);
-    useSelector.mockImplementation(cb =>
-      cb({
-        signed: true,
-        user: {
-          name: faker.name.findName(),
-        },
-      })
-    );
-
     const { getByText } = render(
       <Router history={history}>
         <Default>
