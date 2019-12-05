@@ -1,4 +1,5 @@
 import faker from 'faker';
+
 import reducer, { initial_state } from '~/store/reducers/signed';
 import { signInSuccess, signOut } from '~/store/actions/user';
 

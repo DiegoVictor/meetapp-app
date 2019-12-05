@@ -2,6 +2,7 @@ import faker from 'faker';
 import MockAdapter from 'axios-mock-adapter';
 import { runSaga } from 'redux-saga';
 import { toast } from 'react-toastify';
+
 import api from '~/services/api';
 import { signIn, signUp, updateUser, setToken } from '~/store/sagas/user';
 import history from '~/services/history';

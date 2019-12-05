@@ -2,6 +2,7 @@ import { runSaga } from 'redux-saga';
 import faker from 'faker';
 import MockAdapter from 'axios-mock-adapter';
 import { toast } from 'react-toastify';
+
 import { cancelMeetup, upsertMeetup } from '~/store/sagas/meetup';
 import api from '~/services/api';
 import history from '~/services/history';
