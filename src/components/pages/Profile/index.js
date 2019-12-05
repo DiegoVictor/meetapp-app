@@ -9,7 +9,7 @@ import { updateProfileRequest } from '~/store/actions/user';
 import { Container } from './styles';
 
 // Test if is empty or have the minimun length required
-Yup.addMethod(Yup.string, 'emptyMin', function(min, message) {
+Yup.addMethod(Yup.string, 'emptyMin', function emptyMin(min, message) {
   return this.test('empty_or_min', message, value => {
     if (value.length > 0 && value.length < min) {
       return false;
