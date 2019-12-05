@@ -88,7 +88,7 @@ export default function Details({ match }) {
 Details.propTypes = {
   match: PropTypes.shape({
     params: PropTypes.shape({
-      id: PropTypes.string.isRequired,
+      id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
     }).isRequired,
   }).isRequired,
 };
