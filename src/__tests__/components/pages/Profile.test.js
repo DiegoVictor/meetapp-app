@@ -57,8 +57,8 @@ describe('Profile page', () => {
       fireEvent.submit(getByTestId('form'));
     });
 
-      expect(dispatch).toHaveBeenCalledWith(updateProfileRequest(user));
-    });
+    expect(dispatch).toHaveBeenCalledWith(updateProfileRequest(user));
+  });
 
   it("should be able to update the profile's password", async () => {
     const password = faker.internet.password();
@@ -81,7 +81,27 @@ describe('Profile page', () => {
       fireEvent.submit(getByTestId('form'));
     });
 
-      expect(dispatch).toHaveBeenCalledWith(updateProfileRequest(user));
+    expect(dispatch).toHaveBeenCalledWith(updateProfileRequest(user));
+  });
+
+  it('should not be able to update the profile', async () => {
+    const password = faker.internet.password(3);
+    const { getByText, getByTestId, getByPlaceholderText } = render(
+      <MemoryRouter>
+        <Profile history={history} />
+      </MemoryRouter>
+    );
+
+    fireEvent.change(getByPlaceholderText('Nova senha'), {
+      target: { value: password },
     });
+
+    await act(async () => {
+      fireEvent.submit(getByTestId('form'));
+    });
+
+    expect(
+      getByText('A nova senha deve conter no mínimo 6 caracteres')
+    ).toBeInTheDocument();
   });
 });
