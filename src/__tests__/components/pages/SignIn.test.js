@@ -1,7 +1,7 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
 import { MemoryRouter, Router } from 'react-router-dom';
-import { fireEvent, render, wait } from '@testing-library/react';
+import { fireEvent, render, act } from '@testing-library/react';
 import faker from 'faker';
 
 import { signInRequest } from '~/store/actions/user';
@@ -10,15 +10,15 @@ import SignIn from '~/components/pages/Sign/In';
 
 jest.mock('react-redux');
 
+const email = faker.internet.email();
+const password = faker.internet.password();
+const dispatch = jest.fn();
+
+useDispatch.mockReturnValue(dispatch);
+
 describe('SignIn page', () => {
   it('should be able to login', async () => {
-    const email = faker.internet.email();
-    const password = faker.internet.password();
-    const dispatch = jest.fn();
-
-    useDispatch.mockReturnValue(dispatch);
-
-    const { getByPlaceholderText, getByText } = render(
+    const { getByPlaceholderText, getByTestId } = render(
       <MemoryRouter>
         <SignIn />
       </MemoryRouter>
@@ -27,14 +27,16 @@ describe('SignIn page', () => {
     fireEvent.change(getByPlaceholderText('Digite seu e-mail'), {
       target: { value: email },
     });
+
     fireEvent.change(getByPlaceholderText('Sua senha secreta'), {
       target: { value: password },
     });
-    fireEvent.click(getByText('Entrar'));
 
-    await wait(() => {
-      expect(dispatch).toHaveBeenCalledWith(signInRequest(email, password));
+    await act(async () => {
+      fireEvent.submit(getByTestId('form'));
     });
+
+    expect(dispatch).toHaveBeenCalledWith(signInRequest(email, password));
   });
 
   it('should be able to click on signup link', async () => {

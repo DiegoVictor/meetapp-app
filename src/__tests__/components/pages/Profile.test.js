@@ -1,7 +1,7 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { MemoryRouter } from 'react-router-dom';
-import { fireEvent, render, wait } from '@testing-library/react';
+import { act, fireEvent, render } from '@testing-library/react';
 import faker from 'faker';
 
 import history from '~/services/history';
@@ -9,13 +9,15 @@ import Profile from '~/components/pages/Profile';
 import { updateProfileRequest } from '~/store/actions/user';
 
 jest.mock('react-redux');
-
 jest.mock('~/services/history');
+
+const dispatch = jest.fn();
 history.goBack = jest.fn();
+
+useDispatch.mockReturnValue(dispatch);
 
 describe('Profile page', () => {
   it('should be able to back to previous page', () => {
-    useDispatch.mockReturnValue(jest.fn());
     useSelector.mockImplementation(cb =>
       cb({
         user: {
@@ -43,23 +45,20 @@ describe('Profile page', () => {
       password: '',
       confirm_password: '',
     };
-    const dispatch = jest.fn();
-
-    useDispatch.mockReturnValue(dispatch);
     useSelector.mockImplementation(cb => cb({ user }));
 
-    const { getByText } = render(
+    const { getByTestId } = render(
       <MemoryRouter>
         <Profile history={history} />
       </MemoryRouter>
     );
 
-    fireEvent.click(getByText('Salvar Perfil'));
+    await act(async () => {
+      fireEvent.submit(getByTestId('form'));
+    });
 
-    await wait(() => {
       expect(dispatch).toHaveBeenCalledWith(updateProfileRequest(user));
     });
-  });
 
   it("should be able to update the profile's password", async () => {
     const password = faker.internet.password();
@@ -70,20 +69,18 @@ describe('Profile page', () => {
       password,
       confirm_password: password,
     };
-    const dispatch = jest.fn();
-
-    useDispatch.mockReturnValue(dispatch);
     useSelector.mockImplementation(cb => cb({ user }));
 
-    const { getByText } = render(
+    const { getByTestId } = render(
       <MemoryRouter>
         <Profile history={history} />
       </MemoryRouter>
     );
 
-    fireEvent.click(getByText('Salvar Perfil'));
+    await act(async () => {
+      fireEvent.submit(getByTestId('form'));
+    });
 
-    await wait(() => {
       expect(dispatch).toHaveBeenCalledWith(updateProfileRequest(user));
     });
   });
