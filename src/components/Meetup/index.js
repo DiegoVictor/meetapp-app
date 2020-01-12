@@ -1,16 +1,17 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+
 import {
-  Container,
   Banner,
+  Container,
   Description,
-  Title,
-  Item,
   Icon,
+  Item,
   Text,
+  Title,
 } from './styles';
 
-export default function Meetup({ data, children }) {
+export default function Meetup({ children, data }) {
   return (
     <Container>
       <Banner source={{ uri: data.banner.url }} resizeMode="cover" />
@@ -39,17 +40,17 @@ export default function Meetup({ data, children }) {
 }
 
 Meetup.propTypes = {
+  children: PropTypes.element.isRequired,
   data: PropTypes.shape({
-    id: PropTypes.number.isRequired,
-    title: PropTypes.string.isRequired,
-    formatted_date: PropTypes.string.isRequired,
-    localization: PropTypes.string.isRequired,
     banner: PropTypes.shape({
       url: PropTypes.string.isRequired,
     }).isRequired,
+    formatted_date: PropTypes.string.isRequired,
+    id: PropTypes.number.isRequired,
+    localization: PropTypes.string.isRequired,
     organizer: PropTypes.shape({
       name: PropTypes.string.isRequired,
     }).isRequired,
+    title: PropTypes.string.isRequired,
   }).isRequired,
-  children: PropTypes.element.isRequired,
 };

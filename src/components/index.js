@@ -1,25 +1,24 @@
 import React, { Component } from 'react';
-import '../config/ReactotronConfig';
+import '~/config/ReactotronConfig';
 import { StatusBar } from 'react-native';
-import { PersistGate } from 'redux-persist/integration/react';
-import { persistStore } from 'redux-persist';
 import { Provider } from 'react-redux';
+import { persistStore } from 'redux-persist';
+import { PersistGate } from 'redux-persist/integration/react';
 import CodePush from 'react-native-code-push';
 import OneSignal from 'react-native-onesignal';
 
-import Navigator from '../services/navigator';
 import Default from './layouts/Default';
-import Routes from '../routes';
-import store from '../store';
+import Routes from '~/routes';
+import store from '~/store';
 
 class App extends Component {
   constructor(props) {
     super(props);
 
     OneSignal.init('e12369bb-f27f-40a8-aab3-98474c5ac789');
-    OneSignal.addEventListener('received', this.onReceived);
-    OneSignal.addEventListener('opened', this.onOpened);
     OneSignal.addEventListener('ids', this.onIds);
+    OneSignal.addEventListener('opened', this.onOpened);
+    OneSignal.addEventListener('received', this.onReceived);
   }
 
   componentWillMount() {
@@ -40,7 +39,7 @@ class App extends Component {
         <PersistGate persistor={persistStore(store)}>
           <StatusBar barStyle="light-content" backgroundColor="#191620" />
           <Default>
-            <Routes ref={nav => Navigator(nav)} />
+            <Routes/>
           </Default>
         </PersistGate>
       </Provider>

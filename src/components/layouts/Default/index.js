@@ -1,9 +1,10 @@
 import React from 'react';
 import { Image } from 'react-native';
-import PropTypes from 'prop-types';
 import { useSelector } from 'react-redux';
+import PropTypes from 'prop-types';
+
 import { Container, Header } from './styles';
-import Logo from '../../../assets/logo.png';
+import Logo from '~/assets/logo.png';
 
 export default function Default({ children }) {
   const signed = useSelector(state => state.signed);

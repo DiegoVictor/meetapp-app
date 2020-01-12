@@ -1,22 +1,22 @@
-import React, { useState, useRef } from 'react';
-import { useDispatch } from 'react-redux';
+import React, { useRef, useState } from 'react';
 import { Image } from 'react-native';
+import { useDispatch } from 'react-redux';
 import PropTypes from 'prop-types';
-import Logo from '../../../../assets/logo.png';
 
-import Input from '../../../Input';
-import Button from '../../../Button';
+import { signInRequest } from '~/store/actions/user';
 import { Container, Form, TextLink } from '../styles';
-import { SignInRequest } from '../../../../store/actions/user';
+import Button from '~/components/Button';
+import Input from '~/components/Input';
+import Logo from '~/assets/logo.png';
 
 export default function SignIn({ navigation }) {
-  const password_ref = useRef();
+  const dispatch = useDispatch();
   const [email, setEmail] = useState('');
+  const password_ref = useRef();
   const [password, setPassword] = useState('');
 
-  const dispatch = useDispatch();
   function handleSubmit() {
-    dispatch(SignInRequest(email, password));
+    dispatch(signInRequest(email, password));
   }
 
   return (

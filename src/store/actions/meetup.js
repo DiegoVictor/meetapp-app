@@ -1,41 +1,41 @@
-export function UnsubscribeMeetupRequest(payload) {
+export function appendMeetups(payload) {
   return {
-    type: '@meetup/UNSUBSCRIBE_MEETUP_REQUEST',
+    type: '@meetup/APPEND_MEETUPS',
     payload,
   };
 }
 
-export function UnsubscribeMeetupSuccess(payload) {
-  return {
-    type: '@meetup/UNSUBSCRIBE_MEETUP_SUCCESS',
-    payload,
-  };
-}
-
-export function SubscribeMeetupRequets(payload) {
-  return {
-    type: '@meetup/SUBSCRIBE_MEETUP_REQUEST',
-    payload,
-  };
-}
-
-export function SubscribeMeetupSuccess(payload) {
-  return {
-    type: '@meetup/SUBSCRIBE_MEETUP_SUCCESS',
-    payload,
-  };
-}
-
-export function SetMeetups(payload) {
+export function setMeetups(payload) {
   return {
     type: '@meetup/SET_MEETUPS',
     payload,
   };
 }
 
-export function AppendMeetups(payload) {
+export function subscribeMeetupRequets(payload) {
   return {
-    type: '@meetup/APPEND_MEETUPS',
+    type: '@meetup/SUBSCRIBE_MEETUP_REQUEST',
+    payload,
+  };
+}
+
+export function subscribeMeetupSuccess(payload) {
+  return {
+    type: '@meetup/SUBSCRIBE_MEETUP_SUCCESS',
+    payload,
+  };
+}
+
+export function unsubscribeMeetupRequest(payload) {
+  return {
+    type: '@meetup/UNSUBSCRIBE_MEETUP_REQUEST',
+    payload,
+  };
+}
+
+export function unsubscribeMeetupSuccess(payload) {
+  return {
+    type: '@meetup/UNSUBSCRIBE_MEETUP_SUCCESS',
     payload,
   };
 }

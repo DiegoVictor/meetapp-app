@@ -1,25 +1,25 @@
 import React, { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
 import { format, parseISO } from 'date-fns';
-import pt from 'date-fns/locale/pt';
+import { useDispatch, useSelector } from 'react-redux';
 import Icon from 'react-native-vector-icons/MaterialIcons';
-import api from '../../../services/api';
+import pt from 'date-fns/locale/pt';
 
-import Meetup from '../../Meetup';
-import Button from '../../Button';
+import { setSubscriptions } from '~/store/actions/subscription';
+import { unsubscribeMeetupRequest } from '~/store/actions/meetup';
 import { Container, Meetups } from './styles';
-import { SetSubscriptions } from '../../../store/actions/subscription';
-import { UnsubscribeMeetupRequest } from '../../../store/actions/meetup';
+import api from '~/services/api';
+import Button from '~/components/Button';
+import Meetup from '~/components/Meetup';
 
 export default function Subscription() {
-  const subscriptions = useSelector(state => state.subscriptions);
   const dispatch = useDispatch();
+  const subscriptions = useSelector(state => state.subscriptions);
 
   useEffect(() => {
     (async () => {
       const response = await api.get('subscriptions');
       dispatch(
-        SetSubscriptions(
+        setSubscriptions(
           response.data.map(subscription => ({
             ...subscription,
             formatted_date: format(
@@ -40,7 +40,7 @@ export default function Subscription() {
         keyExtractor={item => String(item.id)}
         renderItem={({ item }) => (
           <Meetup data={item}>
-            <Button onPress={() => dispatch(UnsubscribeMeetupRequest(item))}>
+            <Button onPress={() => dispatch(unsubscribeMeetupRequest(item))}>
               Cancelar inscrição
             </Button>
           </Meetup>

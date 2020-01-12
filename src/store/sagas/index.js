@@ -1,4 +1,4 @@
-import user from './user';
 import meetup from './meetup';
+import user from './user';
 
-export default [user, meetup];
+export default [meetup, user];
