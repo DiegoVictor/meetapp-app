@@ -40,6 +40,7 @@ export default function SignUp({ navigation }) {
           autoCapitalize="none"
           placeholder="Digite seu email"
           returnKeyType="next"
+          ref={email_ref}
           onSubmitEditing={() => password_ref.current.focus()}
           value={email}
           onChangeText={setEmail}
