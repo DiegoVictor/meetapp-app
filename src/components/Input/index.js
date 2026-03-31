@@ -2,15 +2,16 @@ import React, { forwardRef } from 'react';
 import PropTypes from 'prop-types';
 
 import { Error, FormInput } from './styles';
+import { Text } from 'react-native';
 
-function Input({ error, ...props }, ref) {
+export const Input = forwardRef(({ error, ...props }, ref) => {
   return (
     <>
       <FormInput ref={ref} {...props} />
-      {error && <Error>{error}</Error>}
+      <Text>{error && <Error>{error}</Error>}</Text>
     </>
   );
-}
+});
 
 Input.propTypes = {
   error: PropTypes.string,
@@ -19,5 +20,3 @@ Input.propTypes = {
 Input.defaultProps = {
   error: '',
 };
-
-export default forwardRef(Input);
