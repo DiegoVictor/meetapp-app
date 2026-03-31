@@ -6,7 +6,7 @@ import PropTypes from 'prop-types';
 import Logo from '~/assets/logo.png';
 import { Background, Header } from './styles';
 
-export default function Container({ children }) {
+export const Container = ({ children }) => {
   const signed = useSelector(state => state.signed);
 
   return (
@@ -23,7 +23,7 @@ export default function Container({ children }) {
       {children}
     </Background>
   );
-}
+};
 
 Container.propTypes = {
   children: PropTypes.element.isRequired,
