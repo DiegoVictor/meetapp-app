@@ -11,10 +11,14 @@ import {
   Title,
 } from './styles';
 
-export default function Meetup({ children, data }) {
+export const Meetup = ({ children, data }) => {
   return (
     <Container>
-      <Banner source={{ uri: data.banner.url }} resizeMode="cover" />
+      <Banner
+        source={{ uri: data.banner.url }}
+        testID={`banner_` + data.id}
+        resizeMode="cover"
+      />
 
       <Title>{data.title}</Title>
       <Description>
@@ -37,7 +41,7 @@ export default function Meetup({ children, data }) {
       </Description>
     </Container>
   );
-}
+};
 
 Meetup.propTypes = {
   children: PropTypes.element.isRequired,
