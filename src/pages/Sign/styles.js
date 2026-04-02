@@ -1,5 +1,6 @@
 import styled from 'styled-components/native';
-import TextButton from '../../TextButton';
+
+import TextButton from '~/components/TextButton';
 
 export const Container = styled.View`
   align-items: center;
