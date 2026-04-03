@@ -20,7 +20,7 @@ const schema = Yup.object().shape({
     .required(),
 });
 
-export default () => {
+export const SignIn = () => {
   const dispatch = useDispatch();
   const [email, setEmail] = useState('');
   const passwordRef = useRef();
