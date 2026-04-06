@@ -1,7 +1,5 @@
 import axios from 'axios';
-import Constants from 'expo-constants';
-
-const { API_URL } = Constants.manifest.extra;
+import { API_URL } from 'react-native-dotenv';
 
 export default axios.create({
   baseURL: API_URL,
