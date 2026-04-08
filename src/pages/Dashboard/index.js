@@ -15,7 +15,7 @@ import {
 } from '~/store/actions/meetup';
 import { Container, Header, Meetups, Text } from './styles';
 
-export default () => {
+export const Dashboard = () => {
   const [date, setDate] = useState(new Date());
   const dispatch = useDispatch();
   const meetups = useSelector(state => state.meetups);
