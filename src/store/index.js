@@ -10,24 +10,8 @@ import signed from './reducers/signed';
 import subscriptions from './reducers/subscriptions';
 import user from './reducers/user';
 
-const sagaMiddleware = createSagaMiddleware({
-  sagaMonitor: (() => {
-    if (__DEV__) {
-      return console.tron.createSagaMonitor();
-    }
-    return null;
-  })(),
-});
-
-const enhancer = (() => {
-  if (__DEV__) {
-    return compose(
-      console.tron.createEnhancer(),
-      applyMiddleware(sagaMiddleware)
-    );
-  }
-  return applyMiddleware(sagaMiddleware);
-})();
+const sagaMiddleware = createSagaMiddleware();
+const enhancer = applyMiddleware(sagaMiddleware);
 
 const persisted = persistReducer(
   {
