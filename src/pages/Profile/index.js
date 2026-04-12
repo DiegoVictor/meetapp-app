@@ -29,7 +29,7 @@ const schema = Yup.object().shape({
     ),
 });
 
-export default () => {
+export const Profile = () => {
   const confirmPasswordRef = useRef();
   const dispatch = useDispatch();
   const emailRef = useRef();
