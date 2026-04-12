@@ -1,12 +1,11 @@
-import React, { useRef } from 'react';
+import React, { useCallback, useRef } from 'react';
 import { ScrollView } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 import * as Yup from 'yup';
-import Icon from 'react-native-vector-icons/MaterialIcons';
 
-import { Container, Form, FormButton, Separator } from './styles';
 import { signOut, updateProfileRequest } from '~/store/actions/user';
 import Input from '~/components/Input';
+import { Container, Form, FormButton, Separator } from './styles';
 
 const schema = Yup.object().shape({
   confirm_password: Yup.string(
@@ -30,13 +29,17 @@ const schema = Yup.object().shape({
     ),
 });
 
-export default function Profile() {
-  const confirm_password_ref = useRef();
+export default () => {
+  const confirmPasswordRef = useRef();
   const dispatch = useDispatch();
-  const email_ref = useRef();
-  const old_password_ref = useRef();
-  const password_ref = useRef();
+  const emailRef = useRef();
+  const oldPasswordRef = useRef();
+  const passwordRef = useRef();
   const user = useSelector(state => state.user);
+
+  const handleSubmit = useCallback(values => {
+    dispatch(updateProfileRequest(values));
+  }, []);
 
   return (
     <ScrollView>
@@ -45,7 +48,7 @@ export default function Profile() {
           initialValues={user}
           validationSchema={schema}
           onSubmit={values => {
-            dispatch(updateProfileRequest(values));
+            handleSubmit(values);
           }}
           render={fields => (
             <>
@@ -53,7 +56,7 @@ export default function Profile() {
                 autoCorrect={false}
                 error={fields.errors.name}
                 onChangeText={fields.handleChange('name')}
-                onSubmitEditing={() => email_ref.current.focus()}
+                onSubmitEditing={() => emailRef.current.focus()}
                 placeholder="Nome completo"
                 returnKeyType="next"
                 value={fields.values.name}
@@ -64,11 +67,11 @@ export default function Profile() {
                 autoCorrect={false}
                 error={fields.errors.email}
                 keyboardType="email-address"
-                onSubmitEditing={() => old_password_ref.current.focus()}
+                onSubmitEditing={() => oldPasswordRef.current.focus()}
                 onChangeText={fields.handleChange('email')}
                 placeholder="Digite seu email"
                 returnKeyType="next"
-                ref={email_ref}
+                ref={emailRef}
                 value={fields.values.email}
               />
 
@@ -76,10 +79,10 @@ export default function Profile() {
 
               <Input
                 error={fields.errors.old_password}
-                onSubmitEditing={() => password_ref.current.focus()}
+                onSubmitEditing={() => passwordRef.current.focus()}
                 onChangeText={fields.handleChange('old_password')}
                 placeholder="Sua senha atual"
-                ref={old_password_ref}
+                ref={oldPasswordRef}
                 returnKeyType="next"
                 secureTextEntry
               />
@@ -87,9 +90,9 @@ export default function Profile() {
               <Input
                 error={fields.errors.password}
                 onChangeText={fields.handleChange('password')}
-                onSubmitEditing={() => confirm_password_ref.current.focus()}
+                onSubmitEditing={() => confirmPasswordRef.current.focus()}
                 placeholder="Sua nova senha"
-                ref={password_ref}
+                ref={passwordRef}
                 returnKeyType="next"
                 secureTextEntry
               />
@@ -99,12 +102,15 @@ export default function Profile() {
                 onSubmitEditing={fields.handleSubmit}
                 onChangeText={fields.handleChange('confirm_password')}
                 placeholder="Confirme sua nova senha"
-                ref={confirm_password_ref}
+                ref={confirmPasswordRef}
                 returnKeyType="send"
                 secureTextEntry
               />
 
-              <FormButton onPress={fields.handleSubmit}>
+              <FormButton
+                onPress={() => handleSubmit(fields.values)}
+                testID="submit"
+              >
                 Salvar perfil
               </FormButton>
               <FormButton onPress={() => dispatch(signOut())}>
@@ -116,11 +122,4 @@ export default function Profile() {
       </Container>
     </ScrollView>
   );
-}
-
-Profile.navigationOptions = {
-  tabBarLabel: 'Meu perfil',
-  tabBarIcon: ({ tintColor }) => (
-    <Icon name="person" size={20} color={tintColor} />
-  ),
 };
