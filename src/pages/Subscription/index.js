@@ -10,7 +10,7 @@ import { setSubscriptions } from '~/store/actions/subscription';
 import { unsubscribeMeetupRequest } from '~/store/actions/meetup';
 import { Container, Meetups } from './styles';
 
-export default () => {
+export const Subscription = () => {
   const dispatch = useDispatch();
   const subscriptions = useSelector(state => state.subscriptions);
 
