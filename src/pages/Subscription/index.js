@@ -1,17 +1,16 @@
 import React, { useEffect } from 'react';
 import { format, parseISO } from 'date-fns';
 import { useDispatch, useSelector } from 'react-redux';
-import Icon from 'react-native-vector-icons/MaterialIcons';
 import pt from 'date-fns/locale/pt';
 
+import Button from '~/components/Button';
+import Meetup from '~/components/Meetup';
+import api from '~/services/api';
 import { setSubscriptions } from '~/store/actions/subscription';
 import { unsubscribeMeetupRequest } from '~/store/actions/meetup';
 import { Container, Meetups } from './styles';
-import api from '~/services/api';
-import Button from '~/components/Button';
-import Meetup from '~/components/Meetup';
 
-export default function Subscription() {
+export default () => {
   const dispatch = useDispatch();
   const subscriptions = useSelector(state => state.subscriptions);
 
@@ -40,7 +39,10 @@ export default function Subscription() {
         keyExtractor={item => String(item.id)}
         renderItem={({ item }) => (
           <Meetup data={item}>
-            <Button onPress={() => dispatch(unsubscribeMeetupRequest(item))}>
+            <Button
+              onPress={() => dispatch(unsubscribeMeetupRequest(item))}
+              testID={`meetup_` + item.id}
+            >
               Cancelar inscrição
             </Button>
           </Meetup>
@@ -48,11 +50,4 @@ export default function Subscription() {
       />
     </Container>
   );
-}
-
-Subscription.navigationOptions = {
-  tabBarLabel: 'Inscrições',
-  tabBarIcon: ({ tintColor }) => (
-    <Icon name="local-offer" size={20} color={tintColor} />
-  ),
 };
