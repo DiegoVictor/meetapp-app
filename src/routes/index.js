@@ -5,13 +5,13 @@ import { useSelector } from 'react-redux';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
 import { setNavigator } from '~/services/navigator';
-import Dashboard from '~/pages/Dashboard';
-import Profile from '~/pages/Profile';
-import SignIn from '~/pages/Sign/In';
-import SignUp from '~/pages/Sign/Up';
-import Subscription from '~/pages/Subscription';
+import { Dashboard } from '~/pages/Dashboard';
+import { Profile } from '~/pages/Profile';
+import { SignIn } from '~/pages/Sign/In';
+import { SignUp } from '~/pages/Sign/Up';
+import { Subscription } from '~/pages/Subscription';
 
-export default () => {
+export const Routes = () => {
   const signed = useSelector(state => state.signed);
   const Router = createAppContainer(
     createSwitchNavigator(
