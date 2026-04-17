@@ -3,12 +3,11 @@ import { StatusBar } from 'react-native';
 import { Provider } from 'react-redux';
 import { persistStore } from 'redux-persist';
 import { PersistGate } from 'redux-persist/integration/react';
+import { Container } from '~/components/Container';
+import { Routes } from '~/routes';
+import { store } from '~/store';
 
-import Container from '~/components/Container';
-import Routes from '~/routes';
-import store from '~/store';
-
-export default () => {
+export const App = () => {
   return (
     <Provider store={store}>
       <PersistGate persistor={persistStore(store)}>
