@@ -23,10 +23,8 @@ const persisted = persistReducer(
   combineReducers({ meetups, signed, subscriptions, user })
 );
 
-const store = createStore(persisted, enhancer);
+export const store = createStore(persisted, enhancer);
 
 sagaMiddleware.run(function* saga() {
   return yield all(sagas);
 });
-
-export default store;
