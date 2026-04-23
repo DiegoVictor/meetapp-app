@@ -1,8 +1,8 @@
 import { produce } from 'immer';
 
-const initial_state = [];
+export const initialState = [];
 
-export default (state = initial_state, action) => {
+export default (state = initialState, action) => {
   switch (action.type) {
     case '@meetup/SET_SUBSCRIPTIONS':
       return action.payload;
