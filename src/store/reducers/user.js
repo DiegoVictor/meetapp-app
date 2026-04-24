@@ -1,10 +1,10 @@
 import { produce } from 'immer';
 
-export const initial_state = {
+export const initialState = {
   token: null,
 };
 
-export default (state = initial_state, action) => {
+export default (state = initialState, action) => {
   switch (action.type) {
     case '@user/SIGN_IN_SUCCESS':
       return produce(state, draft => {
@@ -14,7 +14,7 @@ export default (state = initial_state, action) => {
       });
 
     case '@user/SIGN_OUT':
-      return initial_state;
+      return initialState;
 
     case '@user/UPDATE_PROFILE_SUCCESS':
       return produce(state, draft => {
