@@ -7,7 +7,7 @@ import {
 } from '../actions/meetup';
 import api from '~/services/api';
 
-function* unsubscribeMeetup({ payload }) {
+export function* unsubscribeMeetup({ payload }) {
   try {
     const { id } = payload;
 
@@ -20,7 +20,7 @@ function* unsubscribeMeetup({ payload }) {
   }
 }
 
-function* subscribeMeetup({ payload }) {
+export function* subscribeMeetup({ payload }) {
   try {
     const { id } = payload;
 
