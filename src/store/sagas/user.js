@@ -16,13 +16,14 @@ export function setToken({ payload }) {
 export function* signIn({ payload }) {
   try {
     const { email, password } = payload;
-    const response = yield call(api.post, 'sessions', { email, password });
+    const response = yield call(api.post, '/sessions', { email, password });
 
     const { token, user } = response.data;
     api.defaults.headers.Authorization = `Bearer ${token}`;
 
     yield put(signInSuccess(token, user));
   } catch (err) {
+    console.log(err);
     Alert.alert('Ops! Alguma coisa deu errado, tente novamente!');
   }
 }
