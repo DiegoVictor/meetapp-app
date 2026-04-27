@@ -23,7 +23,6 @@ export function* signIn({ payload }) {
 
     yield put(signInSuccess(token, user));
   } catch (err) {
-    console.log(err);
     Alert.alert('Ops! Alguma coisa deu errado, tente novamente!');
   }
 }
