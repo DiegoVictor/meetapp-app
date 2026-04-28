@@ -10,6 +10,28 @@
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com)
 
 This app version allow users to edit your profile, see available meetups, subscribe and unsubscribe to them. All the resources used by this application comes from its [`API`](https://github.com/DiegoVictor/meetapp-api).
+
+## Table of Contents
+* [Screenshots](#screenshots)
+* [Installing](#installing)
+  * [Configuring](#configuring)
+    * [.env](#env)
+    * [API](#api)
+* [Usage](#usage)
+  * [OS](#os)
+* [Running the tests](#running-the-tests)
+  * [Coverage report](#coverage-report)
+
+# Screenshots
+Click to expand.<br>
+<img src="https://raw.githubusercontent.com/DiegoVictor/meetapp-app/master/screenshots/signin.jpg" width="32%" />
+<img src="https://raw.githubusercontent.com/DiegoVictor/meetapp-app/master/screenshots/signup.jpg" width="32%" />
+<img src="https://raw.githubusercontent.com/DiegoVictor/meetapp-app/master/screenshots/dashboard.jpg" width="32%" />
+<img src="https://raw.githubusercontent.com/DiegoVictor/meetapp-app/master/screenshots/subscribe.jpg" width="32%" />
+<img src="https://raw.githubusercontent.com/DiegoVictor/meetapp-app/master/screenshots/profile.jpg" width="32%" />
+<img src="https://raw.githubusercontent.com/DiegoVictor/meetapp-app/master/screenshots/subscriptions.jpg" width="32%" />
+<img src="https://raw.githubusercontent.com/DiegoVictor/meetapp-app/master/screenshots/unsubscribe.jpg" width="32%" />
+
 The first build must be through USB connection, so connect your device (or just open your emulator) and run:
 ```
 meetapp-app$ yarn react-native run-android
