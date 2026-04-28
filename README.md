@@ -1,26 +1,15 @@
-# API
-Clone and configure the API:
-* [API](https://github.com/DiegoVictor/meetapp-api)
-> For more information about the API installation and configuration just follow its README instructions.
+# [App] Meetapp
+[![Travis (.org)](https://img.shields.io/travis/DiegoVictor/meetapp-app?logo=travis&style=flat-square)](https://travis-ci.org/DiegoVictor/meetapp-app)
+[![react-native](https://img.shields.io/badge/react--native-0.63.4-61dafb?style=flat-square&logo=react)](https://reactnative.dev/)
+[![styled-components](https://img.shields.io/badge/styled_components-4.4.1-db7b86?style=flat-square&logo=styled-components)](https://styled-components.com/)
+[![eslint](https://img.shields.io/badge/eslint-7.16.0-4b32c3?style=flat-square&logo=eslint)](https://eslint.org/)
+[![airbnb-style](https://flat.badgen.net/badge/style-guide/airbnb/ff5a5f?icon=airbnb)](https://github.com/airbnb/javascript)
+[![jest](https://img.shields.io/badge/jest-26.6.3-brightgreen?style=flat-square&logo=jest)](https://jestjs.io/)
+[![coverage](https://img.shields.io/codecov/c/gh/DiegoVictor/meetapp-app?logo=codecov&style=flat-square)](https://codecov.io/gh/DiegoVictor/meetapp-app)
+[![MIT License](https://img.shields.io/badge/license-MIT-green?style=flat-square)](https://github.com/DiegoVictor/meetapp-app/blob/master/LICENSE)
+[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com)
 
-Remember to update the `src/services/api.js` with the same server url and port configured in the API. Start the API server case you don't have did it yet:
-```
-meetapp-api$ yarn dev
-```
-
-# Install
-Install dependencies:
-```
-meetapp-app$ yarn
-```
-
-# OS
-This app was tested only with Android through USB connection, is strongly recommended to use the same operational system, but of course you can use an emulator or a real device connected through wifi or USB.
-
-# Reactotron
-This project is configured with [Reactotron](https://github.com/infinitered/reactotron), just open the Reactotron GUI before the app is up and running, after start the app Reactotron will identify new connections.
-
-# Start up
+This app version allow users to edit your profile, see available meetups, subscribe and unsubscribe to them. All the resources used by this application comes from its [`API`](https://github.com/DiegoVictor/meetapp-api).
 The first build must be through USB connection, so connect your device (or just open your emulator) and run:
 ```
 meetapp-app$ yarn react-native run-android
