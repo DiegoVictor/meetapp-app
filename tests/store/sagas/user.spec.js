@@ -15,11 +15,11 @@ import api from '~/services/api';
 
 jest.mock('redux-saga/effects');
 
-const mockedNavigate = jest.fn(args => args);
+const mockedNavigate = jest.fn((args) => args);
 jest.mock('react-navigation', () => {
   return {
     NavigationActions: {
-      navigate: args => {
+      navigate: (args) => {
         return mockedNavigate(args);
       },
     },

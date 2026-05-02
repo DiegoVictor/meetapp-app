@@ -14,7 +14,7 @@ describe('Input', () => {
           testID="input"
           ref={ref}
           value={value}
-          onChangeText={text => {
+          onChangeText={(text) => {
             setValue(text);
             onChangeText(text);
           }}
@@ -44,7 +44,7 @@ describe('Input', () => {
           testID="input"
           ref={ref}
           value={value}
-          onChangeText={text => {
+          onChangeText={(text) => {
             setValue(text);
             onChangeText(text);
           }}
