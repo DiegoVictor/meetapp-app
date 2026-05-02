@@ -1,8 +1,7 @@
 import { Alert } from 'react-native';
 import { runSaga } from 'redux-saga';
 import { call, put } from 'redux-saga/effects';
-import faker from 'faker';
-
+import { faker } from '@faker-js/faker';
 import { setNavigator } from '~/services/navigator';
 import {
   signInRequest,
@@ -105,7 +104,7 @@ describe('User saga', () => {
   });
 
   it('should be able to sign in', async () => {
-    const token = faker.random.alphaNumeric(16);
+    const token = faker.string.alphanumeric(16);
     const { name, email, password } = await factory.attrs('User');
     const dispatch = jest.fn();
 
@@ -149,7 +148,7 @@ describe('User saga', () => {
   });
 
   it('should be able to store user token', async () => {
-    const token = faker.random.alphaNumeric(16);
+    const token = faker.string.alphanumeric(16);
 
     setToken({
       type: 'persist/REHYDRATE',
@@ -160,7 +159,7 @@ describe('User saga', () => {
   });
 
   it('should not be able to store user token', async () => {
-    const token = faker.random.alphaNumeric(16);
+    const token = faker.string.alphanumeric(16);
 
     setToken({
       type: 'persist/REHYDRATE',

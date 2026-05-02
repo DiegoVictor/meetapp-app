@@ -1,5 +1,4 @@
-import faker from 'faker';
-
+import { faker } from '@faker-js/faker';
 import {
   signInSuccess,
   signOut,
@@ -15,7 +14,7 @@ describe('User reducer', () => {
   });
 
   it('SIGN_IN_SUCCESS', async () => {
-    const token = faker.random.alphaNumeric(16);
+    const token = faker.string.alphanumeric(16);
     const user = await factory.attrs('User');
 
     const state = reducer(initialState, signInSuccess(token, user));
@@ -32,7 +31,7 @@ describe('User reducer', () => {
   });
 
   it('UPDATE_PROFILE_SUCCESS', async () => {
-    const token = faker.random.alphaNumeric(16);
+    const token = faker.string.alphanumeric(16);
     const [user, { name, email }] = await factory.attrsMany('User', 2);
 
     const state = reducer(

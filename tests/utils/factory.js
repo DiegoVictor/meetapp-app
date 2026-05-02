@@ -1,11 +1,11 @@
-import faker from 'faker';
+import { faker } from '@faker-js/faker';
 import factory from 'factory-girl';
 
 factory.define(
   'User',
   {},
   {
-    name: faker.name.findName,
+    name: faker.person.findName,
     email: faker.internet.email,
     password: faker.internet.password,
   }
@@ -15,15 +15,15 @@ factory.define(
   'Subscription',
   {},
   {
-    id: faker.random.number,
-    title: faker.name.title,
-    localization: faker.address.streetAddress,
+    id: faker.string.uuid,
+    title: faker.person.jobTitle,
+    localization: faker.location.streetAddress,
     date: () => faker.date.future().toISOString(),
     banner: {
-      url: faker.image.imageUrl,
+      url: faker.image.url,
     },
     organizer: {
-      name: faker.name.findName,
+      name: faker.person.findName,
     },
   }
 );

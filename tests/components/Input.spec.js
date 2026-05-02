@@ -1,7 +1,6 @@
 import React, { useRef, useState } from 'react';
 import { fireEvent, render } from '@testing-library/react-native';
-import faker from 'faker';
-
+import { faker } from '@faker-js/faker';
 import Input from '~/components/Input';
 
 describe('Input', () => {
@@ -26,7 +25,7 @@ describe('Input', () => {
     const change = jest.fn();
     const { getByTestId } = render(<Wrapper onChangeText={change} value="" />);
 
-    const word = faker.random.word();
+    const word = faker.lorem.word();
     fireEvent.changeText(getByTestId('input'), word);
 
     expect(change).toHaveBeenCalledWith(word);

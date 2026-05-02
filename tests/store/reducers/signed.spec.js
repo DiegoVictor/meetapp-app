@@ -1,5 +1,4 @@
-import faker from 'faker';
-
+import { faker } from '@faker-js/faker';
 import { signInSuccess, signOut } from '~/store/actions/user';
 import reducer, { initialState } from '~/store/reducers/signed';
 import factory from '../../utils/factory';
@@ -16,7 +15,7 @@ describe('Signed reducer', () => {
   });
 
   it('SIGN_IN_SUCCESS', async () => {
-    const token = faker.random.alphaNumeric(16);
+    const token = faker.string.alphanumeric(16);
     const user = await factory.attrs('User');
 
     const state = reducer(initialState, signInSuccess(token, user));
