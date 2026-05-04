@@ -4,7 +4,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import pt from 'date-fns/locale/pt';
 import { addDays, format, parseISO, subDays } from 'date-fns';
 import MockAdapter from 'axios-mock-adapter';
-
 import { Dashboard } from '~/pages/Dashboard';
 import factory from '../utils/factory';
 import api from '~/services/api';
@@ -16,11 +15,11 @@ import {
 
 jest.mock('react-redux');
 
-const mockedNavigate = jest.fn(args => args);
+const mockedNavigate = jest.fn((args) => args);
 jest.mock('react-navigation', () => {
   return {
     NavigationActions: {
-      navigate: args => {
+      navigate: (args) => {
         return mockedNavigate(args);
       },
     },
@@ -44,7 +43,7 @@ describe('Dashboard', () => {
 
     expect(dispatch).toHaveBeenCalledWith(
       setMeetups(
-        meetups.map(meetup => ({
+        meetups.map((meetup) => ({
           ...meetup,
           formatted_date: format(
             parseISO(meetup.date),
@@ -62,7 +61,7 @@ describe('Dashboard', () => {
     apiMock.onGet('meetups').reply(200, meetups);
 
     const meetupsSerialized = setMeetups(
-      meetups.map(meetup => ({
+      meetups.map((meetup) => ({
         ...meetup,
         formatted_date: format(
           parseISO(meetup.date),
@@ -72,7 +71,7 @@ describe('Dashboard', () => {
       }))
     ).payload;
 
-    useSelector.mockImplementation(cb => {
+    useSelector.mockImplementation((cb) => {
       return cb({ meetups: meetupsSerialized });
     });
 
@@ -81,7 +80,7 @@ describe('Dashboard', () => {
 
     const { getByText, getByTestId } = render(<Dashboard />);
 
-    meetupsSerialized.forEach(meetup => {
+    meetupsSerialized.forEach((meetup) => {
       expect(getByText(meetup.title)).toBeTruthy();
       expect(getByTestId(`banner_${meetup.id}`).props).toHaveProperty(
         'source',
@@ -109,7 +108,7 @@ describe('Dashboard', () => {
       ),
     }).payload;
 
-    useSelector.mockImplementation(cb => {
+    useSelector.mockImplementation((cb) => {
       return cb({ meetups: [meetupSerialized] });
     });
 
@@ -251,7 +250,7 @@ describe('Dashboard', () => {
       },
     ]);
 
-    useSelector.mockImplementation(cb => {
+    useSelector.mockImplementation((cb) => {
       return cb({ meetups: page1Serialized.payload });
     });
 
@@ -281,7 +280,7 @@ describe('Dashboard', () => {
         ),
       },
     ];
-    useSelector.mockImplementation(cb => {
+    useSelector.mockImplementation((cb) => {
       return cb({
         meetups: allSerialized,
       });
