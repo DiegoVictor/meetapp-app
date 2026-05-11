@@ -35,23 +35,10 @@
   },
   "devDependencies": {
     "@babel/core": "^7.29.0",
-    "@babel/preset-env": "^7.29.2",
-    "@babel/runtime": "^7.29.2",
+    "@babel/preset-env": "^7.29.5",
     "@faker-js/faker": "^9.9.0",
-    "@react-native/jest-preset": "^0.85.2",
-    "@sucrase/jest-plugin": "^3.0.0",
-    "@testing-library/react-native": "^14.0.0-beta.1",
-    "@types/factory-girl": "^5.0.12",
-    "@types/faker": "^6.6.8",
-    "@types/jest": "^30.0.0",
-    "axios-mock-adapter": "^2.1.0",
     "babel-jest": "^30.3.0",
-    "babel-plugin-root-import": "^6.4.1",
     "factory-girl": "^5.0.4",
-    "jest": "^30.3.0",
-    "jest-transform-stub": "^2.0.0",
-    "metro-react-native-babel-preset": "^0.77.0",
-    "prettier": "^3.8.3",
-    "react-test-renderer": "19.2.5"
+    "jest": "^30.3.0"
   }
 }
