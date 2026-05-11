@@ -1,8 +1,7 @@
 import React, { forwardRef } from 'react';
-import PropTypes from 'prop-types';
-
-import { Error, FormInput } from './styles';
 import { Text } from 'react-native';
+import PropTypes from 'prop-types';
+import { Error, FormInput } from './styles';
 
 export const Input = forwardRef(({ error, ...props }, ref) => {
   return (
