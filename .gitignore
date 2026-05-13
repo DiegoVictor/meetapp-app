@@ -40,3 +40,4 @@ yarn-error.*
 /ios
 /android
 .env
+tests/coverage
