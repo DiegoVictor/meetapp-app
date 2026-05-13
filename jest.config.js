@@ -18,18 +18,10 @@ const config = {
   clearMocks: true,
 
   // Indicates whether the coverage information should be collected while executing the test
-  collectCoverage: true,
+  // collectCoverage: true,
 
   // An array of glob patterns indicating a set of files for which coverage information should be collected
-  collectCoverageFrom: [
-    'src/components/**/*.js',
-    'src/pages/**/*.js',
-    'src/store/**/*.js',
-    '!src/pages/Sign/*.js',
-    '!src/store/actions/*.js',
-    '!src/store/sagas/index.js',
-    '!src/store/*.js',
-  ],
+  // collectCoverageFrom: undefined,
 
   // The directory where Jest should output its coverage files
   coverageDirectory: 'tests/coverage',
@@ -40,10 +32,15 @@ const config = {
   // ],
 
   // Indicates which provider should be used to instrument code for coverage
-  // coverageProvider: "babel",
+  // coverageProvider: 'v8',
 
   // A list of reporter names that Jest uses when writing coverage reports
-  coverageReporters: ['text', 'lcov'],
+  // coverageReporters: [
+  //   "json",
+  //   "text",
+  //   "lcov",
+  //   "clover"
+  // ],
 
   // An object that configures minimum threshold enforcement for coverage results
   // coverageThreshold: undefined,
@@ -179,7 +176,7 @@ const config = {
   // testRunner: "jest-circus/runner",
 
   // A map from regular expressions to paths to transformers
-  // transform: undefined,
+  transform: {},
 
   // An array of regexp pattern strings that are matched against all source file paths, matched files will skip transformation
   // transformIgnorePatterns: [
