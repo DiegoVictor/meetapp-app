@@ -28,4 +28,4 @@ factory.define(
   }
 );
 
-export default factory;
+export { factory };
