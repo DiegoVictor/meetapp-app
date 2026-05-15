@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-
 import { Button, Text } from './styles';
 
 export const TextButton = ({ children, ...props }) => {
