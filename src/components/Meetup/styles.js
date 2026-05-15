@@ -1,5 +1,5 @@
 import styled from 'styled-components/native';
-import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
+import MaterialIcons from '@react-native-vector-icons/material-icons';
 
 export const Container = styled.View`
   background-color: #fff;
@@ -42,6 +42,6 @@ export const Text = styled.Text`
   justify-content: flex-start;
 `;
 
-export const Icon = styled(MaterialIcon)`
+export const Icon = styled(MaterialIcons)`
   margin-right: 5px;
 `;
