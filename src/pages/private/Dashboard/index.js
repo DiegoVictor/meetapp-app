@@ -1,25 +1,24 @@
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
-import { addDays, format, parseISO, subDays } from 'date-fns';
-import { TouchableOpacity } from 'react-native-gesture-handler';
+import { TouchableOpacity } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
-import Icon from 'react-native-vector-icons/MaterialIcons';
+import MaterialIcons from '@react-native-vector-icons/material-icons';
+import { addDays, format, parseISO, subDays } from 'date-fns';
 import pt from 'date-fns/locale/pt';
-
-import Button from '~/components/Button';
-import Meetup from '~/components/Meetup';
-import api from '~/services/api';
+import { Button } from '../../../components/Button';
+import { Meetup } from '../../../components/Meetup';
 import {
   appendMeetups,
   setMeetups,
   subscribeMeetupRequets,
-} from '~/store/actions/meetup';
+} from '../../../store/actions/meetup';
+import { api } from '../../../services/api';
 import { Container, Header, Meetups, Text } from './styles';
 
 export const Dashboard = () => {
   const [date, setDate] = useState(new Date());
-  const dispatch = useDispatch();
-  const meetups = useSelector(state => state.meetups);
+  const meetups = useSelector((state) => state.meetups);
   const [page, setPage] = useState(1);
+  const dispatch = useDispatch();
 
   const formattedDate = useMemo(
     () => format(date, "dd 'de' MMMM", { locale: pt }),
@@ -40,7 +39,7 @@ export const Dashboard = () => {
       dispatch(
         appendMeetups([
           ...meetups,
-          ...data.map(meetup => ({
+          ...data.map((meetup) => ({
             ...meetup,
             formatted_date: format(
               parseISO(meetup.date),
@@ -65,7 +64,7 @@ export const Dashboard = () => {
 
       dispatch(
         setMeetups(
-          response.data.map(meetup => ({
+          response.data.map((meetup) => ({
             ...meetup,
             formatted_date: format(
               parseISO(meetup.date),
@@ -85,20 +84,20 @@ export const Dashboard = () => {
           onPress={() => setDate(subDays(date, 1))}
           testID="previous"
         >
-          <Icon color="#FFF" name="chevron-left" size={30} />
+          <MaterialIcons color="#FFF" name="chevron-left" size={30} />
         </TouchableOpacity>
         <Text>{formattedDate}</Text>
         <TouchableOpacity
           onPress={() => setDate(addDays(date, 1))}
           testID="next"
         >
-          <Icon color="#FFF" name="chevron-right" size={30} />
+          <MaterialIcons color="#FFF" name="chevron-right" size={30} />
         </TouchableOpacity>
       </Header>
 
       <Meetups
         data={meetups}
-        keyExtractor={item => String(item.id)}
+        keyExtractor={(item) => String(item.id)}
         testID="meetups"
         onEndReachedThreshold={0.2}
         onEndReached={getNextPage}
