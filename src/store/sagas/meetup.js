@@ -1,11 +1,10 @@
 import { Alert } from 'react-native';
 import { all, call, put, takeLatest } from 'redux-saga/effects';
-
 import {
   unsubscribeMeetupSuccess,
   subscribeMeetupSuccess,
 } from '../actions/meetup';
-import api from '~/services/api';
+import api from '../../services/api';
 
 export function* unsubscribeMeetup({ payload }) {
   try {
