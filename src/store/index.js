@@ -2,8 +2,7 @@ import { applyMiddleware, compose, combineReducers, createStore } from 'redux';
 import { persistReducer } from 'redux-persist';
 import { all } from 'redux-saga/effects';
 import createSagaMiddleware from 'redux-saga';
-import AsyncStorage from '@react-native-community/async-storage';
-
+import { createAsyncStorage } from '@react-native-async-storage/async-storage';
 import meetups from './reducers/meetups';
 import sagas from './sagas';
 import signed from './reducers/signed';
@@ -16,7 +15,7 @@ const enhancer = applyMiddleware(sagaMiddleware);
 const persisted = persistReducer(
   {
     key: 'meetapp',
-    storage: AsyncStorage,
+    storage: createAsyncStorage('meetapp'),
     timeout: 0,
     whitelist: ['signed', 'user'],
   },
