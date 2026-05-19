@@ -1,15 +1,17 @@
 import { Alert } from 'react-native';
 import { runSaga } from 'redux-saga';
 import { call, put } from 'redux-saga/effects';
-
 import {
   subscribeMeetupRequets,
   subscribeMeetupSuccess,
   unsubscribeMeetupRequest,
   unsubscribeMeetupSuccess,
-} from '~/store/actions/meetup';
-import { subscribeMeetup, unsubscribeMeetup } from '~/store/sagas/meetup';
-import factory from '../../utils/factory';
+} from '../../../src/store/actions/meetup';
+import {
+  subscribeMeetup,
+  unsubscribeMeetup,
+} from '../../../src/store/sagas/meetup';
+import { factory } from '../../utils/factory';
 
 jest.mock('redux-saga/effects');
 
