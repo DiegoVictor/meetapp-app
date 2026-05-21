@@ -2,26 +2,28 @@ import { Alert } from 'react-native';
 import { runSaga } from 'redux-saga';
 import { call, put } from 'redux-saga/effects';
 import { faker } from '@faker-js/faker';
-import { setNavigator } from '~/services/navigator';
 import {
   signInRequest,
   signInSuccess,
   updateProfileRequest,
   updateProfileSuccess,
-} from '~/store/actions/user';
-import { setToken, signIn, signUp, updateUser } from '~/store/sagas/user';
-import factory from '../../utils/factory';
-import api from '~/services/api';
+} from '../../../src/store/actions/user';
+import {
+  setToken,
+  signIn,
+  signUp,
+  updateUser,
+} from '../../../src/store/sagas/user';
+import { factory } from '../../utils/factory';
+import { api } from '../../../src/services/api';
 
 jest.mock('redux-saga/effects');
 
 const mockedNavigate = jest.fn((args) => args);
-jest.mock('react-navigation', () => {
+jest.mock('../../../src/routes', () => {
   return {
-    NavigationActions: {
-      navigate: (args) => {
-        return mockedNavigate(args);
-      },
+    navigate: (args) => {
+      return mockedNavigate(args);
     },
   };
 });
