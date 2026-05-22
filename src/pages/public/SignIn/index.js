@@ -1,30 +1,21 @@
 import React, { useCallback, useRef, useState } from 'react';
 import { Image } from 'react-native';
 import { useDispatch } from 'react-redux';
-import * as Yup from 'yup';
-
-import Logo from '~/assets/logo.png';
-import Button from '~/components/Button';
-import Input from '~/components/Input';
-import { signInRequest } from '~/store/actions/user';
-import { navigate } from '~/services/navigator';
-import { Container, Form, TextLink } from '../styles';
-
-const schema = Yup.object().shape({
-  email: Yup.string('O email precisa ser um texto')
-    .email('O email precisa ser válido')
-    .required(),
-  name: Yup.string('O nome precisa ser um texto').required(),
-  password: Yup.string('A senha precisa ser um texto')
-    .min(6, 'A senha deve conter no minimo 6 caracteres')
-    .required(),
-});
+import { useNavigation } from '@react-navigation/native';
+import Logo from '../../../assets/logo.png';
+import { Button } from '../../../components/Button';
+import { Input } from '../../../components/Input';
+import { Container } from '../../../components/Container';
+import { signInRequest } from '../../../store/actions/user';
+import { schema } from './validation';
+import { Form, TextLink } from './styles';
 
 export const SignIn = () => {
   const dispatch = useDispatch();
   const [email, setEmail] = useState('');
   const passwordRef = useRef();
   const [password, setPassword] = useState('');
+  const { navigate } = useNavigation();
 
   const handleSubmit = useCallback(() => {
     dispatch(signInRequest(email, password));

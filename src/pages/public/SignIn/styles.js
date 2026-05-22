@@ -1,12 +1,5 @@
 import styled from 'styled-components/native';
-
-import TextButton from '~/components/TextButton';
-
-export const Container = styled.View`
-  align-items: center;
-  flex: 1;
-  justify-content: center;
-`;
+import { TextButton } from '../../../components/Button/styles';
 
 export const Form = styled.View`
   justify-content: center;
