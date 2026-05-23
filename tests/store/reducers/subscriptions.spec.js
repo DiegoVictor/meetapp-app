@@ -1,10 +1,12 @@
 import {
   subscribeMeetupSuccess,
   unsubscribeMeetupSuccess,
-} from '~/store/actions/meetup';
-import { setSubscriptions } from '~/store/actions/subscription';
-import reducer, { initialState } from '~/store/reducers/subscriptions';
-import factory from '../../utils/factory';
+} from '../../../src/store/actions/meetup';
+import { setSubscriptions } from '../../../src/store/actions/subscription';
+import reducer, {
+  initialState,
+} from '../../../src/store/reducers/subscriptions';
+import { factory } from '../../utils/factory';
 
 describe('Subscriptions reducer', () => {
   it('DEFAULT', async () => {
