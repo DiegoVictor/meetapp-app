@@ -2,9 +2,9 @@ import {
   appendMeetups,
   setMeetups,
   unsubscribeMeetupSuccess,
-} from '~/store/actions/meetup';
-import reducer, { initialState } from '~/store/reducers/meetups';
-import factory from '../../utils/factory';
+} from '../../../src/store/actions/meetup';
+import reducer, { initialState } from '../../../src/store/reducers/meetups';
+import { factory } from '../../utils/factory';
 
 describe('Meetups reducer', () => {
   it('DEFAULT', async () => {
