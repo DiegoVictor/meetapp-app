@@ -28,6 +28,20 @@ jest.mock('../../../src/routes', () => {
   };
 });
 
+jest.mock('../../../src/services/api', () => {
+  return {
+    api: {
+      defaults: {
+        headers: {
+          Authorization: null,
+        },
+      },
+      post: jest.fn(),
+      put: jest.fn(),
+    },
+  };
+});
+
 describe('User saga', () => {
   it('should be able to update user', async () => {
     const user = await factory.attrs('User');
@@ -72,7 +86,6 @@ describe('User saga', () => {
     const dispatch = jest.fn();
 
     call.mockImplementation(jest.fn());
-    setNavigator({ dispatch: jest.fn() });
 
     await runSaga(
       { dispatch },
@@ -80,7 +93,7 @@ describe('User saga', () => {
       signInRequest({ email, name, pasword })
     );
 
-    expect(mockedNavigate).toHaveBeenCalledWith({ routeName: 'SignIn' });
+    expect(mockedNavigate).toHaveBeenCalledWith('SignIn');
   });
 
   it('should not be able to sign up with network error', async () => {
@@ -90,7 +103,7 @@ describe('User saga', () => {
     call.mockImplementation(() => {
       throw new Error();
     });
-    setNavigator({ dispatch: jest.fn() });
+
     const alert = jest.spyOn(Alert, 'alert');
 
     await runSaga(
