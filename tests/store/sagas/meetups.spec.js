@@ -15,6 +15,20 @@ import { factory } from '../../utils/factory';
 
 jest.mock('redux-saga/effects');
 
+jest.mock('../../../src/services/api', () => {
+  return {
+    api: {
+      defaults: {
+        headers: {
+          Authorization: null,
+        },
+      },
+      post: jest.fn(),
+      put: jest.fn(),
+    },
+  };
+});
+
 describe('Meetups saga', () => {
   it('should be able to subscribe to a meetup', async () => {
     const meetup = await factory.attrs('Subscription');
