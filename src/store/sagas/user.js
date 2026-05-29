@@ -1,7 +1,7 @@
 import { Alert } from 'react-native';
 import { all, call, put, takeLatest } from 'redux-saga/effects';
 import { signInSuccess, updateProfileSuccess } from '../actions/user';
-import api from '../../services/api';
+import { api } from '../../services/api';
 import { navigate } from '../../routes';
 
 export function setToken({ payload }) {
