@@ -3,9 +3,9 @@ import {
   signInSuccess,
   signOut,
   updateProfileSuccess,
-} from '../../../src/store/actions/user';
-import reducer, { initialState } from '../../../src/store/reducers/user';
-import { factory } from '../../utils/factory';
+} from '../../../../src/store/actions/user';
+import reducer, { initialState } from '../../../../src/store/reducers/user';
+import { factory } from '../../../utils/factory';
 
 describe('User reducer', () => {
   it('DEFAULT', async () => {
