@@ -7,20 +7,20 @@ import {
   signInSuccess,
   updateProfileRequest,
   updateProfileSuccess,
-} from '../../../src/store/actions/user';
+} from '../../../../src/store/actions/user';
 import {
   setToken,
   signIn,
   signUp,
   updateUser,
-} from '../../../src/store/sagas/user';
-import { factory } from '../../utils/factory';
-import { api } from '../../../src/services/api';
+} from '../../../../src/store/sagas/user';
+import { factory } from '../../../utils/factory';
+import { api } from '../../../../src/services/api';
 
 jest.mock('redux-saga/effects');
 
 const mockedNavigate = jest.fn((args) => args);
-jest.mock('../../../src/routes', () => {
+jest.mock('../../../../src/routes', () => {
   return {
     navigate: (args) => {
       return mockedNavigate(args);
@@ -28,7 +28,7 @@ jest.mock('../../../src/routes', () => {
   };
 });
 
-jest.mock('../../../src/services/api', () => {
+jest.mock('../../../../src/services/api', () => {
   return {
     api: {
       defaults: {

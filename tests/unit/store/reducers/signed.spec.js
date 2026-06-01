@@ -1,7 +1,7 @@
 import { faker } from '@faker-js/faker';
-import { signInSuccess, signOut } from '../../../src/store/actions/user';
-import reducer, { initialState } from '../../../src/store/reducers/signed';
-import { factory } from '../../utils/factory';
+import { signInSuccess, signOut } from '../../../../src/store/actions/user';
+import reducer, { initialState } from '../../../../src/store/reducers/signed';
+import { factory } from '../../../utils/factory';
 
 describe('Signed reducer', () => {
   it('DEFAULT', async () => {

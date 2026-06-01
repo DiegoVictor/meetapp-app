@@ -6,16 +6,16 @@ import {
   subscribeMeetupSuccess,
   unsubscribeMeetupRequest,
   unsubscribeMeetupSuccess,
-} from '../../../src/store/actions/meetup';
+} from '../../../../src/store/actions/meetup';
 import {
   subscribeMeetup,
   unsubscribeMeetup,
-} from '../../../src/store/sagas/meetup';
-import { factory } from '../../utils/factory';
+} from '../../../../src/store/sagas/meetup';
+import { factory } from '../../../utils/factory';
 
 jest.mock('redux-saga/effects');
 
-jest.mock('../../../src/services/api', () => {
+jest.mock('../../../../src/services/api', () => {
   return {
     api: {
       defaults: {
