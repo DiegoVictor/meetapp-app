@@ -3,7 +3,7 @@ import styled from 'styled-components/native';
 import { Button } from '../../../components/Button';
 import { Container } from '../../../components/Container';
 
-export const Container = styled(Container)`
+export const FormContainer = styled(Container)`
   padding: 20px 20px;
   margin-top: 30px;
 `;

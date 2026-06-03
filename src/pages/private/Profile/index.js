@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Input } from '../../../components/Input';
 import { signOut, updateProfileRequest } from '../../../store/actions/user';
 import { schema } from './validation';
-import { Container, Form, FormButton, Separator } from './styles';
+import { FormContainer, Form, FormButton, Separator } from './styles';
 
 export const Profile = () => {
   const confirmPasswordRef = useRef();
@@ -20,7 +20,7 @@ export const Profile = () => {
 
   return (
     <ScrollView>
-      <Container>
+      <FormContainer>
         <Form
           initialValues={user}
           validationSchema={schema}
@@ -96,7 +96,7 @@ export const Profile = () => {
             </>
           )}
         />
-      </Container>
+      </FormContainer>
     </ScrollView>
   );
 };
