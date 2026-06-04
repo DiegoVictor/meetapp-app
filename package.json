@@ -37,7 +37,9 @@
     "@babel/core": "^7.29.7",
     "@babel/preset-env": "^7.29.7",
     "@faker-js/faker": "^9.9.0",
+    "@testing-library/react-native": "^14.0.0-rc.3",
     "@types/jest": "^30.0.0",
+    "axios-mock-adapter": "^2.1.0",
     "babel-jest": "^30.4.1",
     "factory-girl": "^5.0.4",
     "jest": "^30.3.0"
