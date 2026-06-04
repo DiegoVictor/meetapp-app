@@ -3,7 +3,7 @@ import { TouchableOpacity } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 import MaterialIcons from '@react-native-vector-icons/material-icons';
 import { addDays, format, parseISO, subDays } from 'date-fns';
-import pt from 'date-fns/locale/pt';
+import { pt } from 'date-fns/locale/pt';
 import { Button } from '../../../components/Button';
 import { Meetup } from '../../../components/Meetup';
 import {

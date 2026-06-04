@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { format, parseISO } from 'date-fns';
-import pt from 'date-fns/locale/pt';
+import { pt } from 'date-fns/locale/pt';
 import { Button } from '../../../components/Button';
 import { Meetup } from '../../../components/Meetup';
 import { setSubscriptions } from '../../../store/actions/subscription';
