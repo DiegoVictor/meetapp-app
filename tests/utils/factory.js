@@ -19,11 +19,15 @@ factory.define(
     title: faker.person.jobTitle,
     localization: faker.location.streetAddress,
     date: () => faker.date.future().toISOString(),
-    banner: {
-      url: faker.image.url,
+    banner: () => {
+      return {
+        url: faker.image.url(),
+      };
     },
-    organizer: {
-      name: faker.person.findName,
+    organizer: () => {
+      return {
+        name: faker.person.fullName(),
+      };
     },
   }
 );
