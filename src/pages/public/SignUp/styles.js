@@ -1,5 +1,5 @@
 import styled from 'styled-components/native';
-import { TextButton } from '../../../components/Button/styles';
+import { Text } from '../../../components/Button/styles';
 
 export const Form = styled.View`
   justify-content: center;
@@ -9,6 +9,6 @@ export const Form = styled.View`
   width: 100%;
 `;
 
-export const TextLink = styled(TextButton)`
+export const TextLink = styled(Text)`
   margin-top: 20px;
 `;
