@@ -8,6 +8,7 @@ import { Input } from '../../../components/Input';
 import { Container } from '../../../components/Container';
 import { signUpRequest } from '../../../store/actions/user';
 import { Form, TextLink } from './styles';
+import { schema } from './validation';
 
 export const SignUp = () => {
   const dispatch = useDispatch();
