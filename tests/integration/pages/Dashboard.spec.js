@@ -1,30 +1,19 @@
 import React from 'react';
 import { fireEvent, render, waitFor } from '@testing-library/react-native';
 import { useDispatch, useSelector } from 'react-redux';
-import pt from 'date-fns/locale/pt';
+import { pt } from 'date-fns/locale/pt';
 import { addDays, format, parseISO, subDays } from 'date-fns';
 import MockAdapter from 'axios-mock-adapter';
-import { Dashboard } from '~/pages/Dashboard';
-import factory from '../utils/factory';
-import api from '~/services/api';
+import { Dashboard } from '../../../src/pages/private/Dashboard';
+import { factory } from '../../utils/factory';
+import { api } from '../../../src/services/api';
 import {
   appendMeetups,
   setMeetups,
   subscribeMeetupRequets,
-} from '~/store/actions/meetup';
+} from '../../../src/store/actions/meetup';
 
 jest.mock('react-redux');
-
-const mockedNavigate = jest.fn((args) => args);
-jest.mock('react-navigation', () => {
-  return {
-    NavigationActions: {
-      navigate: (args) => {
-        return mockedNavigate(args);
-      },
-    },
-  };
-});
 
 describe('Dashboard', () => {
   const apiMock = new MockAdapter(api);
@@ -37,7 +26,7 @@ describe('Dashboard', () => {
     const dispatch = jest.fn();
     useDispatch.mockReturnValue(dispatch);
 
-    render(<Dashboard />);
+    await render(<Dashboard />);
 
     await waitFor(() => expect(dispatch).toHaveBeenCalled());
 
@@ -78,7 +67,7 @@ describe('Dashboard', () => {
     const dispatch = jest.fn();
     useDispatch.mockReturnValue(dispatch);
 
-    const { getByText, getByTestId } = render(<Dashboard />);
+    const { getByText, getByTestId } = await render(<Dashboard />);
 
     meetupsSerialized.forEach((meetup) => {
       expect(getByText(meetup.title)).toBeTruthy();
@@ -115,7 +104,7 @@ describe('Dashboard', () => {
     const dispatch = jest.fn();
     useDispatch.mockReturnValue(dispatch);
 
-    const { getByText } = render(<Dashboard />);
+    const { getByText } = await render(<Dashboard />);
 
     fireEvent.press(getByText('Realizar Inscrição'));
 
@@ -168,7 +157,7 @@ describe('Dashboard', () => {
     const dispatch = jest.fn();
     useDispatch.mockReturnValue(dispatch);
 
-    const { getByTestId } = render(<Dashboard />);
+    const { getByTestId } = await render(<Dashboard />);
 
     await waitFor(() =>
       expect(dispatch).toHaveBeenCalledWith(meetupSerialized)
@@ -257,8 +246,7 @@ describe('Dashboard', () => {
     const dispatch = jest.fn();
     useDispatch.mockReturnValue(dispatch);
 
-    const component = <Dashboard />;
-    const { getByText, getByTestId } = render(component);
+    const { getByText, getByTestId } = await render(<Dashboard />);
 
     await waitFor(() => expect(dispatch).toHaveBeenCalledWith(page1Serialized));
 
