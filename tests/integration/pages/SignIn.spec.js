@@ -1,26 +1,22 @@
 import React from 'react';
 import { fireEvent, render } from '@testing-library/react-native';
 import { useDispatch } from 'react-redux';
-
-import { signInRequest } from '~/store/actions/user';
-import { SignIn } from '~/pages/Sign/In';
-import factory from '../utils/factory';
-import { setNavigator } from '~/services/navigator';
+import { signInRequest } from '../../../src/store/actions/user';
+import { SignIn } from '../../../src/pages/public/SignIn';
+import { factory } from '../../utils/factory';
 
 jest.mock('react-redux');
 
-const mockedNavigate = jest.fn(args => args);
-jest.mock('react-navigation', () => {
+const mockNavigate = jest.fn((args) => args);
+jest.mock('@react-navigation/native', () => {
   return {
-    NavigationActions: {
-      navigate: args => {
-        return mockedNavigate(args);
-      },
-    },
+    useNavigation: () => ({
+      navigate: mockNavigate(),
+    }),
   };
 });
 
-jest.mock('../../src/components/Input', () => {
+jest.mock('../../../src/components/Input', () => {
   const { TextInput } = require('react-native');
   return {
     __esModule: true,
@@ -35,7 +31,7 @@ describe('SignIn', () => {
     const dispatch = jest.fn();
     useDispatch.mockReturnValue(dispatch);
 
-    const { getByPlaceholderText, getByTestId } = render(<SignIn />);
+    const { getByPlaceholderText, getByTestId } = await render(<SignIn />);
 
     fireEvent.changeText(getByPlaceholderText('Digite seu email'), email);
     fireEvent.changeText(getByPlaceholderText('Sua senha secreta'), password);
@@ -51,7 +47,7 @@ describe('SignIn', () => {
     const dispatch = jest.fn();
     useDispatch.mockReturnValue(dispatch);
 
-    const { getByPlaceholderText } = render(<SignIn />);
+    const { getByPlaceholderText } = await render(<SignIn />);
 
     const emailInput = getByPlaceholderText('Digite seu email');
     fireEvent.changeText(emailInput, email);
@@ -68,12 +64,11 @@ describe('SignIn', () => {
     const dispatch = jest.fn();
     const navigator = { dispatch };
 
-    setNavigator(navigator);
-    const { getByTestId } = render(<SignIn />);
+    const { getByTestId } = await render(<SignIn />);
 
     fireEvent.press(getByTestId('signup'));
 
-    expect(mockedNavigate).toHaveBeenCalledWith({ routeName: 'SignUp' });
-    expect(dispatch).toHaveBeenCalledWith({ routeName: 'SignUp' });
+    expect(mockNavigate).toHaveBeenCalledWith('SignUp');
+    expect(dispatch).not.toHaveBeenCalled();
   });
 });
