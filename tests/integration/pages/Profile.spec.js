@@ -1,13 +1,13 @@
 import React from 'react';
 import { fireEvent, render, waitFor } from '@testing-library/react-native';
 import { useDispatch, useSelector } from 'react-redux';
-
-import Profile from '~/pages/Profile';
-import factory from '../utils/factory';
-import { signOut, updateProfileRequest } from '~/store/actions/user';
+import { Profile } from '../../../src/pages/private/Profile';
+import { factory } from '../../utils/factory';
+import { signOut, updateProfileRequest } from '../../../src/store/actions/user';
 
 jest.mock('react-redux');
-jest.mock('../../src/components/Input', () => {
+
+jest.mock('../../../src/components/Input', () => {
   const { TextInput } = require('react-native');
   return {
     __esModule: true,
@@ -25,11 +25,11 @@ describe('Profile', () => {
     const dispatch = jest.fn();
     useDispatch.mockReturnValue(dispatch);
 
-    useSelector.mockImplementation(cb => {
+    useSelector.mockImplementation((cb) => {
       return cb({ user });
     });
 
-    const { getByPlaceholderText } = render(<Profile />);
+    const { getByPlaceholderText } = await render(<Profile />);
 
     const nameInput = getByPlaceholderText('Nome completo');
     fireEvent.changeText(nameInput, name);
@@ -72,11 +72,11 @@ describe('Profile', () => {
     const dispatch = jest.fn();
     useDispatch.mockReturnValue(dispatch);
 
-    useSelector.mockImplementation(cb => {
+    useSelector.mockImplementation((cb) => {
       return cb({ user: { email, name } });
     });
 
-    const { getByTestId } = render(<Profile />);
+    const { getByTestId } = await render(<Profile />);
 
     fireEvent.press(getByTestId('submit'));
 
@@ -94,11 +94,11 @@ describe('Profile', () => {
     const dispatch = jest.fn();
     useDispatch.mockReturnValue(dispatch);
 
-    useSelector.mockImplementation(cb => {
+    useSelector.mockImplementation((cb) => {
       return cb({ user: { email, name } });
     });
 
-    const { getByText } = render(<Profile />);
+    const { getByText } = await render(<Profile />);
 
     fireEvent.press(getByText('Logout'));
 
