@@ -1,26 +1,22 @@
 import React from 'react';
 import { fireEvent, render } from '@testing-library/react-native';
 import { useDispatch } from 'react-redux';
-
-import { signUpRequest } from '~/store/actions/user';
-import { SignUp } from '~/pages/Sign/Up';
-import factory from '../utils/factory';
-import { setNavigator } from '~/services/navigator';
+import { signUpRequest } from '../../../src/store/actions/user';
+import { SignUp } from '../../../src/pages/public/SignUp';
+import { factory } from '../../utils/factory';
 
 jest.mock('react-redux');
 
-const mockedNavigate = jest.fn(args => args);
-jest.mock('react-navigation', () => {
+const mockNavigate = jest.fn((args) => args);
+jest.mock('@react-navigation/native', () => {
   return {
-    NavigationActions: {
-      navigate: args => {
-        return mockedNavigate(args);
-      },
-    },
+    useNavigation: () => ({
+      navigate: mockNavigate(),
+    }),
   };
 });
 
-jest.mock('../../src/components/Input', () => {
+jest.mock('../../../src/components/Input', () => {
   const { TextInput } = require('react-native');
   return {
     __esModule: true,
@@ -35,7 +31,7 @@ describe('SignUp', () => {
     const dispatch = jest.fn();
     useDispatch.mockReturnValue(dispatch);
 
-    const { getByPlaceholderText, getByTestId } = render(<SignUp />);
+    const { getByPlaceholderText, getByTestId } = await render(<SignUp />);
 
     fireEvent.changeText(getByPlaceholderText('Nome completo'), name);
     fireEvent.changeText(getByPlaceholderText('Digite seu email'), email);
@@ -52,7 +48,7 @@ describe('SignUp', () => {
     const dispatch = jest.fn();
     useDispatch.mockReturnValue(dispatch);
 
-    const { getByPlaceholderText } = render(<SignUp />);
+    const { getByPlaceholderText } = await render(<SignUp />);
 
     const nameInput = getByPlaceholderText('Nome completo');
     fireEvent.changeText(nameInput, name);
@@ -73,13 +69,11 @@ describe('SignUp', () => {
     const dispatch = jest.fn();
     const navigator = { dispatch };
 
-    setNavigator(navigator);
-
-    const { getByTestId } = render(<SignUp />);
+    const { getByTestId } = await render(<SignUp />);
 
     fireEvent.press(getByTestId('signin'));
 
-    expect(mockedNavigate).toHaveBeenCalledWith({ routeName: 'SignIn' });
-    expect(dispatch).toHaveBeenCalledWith({ routeName: 'SignIn' });
+    expect(mockNavigate).toHaveBeenCalledWith('SignIn');
+    expect(dispatch).not.toHaveBeenCalled();
   });
 });
