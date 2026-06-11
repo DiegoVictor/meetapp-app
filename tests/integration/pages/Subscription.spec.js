@@ -3,13 +3,12 @@ import { fireEvent, render, waitFor } from '@testing-library/react-native';
 import { useDispatch, useSelector } from 'react-redux';
 import MockAdapter from 'axios-mock-adapter';
 import { format, parseISO } from 'date-fns';
-import pt from 'date-fns/locale/pt';
-
-import Subscription from '~/pages/Subscription';
-import factory from '../utils/factory';
-import api from '~/services/api';
-import { setSubscriptions } from '~/store/actions/subscription';
-import { unsubscribeMeetupRequest } from '~/store/actions/meetup';
+import { pt } from 'date-fns/locale/pt';
+import { Subscription } from '../../../src/pages/private/Subscription';
+import { factory } from '../../utils/factory';
+import { api } from '../../../src/services/api';
+import { setSubscriptions } from '../../../src/store/actions/subscription';
+import { unsubscribeMeetupRequest } from '../../../src/store/actions/meetup';
 
 jest.mock('react-redux');
 
@@ -24,13 +23,13 @@ describe('Subscription', () => {
     const dispatch = jest.fn();
     useDispatch.mockReturnValue(dispatch);
 
-    render(<Subscription />);
+    await render(<Subscription />);
 
     await waitFor(() => expect(dispatch).toHaveBeenCalled());
 
     expect(dispatch).toHaveBeenCalledWith(
       setSubscriptions(
-        subscriptions.map(subscription => ({
+        subscriptions.map((subscription) => ({
           ...subscription,
           formatted_date: format(
             parseISO(subscription.date),
@@ -48,7 +47,7 @@ describe('Subscription', () => {
     apiMock.onGet('subscriptions').reply(200, subscriptions);
 
     const subscriptionsSerialized = setSubscriptions(
-      subscriptions.map(subscription => ({
+      subscriptions.map((subscription) => ({
         ...subscription,
         formatted_date: format(
           parseISO(subscription.date),
@@ -58,20 +57,21 @@ describe('Subscription', () => {
       }))
     ).payload;
 
-    useSelector.mockImplementation(cb => {
+    useSelector.mockImplementation((cb) => {
       return cb({ subscriptions: subscriptionsSerialized });
     });
 
     const dispatch = jest.fn();
     useDispatch.mockReturnValue(dispatch);
 
-    const { getByText, getByTestId } = render(<Subscription />);
+    const { getByText, getByTestId } = await render(<Subscription />);
 
-    subscriptionsSerialized.forEach(subscription => {
+    subscriptionsSerialized.forEach((subscription) => {
       expect(getByText(subscription.title)).toBeTruthy();
-      expect(
-        getByTestId(`banner_${subscription.id}`).props
-      ).toHaveProperty('source', { uri: subscription.banner.url });
+      expect(getByTestId(`banner_${subscription.id}`).props).toHaveProperty(
+        'source',
+        { uri: subscription.banner.url }
+      );
       expect(getByText(subscription.localization)).toBeTruthy();
       expect(getByText(subscription.formatted_date)).toBeTruthy();
       expect(
@@ -94,14 +94,14 @@ describe('Subscription', () => {
       ),
     }).payload;
 
-    useSelector.mockImplementation(cb => {
+    useSelector.mockImplementation((cb) => {
       return cb({ subscriptions: [subscriptionsSerialized] });
     });
 
     const dispatch = jest.fn();
     useDispatch.mockReturnValue(dispatch);
 
-    const { getByText, getByTestId } = render(<Subscription />);
+    const { getByText, getByTestId } = await render(<Subscription />);
 
     await waitFor(() => expect(getByText('Cancelar inscrição')).toBeTruthy());
 
