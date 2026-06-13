@@ -1,5 +1,11 @@
 import React from 'react';
-import { fireEvent, render, waitFor } from '@testing-library/react-native';
+import {
+  fireEvent,
+  render,
+  waitFor,
+  userEvent,
+  screen,
+} from '@testing-library/react-native';
 import { useDispatch, useSelector } from 'react-redux';
 import { pt } from 'date-fns/locale/pt';
 import { addDays, format, parseISO, subDays } from 'date-fns';
@@ -15,9 +21,9 @@ import {
 
 jest.mock('react-redux');
 
-describe('Dashboard', () => {
-  const apiMock = new MockAdapter(api);
+const apiMock = new MockAdapter(api);
 
+describe('Dashboard', () => {
   it('should be able to load available meetups', async () => {
     const meetups = await factory.attrsMany('Subscription', 3);
 
@@ -67,19 +73,21 @@ describe('Dashboard', () => {
     const dispatch = jest.fn();
     useDispatch.mockReturnValue(dispatch);
 
-    const { getByText, getByTestId } = await render(<Dashboard />);
+    await render(<Dashboard />);
 
     meetupsSerialized.forEach((meetup) => {
-      expect(getByText(meetup.title)).toBeTruthy();
-      expect(getByTestId(`banner_${meetup.id}`).props).toHaveProperty(
+      expect(screen.getByText(meetup.title)).toBeTruthy();
+      expect(screen.getByTestId(`banner_${meetup.id}`).props).toHaveProperty(
         'source',
         {
           uri: meetup.banner.url,
         }
       );
-      expect(getByText(meetup.localization)).toBeTruthy();
-      expect(getByText(meetup.formatted_date)).toBeTruthy();
-      expect(getByText(`Organizador: ${meetup.organizer.name}`)).toBeTruthy();
+      expect(screen.getByText(meetup.localization)).toBeTruthy();
+      expect(screen.getByText(meetup.formatted_date)).toBeTruthy();
+      expect(
+        screen.getByText(`Organizador: ${meetup.organizer.name}`)
+      ).toBeTruthy();
     });
   });
 
@@ -104,9 +112,9 @@ describe('Dashboard', () => {
     const dispatch = jest.fn();
     useDispatch.mockReturnValue(dispatch);
 
-    const { getByText } = await render(<Dashboard />);
+    await render(<Dashboard />);
 
-    fireEvent.press(getByText('Realizar Inscrição'));
+    fireEvent.press(screen.getByText('Realizar Inscrição'));
 
     expect(dispatch).toHaveBeenCalledWith(
       subscribeMeetupRequets(meetupSerialized)
@@ -157,14 +165,14 @@ describe('Dashboard', () => {
     const dispatch = jest.fn();
     useDispatch.mockReturnValue(dispatch);
 
-    const { getByTestId } = await render(<Dashboard />);
+    await render(<Dashboard />);
 
     await waitFor(() =>
       expect(dispatch).toHaveBeenCalledWith(meetupSerialized)
     );
 
     dispatch.mockClear();
-    fireEvent.press(getByTestId('previous'));
+    fireEvent.press(screen.getByTestId('previous'));
     await waitFor(() => expect(dispatch).toHaveBeenCalled());
 
     expect(dispatch).toHaveBeenCalledWith(
@@ -182,13 +190,13 @@ describe('Dashboard', () => {
       ])
     );
 
-    fireEvent.press(getByTestId('next'));
+    fireEvent.press(screen.getByTestId('next'));
     await waitFor(() =>
       expect(dispatch).toHaveBeenCalledWith(meetupSerialized)
     );
 
     dispatch.mockClear();
-    fireEvent.press(getByTestId('next'));
+    fireEvent.press(screen.getByTestId('next'));
     await waitFor(() => expect(dispatch).toHaveBeenCalled());
 
     expect(dispatch).toHaveBeenCalledWith(
@@ -239,17 +247,6 @@ describe('Dashboard', () => {
       },
     ]);
 
-    useSelector.mockImplementation((cb) => {
-      return cb({ meetups: page1Serialized.payload });
-    });
-
-    const dispatch = jest.fn();
-    useDispatch.mockReturnValue(dispatch);
-
-    const { getByText, getByTestId } = await render(<Dashboard />);
-
-    await waitFor(() => expect(dispatch).toHaveBeenCalledWith(page1Serialized));
-
     const allSerialized = [
       {
         ...page1,
@@ -268,32 +265,26 @@ describe('Dashboard', () => {
         ),
       },
     ];
-    useSelector.mockImplementation((cb) => {
-      return cb({
-        meetups: allSerialized,
-      });
-    });
 
-    dispatch.mockClear();
-    await waitFor(() => {
-      fireEvent.scroll(getByTestId('meetups'), {
-        nativeEvent: {
-          contentSize: {
-            height: 500,
-            width: 100,
-          },
-          contentOffset: {
-            y: 500,
-          },
-          layoutMeasurement: {
-            height: 100,
-            width: 100,
-          },
-        },
+    useSelector
+      .mockImplementationOnce((cb) => {
+        return cb({ meetups: page1Serialized.payload });
+      })
+      .mockImplementationOnce((cb) => {
+        return cb({
+          meetups: allSerialized,
+        });
       });
-    });
 
-    await waitFor(() => expect(getByText(page2.title)));
+    const dispatch = jest.fn();
+    useDispatch.mockReturnValue(dispatch);
+
+    await render(<Dashboard />);
+
+    await waitFor(() => screen.getByText(page1.title));
+    fireEvent(screen.getByTestId('meetups'), 'onEndReached');
+
+    await waitFor(() => screen.getByText(page2.title));
 
     expect(dispatch).toHaveBeenCalledWith(appendMeetups(allSerialized));
   });
