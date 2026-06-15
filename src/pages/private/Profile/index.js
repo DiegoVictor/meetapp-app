@@ -27,7 +27,8 @@ export const Profile = () => {
           onSubmit={(values) => {
             handleSubmit(values);
           }}
-          render={(fields) => (
+        >
+          {(fields) => (
             <>
               <Input
                 autoCorrect={false}
@@ -95,7 +96,7 @@ export const Profile = () => {
               </FormButton>
             </>
           )}
-        />
+        </Form>
       </FormContainer>
     </ScrollView>
   );
