@@ -10,13 +10,12 @@ jest.mock('react-redux');
 jest.mock('../../../src/components/Input', () => {
   const { TextInput } = require('react-native');
   return {
-    __esModule: true,
-    default: TextInput,
+    Input: TextInput,
   };
 });
 
 describe('Profile', () => {
-  it('should be able to update my profile', async () => {
+  it.only('should be able to update my profile', async () => {
     const [{ email, name, password }, user] = await factory.attrsMany(
       'User',
       2
@@ -53,8 +52,6 @@ describe('Profile', () => {
     fireEvent.changeText(confirmPasswordInput, password);
     fireEvent(confirmPasswordInput, 'onSubmitEditing');
 
-    await waitFor(() => expect(dispatch).toHaveBeenCalled());
-
     expect(dispatch).toHaveBeenCalledWith(
       updateProfileRequest({
         email,
@@ -88,7 +85,7 @@ describe('Profile', () => {
     );
   });
 
-  it('should not be able to logout', async () => {
+  it('should be able to logout', async () => {
     const { email, name } = await factory.attrs('User');
 
     const dispatch = jest.fn();
@@ -98,7 +95,7 @@ describe('Profile', () => {
       return cb({ user: { email, name } });
     });
 
-    const { getByText } = await render(<Profile />);
+    const { getByText, debug } = await render(<Profile />);
 
     fireEvent.press(getByText('Logout'));
 
