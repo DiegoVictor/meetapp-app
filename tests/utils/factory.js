@@ -5,7 +5,7 @@ factory.define(
   'User',
   {},
   {
-    name: faker.person.findName,
+    name: faker.person.fullName,
     email: faker.internet.email,
     password: faker.internet.password,
   }
