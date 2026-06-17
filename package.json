@@ -42,6 +42,7 @@
     "axios-mock-adapter": "^2.1.0",
     "babel-jest": "^30.4.1",
     "factory-girl": "^5.0.4",
-    "jest": "^30.3.0"
+    "jest": "^30.3.0",
+    "test-renderer": "^1.2.0"
   }
 }
