@@ -1,7 +1,12 @@
-import React, { useRef, useState } from 'react';
-import { fireEvent, render, screen } from '@testing-library/react-native';
+import React, { useRef, useState, act } from 'react';
+import {
+  fireEvent,
+  render,
+  screen,
+  waitFor,
+} from '@testing-library/react-native';
 import { faker } from '@faker-js/faker';
-import Input from '../../../src/components/Input';
+import { Input } from '../../../src/components/Input';
 
 describe('Input', () => {
   it('should be able to change input value', async () => {
@@ -23,14 +28,13 @@ describe('Input', () => {
     };
 
     const change = jest.fn();
-    const { getByTestId } = await render(
-      <Form onChangeText={change} value="" />
-    );
+    const { getByTestId } = await render(<Form onChangeText={change} />);
 
     const word = faker.lorem.word();
-    fireEvent.changeText(getByTestId('input'), word);
+    await fireEvent.changeText(getByTestId('input'), word);
 
     expect(change).toHaveBeenCalledWith(word);
+
     expect(getByTestId('input').props.value).toBe(word);
   });
 
