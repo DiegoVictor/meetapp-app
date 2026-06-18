@@ -77,7 +77,7 @@ export const Profile = () => {
 
               <Input
                 error={fields.errors.confirm_password}
-                onSubmitEditing={fields.handleSubmit}
+                onSubmitEditing={() => handleSubmit(fields.values)}
                 onChangeText={fields.handleChange('confirm_password')}
                 placeholder="Confirme sua nova senha"
                 ref={confirmPasswordRef}
