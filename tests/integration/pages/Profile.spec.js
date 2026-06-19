@@ -1,11 +1,17 @@
-import React from 'react';
+import React, { act } from 'react';
 import { fireEvent, render, waitFor } from '@testing-library/react-native';
-import { useDispatch, useSelector } from 'react-redux';
 import { Profile } from '../../../src/pages/private/Profile';
 import { factory } from '../../utils/factory';
 import { signOut, updateProfileRequest } from '../../../src/store/actions/user';
 
-jest.mock('react-redux');
+const mockDispatch = jest.fn();
+const mockUseSelector = jest.fn();
+jest.mock('react-redux', () => {
+  return {
+    useDispatch: () => mockDispatch,
+    useSelector: (cb) => mockUseSelector(cb),
+  };
+});
 
 jest.mock('../../../src/components/Input', () => {
   const { TextInput } = require('react-native');
@@ -15,44 +21,49 @@ jest.mock('../../../src/components/Input', () => {
 });
 
 describe('Profile', () => {
-  it.only('should be able to update my profile', async () => {
+  it('should be able to update my profile', async () => {
     const [{ email, name, password }, user] = await factory.attrsMany(
       'User',
       2
     );
 
-    const dispatch = jest.fn();
-    useDispatch.mockReturnValue(dispatch);
-
-    useSelector.mockImplementation((cb) => {
+    mockUseSelector.mockImplementation((cb) => {
       return cb({ user });
     });
 
     const { getByPlaceholderText } = await render(<Profile />);
 
     const nameInput = getByPlaceholderText('Nome completo');
-    fireEvent.changeText(nameInput, name);
-    fireEvent(nameInput, 'onSubmitEditing');
+    await fireEvent.changeText(nameInput, name);
+    await fireEvent(nameInput, 'submitEditing');
 
     const emailInput = getByPlaceholderText('Digite seu email');
-    fireEvent.changeText(emailInput, email);
-    fireEvent(emailInput, 'onSubmitEditing');
+    expect(emailInput).toHaveAccessibilityValue({ selected: true });
+
+    await fireEvent.changeText(emailInput, email);
+    await fireEvent(emailInput, 'submitEditing');
 
     const currentPasswordInput = getByPlaceholderText('Sua senha atual');
-    fireEvent.changeText(currentPasswordInput, user.password);
-    fireEvent(currentPasswordInput, 'onSubmitEditing');
+    expect(currentPasswordInput).toHaveAccessibilityValue({ selected: true });
+
+    await fireEvent.changeText(currentPasswordInput, user.password);
+    await fireEvent(currentPasswordInput, 'submitEditing');
 
     const newPasswordInput = getByPlaceholderText('Sua nova senha');
-    fireEvent.changeText(newPasswordInput, password);
-    fireEvent(newPasswordInput, 'onSubmitEditing');
+    expect(newPasswordInput).toHaveAccessibilityValue({ selected: true });
+
+    await fireEvent.changeText(newPasswordInput, password);
+    await fireEvent(newPasswordInput, 'submitEditing');
 
     const confirmPasswordInput = getByPlaceholderText(
       'Confirme sua nova senha'
     );
-    fireEvent.changeText(confirmPasswordInput, password);
-    fireEvent(confirmPasswordInput, 'onSubmitEditing');
+    expect(confirmPasswordInput).toHaveAccessibilityValue({ selected: true });
 
-    expect(dispatch).toHaveBeenCalledWith(
+    await fireEvent.changeText(confirmPasswordInput, password);
+    await fireEvent(confirmPasswordInput, 'submitEditing');
+
+    expect(mockDispatch).toHaveBeenCalledWith(
       updateProfileRequest({
         email,
         name,
@@ -66,18 +77,15 @@ describe('Profile', () => {
   it('should not be able to update my profile pressing submit button', async () => {
     const { email, name } = await factory.attrs('User');
 
-    const dispatch = jest.fn();
-    useDispatch.mockReturnValue(dispatch);
-
-    useSelector.mockImplementation((cb) => {
+    mockUseSelector.mockImplementation((cb) => {
       return cb({ user: { email, name } });
     });
 
     const { getByTestId } = await render(<Profile />);
 
-    fireEvent.press(getByTestId('submit'));
+    await fireEvent.press(getByTestId('submit'));
 
-    expect(dispatch).toHaveBeenCalledWith(
+    expect(mockDispatch).toHaveBeenCalledWith(
       updateProfileRequest({
         email,
         name,
@@ -88,17 +96,14 @@ describe('Profile', () => {
   it('should be able to logout', async () => {
     const { email, name } = await factory.attrs('User');
 
-    const dispatch = jest.fn();
-    useDispatch.mockReturnValue(dispatch);
-
-    useSelector.mockImplementation((cb) => {
+    mockUseSelector.mockImplementation((cb) => {
       return cb({ user: { email, name } });
     });
 
-    const { getByText, debug } = await render(<Profile />);
+    const { getByText } = await render(<Profile />);
 
-    fireEvent.press(getByText('Logout'));
+    await fireEvent.press(getByText('Logout'));
 
-    expect(dispatch).toHaveBeenCalledWith(signOut());
+    expect(mockDispatch).toHaveBeenCalledWith(signOut());
   });
 });
