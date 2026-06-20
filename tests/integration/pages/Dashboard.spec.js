@@ -114,7 +114,7 @@ describe('Dashboard', () => {
 
     await render(<Dashboard />);
 
-    fireEvent.press(screen.getByText('Realizar Inscrição'));
+    await fireEvent.press(screen.getByText('Realizar Inscrição'));
 
     expect(dispatch).toHaveBeenCalledWith(
       subscribeMeetupRequets(meetupSerialized)
@@ -172,7 +172,7 @@ describe('Dashboard', () => {
     );
 
     dispatch.mockClear();
-    fireEvent.press(screen.getByTestId('previous'));
+    await fireEvent.press(screen.getByTestId('previous'));
     await waitFor(() => expect(dispatch).toHaveBeenCalled());
 
     expect(dispatch).toHaveBeenCalledWith(
@@ -190,13 +190,13 @@ describe('Dashboard', () => {
       ])
     );
 
-    fireEvent.press(screen.getByTestId('next'));
+    await fireEvent.press(screen.getByTestId('next'));
     await waitFor(() =>
       expect(dispatch).toHaveBeenCalledWith(meetupSerialized)
     );
 
     dispatch.mockClear();
-    fireEvent.press(screen.getByTestId('next'));
+    await fireEvent.press(screen.getByTestId('next'));
     await waitFor(() => expect(dispatch).toHaveBeenCalled());
 
     expect(dispatch).toHaveBeenCalledWith(
@@ -282,7 +282,7 @@ describe('Dashboard', () => {
     await render(<Dashboard />);
 
     await waitFor(() => screen.getByText(page1.title));
-    fireEvent(screen.getByTestId('meetups'), 'onEndReached');
+    await fireEvent(screen.getByTestId('meetups'), 'onEndReached');
 
     await waitFor(() => screen.getByText(page2.title));
 
