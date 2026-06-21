@@ -33,12 +33,13 @@ describe('SignIn', () => {
 
     const { getByPlaceholderText, getByTestId } = await render(<SignIn />);
 
-    act(() => {
-      fireEvent.changeText(getByPlaceholderText('Digite seu email'), email);
-      fireEvent.changeText(getByPlaceholderText('Sua senha secreta'), password);
-    });
+    await fireEvent.changeText(getByPlaceholderText('Digite seu email'), email);
+    await fireEvent.changeText(
+      getByPlaceholderText('Sua senha secreta'),
+      password
+    );
 
-    fireEvent.press(getByTestId('submit'));
+    await fireEvent.press(getByTestId('submit'));
 
     expect(mockDispatch).toHaveBeenCalledWith(signInRequest(email, password));
   });
@@ -49,18 +50,14 @@ describe('SignIn', () => {
     const { getByPlaceholderText } = await render(<SignIn />);
 
     const emailInput = getByPlaceholderText('Digite seu email');
+    await fireEvent.changeText(emailInput, email);
+
+    await fireEvent(emailInput, 'submitEditing');
     const passwordInput = getByPlaceholderText('Sua senha secreta');
+    expect(passwordInput).toHaveAccessibilityValue({ selected: true });
 
-    act(() => {
-      fireEvent.changeText(emailInput, email);
-      fireEvent(emailInput, 'submitEditing');
-
-      expect(passwordInput).toHaveAccessibilityValue({ selected: true });
-
-      fireEvent.changeText(passwordInput, password);
-    });
-
-    fireEvent(passwordInput, 'submitEditing');
+    await fireEvent.changeText(passwordInput, password);
+    await fireEvent(passwordInput, 'submitEditing');
 
     expect(mockDispatch).toHaveBeenCalledWith(signInRequest(email, password));
   });
@@ -68,7 +65,7 @@ describe('SignIn', () => {
   it('should be able to navigate to sign up screen', async () => {
     const { getByTestId } = await render(<SignIn />);
 
-    fireEvent.press(getByTestId('signup'));
+    await fireEvent.press(getByTestId('signup'));
 
     expect(mockNavigate).toHaveBeenCalledWith('SignUp');
     expect(mockDispatch).not.toHaveBeenCalled();
