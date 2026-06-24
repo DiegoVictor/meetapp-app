@@ -1,10 +1,10 @@
 # [App] Meetapp
 [![AppVeyor](https://img.shields.io/appveyor/build/diegovictor/meetapp-app?logo=appveyor&style=flat-square)](https://ci.appveyor.com/project/DiegoVictor/meetapp-app)
-[![react-native](https://img.shields.io/badge/react--native-0.81.5-61dafb?style=flat-square&logo=react)](https://reactnative.dev/)
+[![react-native](https://img.shields.io/badge/react--native-0.85.3-61dafb?style=flat-square&logo=react)](https://reactnative.dev/)
 [![styled-components](https://img.shields.io/badge/styled_components-6.4.2-db7b86?style=flat-square&logo=styled-components)](https://styled-components.com/)
 [![eslint](https://img.shields.io/badge/eslint-10.5.0-4b32c3?style=flat-square&logo=eslint)](https://eslint.org/)
 [![jest](https://img.shields.io/badge/jest-30.4.2-brightgreen?style=flat-square&logo=jest)](https://jestjs.io/)
-[![expo](https://img.shields.io/badge/expo-54.0.35-000000?style=flat-square&logo=expo)](https://expo.io/)
+[![expo](https://img.shields.io/badge/expo-56.0.3-000000?style=flat-square&logo=expo)](https://expo.io/)
 [![coverage](https://img.shields.io/codecov/c/gh/DiegoVictor/meetapp-app?logo=codecov&style=flat-square)](https://codecov.io/gh/DiegoVictor/meetapp-app)
 [![MIT License](https://img.shields.io/badge/license-MIT-green?style=flat-square)](https://github.com/DiegoVictor/meetapp-app/blob/master/LICENSE)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com)
