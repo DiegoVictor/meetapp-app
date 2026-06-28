@@ -3,7 +3,7 @@ import * as Yup from 'yup';
 export const schema = Yup.object().shape({
   confirm_password: Yup.string(
     'A confirmmação da senha precisa ser um texto'
-  ).when('password', (password, field) => {
+  ).when('password', ([password], field) => {
     return password
       ? field
           .required('O campo confirmação de senha é obrigatório')
@@ -17,7 +17,7 @@ export const schema = Yup.object().shape({
   old_password: Yup.string('A senha precisa ser um texto'),
   password: Yup.string('A senha precisa ser um texto')
     .min(6, 'A senha deve conter no minimo 6 caracteres')
-    .when('old_password', (old_password, field) =>
+    .when('old_password', ([old_password], field) =>
       old_password ? field.required('O campo senha é obrigatório') : field
     ),
 });
