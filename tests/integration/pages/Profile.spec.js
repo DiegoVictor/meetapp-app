@@ -27,7 +27,7 @@ describe('Profile', () => {
       2
     );
 
-    mockUseSelector.mockImplementation((cb) => {
+    mockUseSelector.mockImplementationOnce((cb) => {
       return cb({ user });
     });
 
@@ -74,10 +74,36 @@ describe('Profile', () => {
     );
   });
 
+  it('should be able to update my profile without password change', async () => {
+    const [{ email, name }, user] = await factory.attrsMany('User', 2);
+
+    mockUseSelector.mockImplementationOnce((cb) => {
+      return cb({ user });
+    });
+
+    const { getByPlaceholderText, getByTestId } = await render(<Profile />);
+
+    const nameInput = getByPlaceholderText('Nome completo');
+    await fireEvent.changeText(nameInput, name);
+
+    const emailInput = getByPlaceholderText('Digite seu email');
+    await fireEvent.changeText(emailInput, email);
+
+    await fireEvent.press(getByTestId('submit'));
+
+    expect(mockDispatch).toHaveBeenCalledWith(
+      updateProfileRequest({
+        email,
+        name,
+        password: user.password,
+      })
+    );
+  });
+
   it('should not be able to update my profile pressing submit button', async () => {
     const { email, name } = await factory.attrs('User');
 
-    mockUseSelector.mockImplementation((cb) => {
+    mockUseSelector.mockImplementationOnce((cb) => {
       return cb({ user: { email, name } });
     });
 
@@ -96,7 +122,7 @@ describe('Profile', () => {
   it('should be able to logout', async () => {
     const { email, name } = await factory.attrs('User');
 
-    mockUseSelector.mockImplementation((cb) => {
+    mockUseSelector.mockImplementationOnce((cb) => {
       return cb({ user: { email, name } });
     });
 
