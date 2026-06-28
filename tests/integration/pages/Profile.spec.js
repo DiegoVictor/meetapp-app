@@ -75,7 +75,9 @@ describe('Profile', () => {
   });
 
   it('should be able to update my profile without password change', async () => {
-    const [{ email, name }, user] = await factory.attrsMany('User', 2);
+    const [{ email, name }, user] = await factory.attrsMany('User', 2, {
+      password: undefined,
+    });
 
     mockUseSelector.mockImplementationOnce((cb) => {
       return cb({ user });
@@ -95,7 +97,6 @@ describe('Profile', () => {
       updateProfileRequest({
         email,
         name,
-        password: user.password,
       })
     );
   });
