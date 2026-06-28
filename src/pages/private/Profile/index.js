@@ -21,13 +21,7 @@ export const Profile = () => {
   return (
     <ScrollView>
       <FormContainer>
-        <Form
-          initialValues={user}
-          validationSchema={schema}
-          onSubmit={(values) => {
-            handleSubmit(values);
-          }}
-        >
+        <Form initialValues={user} validationSchema={schema}>
           {(fields) => (
             <>
               <Input
