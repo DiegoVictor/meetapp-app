@@ -24,13 +24,13 @@ This app version allow users to edit your profile, see available meetups, subscr
 
 # Screenshots
 Click to expand.<br>
-<img src="https://raw.githubusercontent.com/DiegoVictor/meetapp-app/master/screenshots/signin.jpg" width="32%" />
-<img src="https://raw.githubusercontent.com/DiegoVictor/meetapp-app/master/screenshots/signup.jpg" width="32%" />
-<img src="https://raw.githubusercontent.com/DiegoVictor/meetapp-app/master/screenshots/dashboard.jpg" width="32%" />
-<img src="https://raw.githubusercontent.com/DiegoVictor/meetapp-app/master/screenshots/subscribe.jpg" width="32%" />
-<img src="https://raw.githubusercontent.com/DiegoVictor/meetapp-app/master/screenshots/profile.jpg" width="32%" />
-<img src="https://raw.githubusercontent.com/DiegoVictor/meetapp-app/master/screenshots/subscriptions.jpg" width="32%" />
-<img src="https://raw.githubusercontent.com/DiegoVictor/meetapp-app/master/screenshots/unsubscribe.jpg" width="32%" />
+<img src="https://raw.githubusercontent.com/DiegoVictor/meetapp-app/main/screenshots/signin.jpg" width="32%" />
+<img src="https://raw.githubusercontent.com/DiegoVictor/meetapp-app/main/screenshots/signup.jpg" width="32%" />
+<img src="https://raw.githubusercontent.com/DiegoVictor/meetapp-app/main/screenshots/dashboard.jpg" width="32%" />
+<img src="https://raw.githubusercontent.com/DiegoVictor/meetapp-app/main/screenshots/subscribe.jpg" width="32%" />
+<img src="https://raw.githubusercontent.com/DiegoVictor/meetapp-app/main/screenshots/profile.jpg" width="32%" />
+<img src="https://raw.githubusercontent.com/DiegoVictor/meetapp-app/main/screenshots/subscriptions.jpg" width="32%" />
+<img src="https://raw.githubusercontent.com/DiegoVictor/meetapp-app/main/screenshots/unsubscribe.jpg" width="32%" />
 
 # Installing
 Easy peasy lemon squeezy:
