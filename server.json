@@ -1,0 +1,138 @@
+{
+  "sessions": [
+    {
+      "id": "1",
+      "token": "meetapp-fake-token-1",
+      "user": {
+        "id": 1,
+        "name": "Meetapp User",
+        "email": "user@meetapp.dev"
+      }
+    }
+  ],
+  "users": [
+    {
+      "id": "1",
+      "name": "Meetapp User",
+      "email": "user@meetapp.dev",
+      "password": "123456"
+    }
+  ],
+  "meetups": [
+    {
+      "id": "1",
+      "title": "React Native Performance Lab",
+      "description": "A practical meetup about profiling and improving React Native apps.",
+      "localization": "Av. Paulista, 1000 - Sao Paulo, SP",
+      "date": "2026-09-26",
+      "page": 1,
+      "banner": {
+        "url": "https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&w=1200&q=80"
+      },
+      "organizer": {
+        "id": 1,
+        "name": "Ana Martins"
+      }
+    },
+    {
+      "id": "2",
+      "title": "Node.js API Night",
+      "description": "Build, test, and ship APIs with Node.js and modern tooling.",
+      "localization": "Rua Augusta, 220 - Sao Paulo, SP",
+      "date": "2026-09-12",
+      "page": 1,
+      "banner": {
+        "url": "https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=1200&q=80"
+      },
+      "organizer": {
+        "id": 2,
+        "name": "Bruno Lima"
+      }
+    },
+    {
+      "id": "3",
+      "title": "Design Systems for Product Teams",
+      "description": "Patterns for keeping product interfaces consistent without slowing teams down.",
+      "localization": "Praia de Botafogo, 300 - Rio de Janeiro, RJ",
+      "date": "2026-09-12",
+      "page": 1,
+      "banner": {
+        "url": "https://images.unsplash.com/photo-1556761175-b413da4baf72?auto=format&fit=crop&w=1200&q=80"
+      },
+      "organizer": {
+        "id": 3,
+        "name": "Carla Souza"
+      }
+    },
+    {
+      "id": "4",
+      "title": "Testing Mobile Apps",
+      "description": "A hands-on session about reliable tests for mobile screens, reducers, and sagas.",
+      "localization": "Av. Afonso Pena, 1500 - Belo Horizonte, MG",
+      "date": "2026-09-13",
+      "page": 1,
+      "banner": {
+        "url": "https://images.unsplash.com/photo-1531482615713-2afd69097998?auto=format&fit=crop&w=1200&q=80"
+      },
+      "organizer": {
+        "id": 4,
+        "name": "Diego Fernandes"
+      }
+    },
+    {
+      "id": "5",
+      "title": "GraphQL Breakfast",
+      "description": "Schema design, caching, and client workflows over coffee.",
+      "localization": "Rua das Flores, 45 - Curitiba, PR",
+      "date": "2026-09-11",
+      "page": 1,
+      "banner": {
+        "url": "https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=1200&q=80"
+      },
+      "organizer": {
+        "id": 5,
+        "name": "Fernanda Alves"
+      }
+    },
+    {
+      "id": "6",
+      "title": "Expo and Native Builds",
+      "description": "Understand development clients, native builds, and release workflows with Expo.",
+      "localization": "Rua Padre Chagas, 66 - Porto Alegre, RS",
+      "date": "2026-09-13",
+      "page": 1,
+      "banner": {
+        "url": "https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=1200&q=80"
+      },
+      "organizer": {
+        "id": 6,
+        "name": "Gabriel Rocha"
+      }
+    }
+  ],
+  "subscriptions": [
+    {
+      "id": "5",
+      "title": "GraphQL Breakfast",
+      "description": "Schema design, caching, and client workflows over coffee.",
+      "localization": "Rua das Flores, 45 - Curitiba, PR",
+      "date": "2026-09-11",
+      "banner": {
+        "url": "https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=1200&q=80"
+      },
+      "organizer": {
+        "id": 5,
+        "name": "Fernanda Alves"
+      }
+    },
+    {
+      "meetup_id": "1",
+      "id": "fdcxhcGHHIE"
+    },
+    {
+      "meetup_id": "1",
+      "id": "Ww3n8Lbn8gE"
+    }
+  ],
+  "$schema": "./node_modules/json-server/schema.json"
+}
