@@ -23,8 +23,8 @@
       "id": "1",
       "title": "React Native Performance Lab",
       "description": "A practical meetup about profiling and improving React Native apps.",
-      "localization": "Av. Paulista, 1000 - Sao Paulo, SP",
-      "date": "2026-09-26",
+      "localization": "Av. Paulista, 1000 - São Paulo, SP",
+      "date": "2026-09-30T12:30:00",
       "page": 1,
       "banner": {
         "url": "https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&w=1200&q=80"
@@ -38,8 +38,8 @@
       "id": "2",
       "title": "Node.js API Night",
       "description": "Build, test, and ship APIs with Node.js and modern tooling.",
-      "localization": "Rua Augusta, 220 - Sao Paulo, SP",
-      "date": "2026-09-12",
+      "localization": "Rua Augusta, 220 - São Paulo, SP",
+      "date": "2026-09-12T16:50:00",
       "page": 1,
       "banner": {
         "url": "https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=1200&q=80"
@@ -54,7 +54,7 @@
       "title": "Design Systems for Product Teams",
       "description": "Patterns for keeping product interfaces consistent without slowing teams down.",
       "localization": "Praia de Botafogo, 300 - Rio de Janeiro, RJ",
-      "date": "2026-09-12",
+      "date": "2026-09-12T09:25:00",
       "page": 1,
       "banner": {
         "url": "https://images.unsplash.com/photo-1556761175-b413da4baf72?auto=format&fit=crop&w=1200&q=80"
@@ -69,7 +69,7 @@
       "title": "Testing Mobile Apps",
       "description": "A hands-on session about reliable tests for mobile screens, reducers, and sagas.",
       "localization": "Av. Afonso Pena, 1500 - Belo Horizonte, MG",
-      "date": "2026-09-13",
+      "date": "2026-09-13T16:50:00",
       "page": 1,
       "banner": {
         "url": "https://images.unsplash.com/photo-1531482615713-2afd69097998?auto=format&fit=crop&w=1200&q=80"
@@ -84,7 +84,7 @@
       "title": "GraphQL Breakfast",
       "description": "Schema design, caching, and client workflows over coffee.",
       "localization": "Rua das Flores, 45 - Curitiba, PR",
-      "date": "2026-09-11",
+      "date": "2026-09-11T20:00:00",
       "page": 1,
       "banner": {
         "url": "https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=1200&q=80"
@@ -99,7 +99,7 @@
       "title": "Expo and Native Builds",
       "description": "Understand development clients, native builds, and release workflows with Expo.",
       "localization": "Rua Padre Chagas, 66 - Porto Alegre, RS",
-      "date": "2026-09-13",
+      "date": "2026-09-13T19:10:00",
       "page": 1,
       "banner": {
         "url": "https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=1200&q=80"
@@ -116,7 +116,7 @@
       "title": "GraphQL Breakfast",
       "description": "Schema design, caching, and client workflows over coffee.",
       "localization": "Rua das Flores, 45 - Curitiba, PR",
-      "date": "2026-09-11",
+      "date": "2026-09-11T11:20:00",
       "banner": {
         "url": "https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=1200&q=80"
       },
@@ -132,6 +132,14 @@
     {
       "meetup_id": "1",
       "id": "Ww3n8Lbn8gE"
+    },
+    {
+      "meetup_id": "1",
+      "id": "aRxYEEsCs7c"
+    },
+    {
+      "meetup_id": "1",
+      "id": "5KdpdCrI0SM"
     }
   ],
   "$schema": "./node_modules/json-server/schema.json"
