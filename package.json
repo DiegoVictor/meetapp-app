@@ -41,16 +41,19 @@
     "@babel/preset-env": "^7.29.7",
     "@eslint/js": "^10.0.1",
     "@faker-js/faker": "^9.9.0",
-    "@react-native/babel-preset": "^0.86.0",
-    "@react-native/jest-preset": "^0.85.3",
+    "@react-native/babel-preset": "^0.87.1",
     "@testing-library/react-native": "^14.0.0",
-    "@types/jest": "^30.0.0",
+    "@types/jest": "29.5.14",
     "axios-mock-adapter": "^2.1.0",
     "babel-jest": "^30.4.1",
+    "babel-preset-expo": "^57.0.10",
     "eslint": "^10.5.0",
+    "express": "^5.2.1",
     "factory-girl": "^5.0.4",
     "globals": "^17.6.0",
-    "jest": "^30.3.0",
+    "jest": "~29.7.0",
+    "jest-expo": "~57.0.5",
+    "json-server": "^1.0.0-beta.15",
     "test-renderer": "^1.2.0"
   }
 }
