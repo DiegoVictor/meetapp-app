@@ -46,6 +46,24 @@ $ npm install
 ## Configuring
 Configure your environment variables and remember to start the [API](https://github.com/DiegoVictor/meetapp-api) before to start this app.
 
+You can also run the local fake API included in this repository:
+```
+$ yarn json-server server.json -p 3333
+```
+
+Or:
+
+```
+$ npx json-server server.json -p 3333
+```
+
+The fake API uses [`json-server`](https://www.npmjs.com/package/json-server) with data from `server/db.json` and serves the app resources at `http://localhost:3333`. The mock data includes this demo user:
+
+key|value
+---|---
+email|`user@meetapp.dev`
+password|`123456`
+
 ### .env
 In this file you may configure the API's url. Rename the `.env.example` in the root directory to `.env` then just update with your settings.
 
