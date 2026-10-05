@@ -4,7 +4,7 @@ import {
   unsubscribeMeetupSuccess,
   subscribeMeetupSuccess,
 } from '../actions/meetup';
-import api from '../../services/api';
+import { api } from '../../services/api';
 
 export function* unsubscribeMeetup({ payload }) {
   try {
@@ -14,7 +14,7 @@ export function* unsubscribeMeetup({ payload }) {
     yield put(unsubscribeMeetupSuccess(payload));
 
     Alert.alert('Inscrição cancelada com sucesso!');
-  } catch (err) {
+  } catch {
     Alert.alert('Ops! Alguma coisa deu errado, tente novamente!');
   }
 }
@@ -27,7 +27,7 @@ export function* subscribeMeetup({ payload }) {
     yield put(subscribeMeetupSuccess(payload));
 
     Alert.alert('Inscrição efetuada com sucesso!');
-  } catch (err) {
+  } catch {
     Alert.alert('Ops! Alguma coisa deu errado, tente novamente!');
   }
 }
