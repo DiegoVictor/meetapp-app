@@ -21,7 +21,7 @@ export function* signIn({ payload }) {
     api.defaults.headers.Authorization = `Bearer ${token}`;
 
     yield put(signInSuccess(token, user));
-  } catch (err) {
+  } catch {
     Alert.alert('Ops! Alguma coisa deu errado, tente novamente!');
   }
 }
@@ -31,7 +31,7 @@ export function* signUp({ payload }) {
     const { email, name, password } = payload;
     yield call(api.post, 'users', { email, name, password });
     navigate('SignIn');
-  } catch (err) {
+  } catch {
     Alert.alert('Ops! Alguma coisa deu errado, tente novamente!');
   }
 }
@@ -47,7 +47,7 @@ export function* updateUser({ payload }) {
 
     Alert.alert('Perfil atualizado com sucesso!');
     yield put(updateProfileSuccess(response.data));
-  } catch (err) {
+  } catch {
     Alert.alert('Ops! Alguma coisa deu errado, tente novamente!');
   }
 }
