@@ -16,7 +16,6 @@ const persisted = persistReducer(
   {
     key: 'meetapp',
     storage: createAsyncStorage('meetapp'),
-    timeout: 0,
     whitelist: ['signed', 'user'],
   },
   combineReducers({ meetups, signed, subscriptions, user })
