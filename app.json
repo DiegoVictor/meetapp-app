@@ -23,7 +23,8 @@
     },
     "plugins": [
       "expo-splash-screen",
-      "@react-native-vector-icons/material-design-icons"
+      "@react-native-vector-icons/material-design-icons",
+      "@react-native-vector-icons/ionicons"
     ]
   }
 }
