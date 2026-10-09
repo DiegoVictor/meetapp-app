@@ -1,7 +1,7 @@
 import { createNativeBottomTabNavigator } from '@react-navigation/bottom-tabs/unstable';
 import { Dashboard } from '../pages/private/Dashboard';
-import { Profile } from '../pages/private/User/screens/Profile';
-import { ChangePassword } from '../pages/private/User/screens/ChangePassword';
+import { Profile } from '../pages/private/User/Profile';
+import { ChangePassword } from '../pages/private/User/ChangePassword';
 import { Subscription } from '../pages/private/Subscription';
 import MeetupsIcon from '../assets/tab-icons/meetups.png';
 import ProfileIcon from '../assets/tab-icons/profile.png';

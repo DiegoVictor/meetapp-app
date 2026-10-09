@@ -1,5 +1,9 @@
 import { useSelector } from 'react-redux';
-import { NavigationContainer } from '@react-navigation/native';
+import {
+  createNavigationContainerRef,
+  NavigationContainer,
+  DefaultTheme,
+} from '@react-navigation/native';
 import { PublicRoutes } from './public.routes';
 import { PrivateRoutes } from './private.routes';
 
@@ -10,11 +14,19 @@ export function navigate(name, params) {
   }
 }
 
-export const AppRoutes = () => {
+const theme = {
+  ...DefaultTheme,
+  colors: {
+    ...DefaultTheme.colors,
+    background: 'transparent',
+  },
+};
+
+export const Navigation = () => {
   const signed = useSelector((state) => state.signed);
 
   return (
-    <NavigationContainer ref={ref}>
+    <NavigationContainer ref={ref} theme={theme}>
       {signed ? <PrivateRoutes /> : <PublicRoutes />}
     </NavigationContainer>
   );
