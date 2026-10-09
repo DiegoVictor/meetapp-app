@@ -24,7 +24,7 @@ This app version allow users to edit your profile, see available meetups, subscr
 
 # Screenshots
 Click to expand.<br>
-<img src="https://raw.githubusercontent.com/DiegoVictor/meetapp-app/refs/heads/main/screenshots/signin.png" width="32%" />
+<img src="https://raw.githubusercontent.com/DiegoVictor/meetapp-app/refs/heads/main/screenshots/sign-in.png" width="32%" />
 <img src="https://raw.githubusercontent.com/DiegoVictor/meetapp-app/refs/heads/main/screenshots/singup.png" width="32%" />
 <img src="https://raw.githubusercontent.com/DiegoVictor/meetapp-app/refs/heads/main/screenshots/dashboard.png" width="32%" />
 <img src="https://raw.githubusercontent.com/DiegoVictor/meetapp-app/refs/heads/main/screenshots/subscribe.png" width="32%" />
