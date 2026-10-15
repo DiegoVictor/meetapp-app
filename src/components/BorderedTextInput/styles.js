@@ -40,4 +40,6 @@ export const Input = styled.TextInput.attrs({
 
 export const Error = styled.Text`
   color: #fb6f91;
+  margin-bottom: 10px;
+  margin-top: 5px;
 `;
