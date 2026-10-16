@@ -23,7 +23,6 @@
     "expo-linear-gradient": "~57.0.2",
     "expo-splash-screen": "~57.0.9",
     "expo-status-bar": "~57.0.1",
-    "formik": "^2.4.9",
     "immer": "^11.1.7",
     "prop-types": "^15.8.1",
     "react": "19.2.3",
