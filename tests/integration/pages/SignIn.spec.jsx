@@ -1,4 +1,3 @@
-import React, { act } from 'react';
 import { fireEvent, render } from '@testing-library/react-native';
 import { signInRequest } from '../../../src/store/actions/user';
 import { SignIn } from '../../../src/pages/public/SignIn';
@@ -20,10 +19,10 @@ jest.mock('@react-navigation/native', () => {
   };
 });
 
-jest.mock('../../../src/components/Input', () => {
+jest.mock('../../../src/components/BorderedTextInput', () => {
   const { TextInput } = require('react-native');
   return {
-    Input: TextInput,
+    BorderedTextInput: TextInput,
   };
 });
 
@@ -34,10 +33,7 @@ describe('SignIn', () => {
     const { getByPlaceholderText, getByTestId } = await render(<SignIn />);
 
     await fireEvent.changeText(getByPlaceholderText('Digite seu email'), email);
-    await fireEvent.changeText(
-      getByPlaceholderText('Sua senha secreta'),
-      password
-    );
+    await fireEvent.changeText(getByPlaceholderText('●●●●●●●'), password);
 
     await fireEvent.press(getByTestId('submit'));
 
@@ -53,7 +49,7 @@ describe('SignIn', () => {
     await fireEvent.changeText(emailInput, email);
 
     await fireEvent(emailInput, 'submitEditing');
-    const passwordInput = getByPlaceholderText('Sua senha secreta');
+    const passwordInput = getByPlaceholderText('●●●●●●●');
     expect(passwordInput).toHaveAccessibilityValue({ selected: true });
 
     await fireEvent.changeText(passwordInput, password);
