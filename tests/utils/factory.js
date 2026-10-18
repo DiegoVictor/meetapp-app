@@ -17,6 +17,7 @@ factory.define(
   {
     id: faker.string.uuid,
     title: faker.person.jobTitle,
+    description: faker.lorem.sentence,
     localization: faker.location.streetAddress,
     date: () => faker.date.future().toISOString(),
     banner: () => {
