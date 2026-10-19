@@ -1,10 +1,19 @@
-import styled from 'styled-components/native';
+import styled, { css } from 'styled-components/native';
 
-export const Button = styled.TouchableOpacity``;
+export const Button = styled.TouchableOpacity`
+  align-items: center;
+  flex-direction: row;
+  justify-content: center;
+  width: 100%;
+`;
 
 export const Text = styled.Text`
-  color: rgba(255, 255, 255, 0.6);
+  color: #f43f5e;
   font-size: 16px;
-  line-height: 19px;
-  text-align: center;
+  font-weight: 600;
+  ${(props) =>
+    props.marginLeft &&
+    css`
+      margin-left: 10px;
+    `}
 `;
