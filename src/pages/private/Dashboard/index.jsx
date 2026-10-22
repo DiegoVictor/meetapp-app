@@ -1,10 +1,9 @@
-import React, { useCallback, useEffect, useMemo, useState } from 'react';
-import { TouchableOpacity } from 'react-native';
+import { useCallback, useEffect, useMemo, useState } from 'react';
+import { TouchableOpacity, View } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
-import MaterialIcons from '@react-native-vector-icons/material-icons';
+import { MaterialDesignIcons } from '@react-native-vector-icons/material-design-icons';
 import { addDays, format, parseISO, subDays } from 'date-fns';
 import { pt } from 'date-fns/locale/pt';
-import { Button } from '../../../components/Button';
 import { Meetup } from '../../../components/Meetup';
 import {
   appendMeetups,
@@ -12,13 +11,17 @@ import {
   subscribeMeetupRequets,
 } from '../../../store/actions/meetup';
 import { api } from '../../../services/api';
-import { Container, Header, Meetups, Text } from './styles';
+import { Container, Header, Meetups, Text, SubscribeButton } from './styles';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 export const Dashboard = () => {
   const [date, setDate] = useState(new Date());
-  const meetups = useSelector((state) => state.meetups);
   const [page, setPage] = useState(1);
+
+  const meetups = useSelector((state) => state.meetups);
   const dispatch = useDispatch();
+
+  const insets = useSafeAreaInsets();
 
   const formattedDate = useMemo(
     () => format(date, "dd 'de' MMMM", { locale: pt }),
@@ -41,11 +44,7 @@ export const Dashboard = () => {
           ...meetups,
           ...data.map((meetup) => ({
             ...meetup,
-            formatted_date: format(
-              parseISO(meetup.date),
-              "dd 'de' MMMM', às' HH'h'",
-              { locale: pt }
-            ),
+            start_time: format(parseISO(meetup.date), 'HH:mm', { locale: pt }),
           })),
         ])
       );
@@ -66,11 +65,7 @@ export const Dashboard = () => {
         setMeetups(
           response.data.map((meetup) => ({
             ...meetup,
-            formatted_date: format(
-              parseISO(meetup.date),
-              "dd 'de' MMMM', às' HH'h'",
-              { locale: pt }
-            ),
+            start_time: format(parseISO(meetup.date), 'HH:mm', { locale: pt }),
           }))
         )
       );
@@ -78,20 +73,25 @@ export const Dashboard = () => {
   }, [date, dispatch]);
 
   return (
-    <Container>
+    <Container
+      style={{
+        paddingTop: insets.top,
+        paddingBottom: insets.bottom,
+      }}
+    >
       <Header>
         <TouchableOpacity
           onPress={() => setDate(subDays(date, 1))}
           testID="previous"
         >
-          <MaterialIcons color="#FFF" name="chevron-left" size={30} />
+          <MaterialDesignIcons color="#FFF" name="chevron-left" size={30} />
         </TouchableOpacity>
         <Text>{formattedDate}</Text>
         <TouchableOpacity
           onPress={() => setDate(addDays(date, 1))}
           testID="next"
         >
-          <MaterialIcons color="#FFF" name="chevron-right" size={30} />
+          <MaterialDesignIcons color="#FFF" name="chevron-right" size={30} />
         </TouchableOpacity>
       </Header>
 
@@ -102,10 +102,25 @@ export const Dashboard = () => {
         onEndReachedThreshold={0.2}
         onEndReached={getNextPage}
         renderItem={({ item }) => (
-          <Meetup data={item}>
-            <Button onPress={() => dispatch(subscribeMeetupRequets(item))}>
-              Realizar Inscrição
-            </Button>
+          <Meetup
+            data={item}
+            tag={{
+              text: item.start_time,
+              icon: (
+                <MaterialDesignIcons
+                  color="white"
+                  size={17}
+                  name="clock-outline"
+                  style={{ marginRight: 5, marginTop: 2 }}
+                />
+              ),
+            }}
+          >
+            <SubscribeButton
+              onPress={() => dispatch(subscribeMeetupRequets(item))}
+            >
+              Inscrever-se
+            </SubscribeButton>
           </Meetup>
         )}
       />
