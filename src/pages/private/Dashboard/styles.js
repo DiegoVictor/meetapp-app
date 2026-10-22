@@ -1,4 +1,5 @@
 import styled from 'styled-components/native';
+import { PrimaryButton } from '../../../components/PrimaryButton';
 
 export const Container = styled.View`
   flex: 1;
@@ -10,7 +11,7 @@ export const Header = styled.View`
   align-items: center;
   flex-direction: row;
   justify-content: center;
-  margin: 34px 0px 30px;
+  margin: 15px 0px;
   text-align: center;
 `;
 
@@ -24,4 +25,12 @@ export const Text = styled.Text`
 
 export const Meetups = styled.FlatList.attrs({
   showsVerticalScrollIndicator: false,
+  contentContainerStyle: {
+    paddingBottom: 100,
+  },
 })``;
+
+export const SubscribeButton = styled(PrimaryButton)`
+  margin: 10px 20px 0px;
+  width: auto;
+`;
