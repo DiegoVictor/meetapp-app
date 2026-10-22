@@ -1,10 +1,4 @@
-import React, { act } from 'react';
-import {
-  fireEvent,
-  render,
-  screen,
-  waitFor,
-} from '@testing-library/react-native';
+import { fireEvent, render } from '@testing-library/react-native';
 import { signUpRequest } from '../../../src/store/actions/user';
 import { SignUp } from '../../../src/pages/public/SignUp';
 import { factory } from '../../utils/factory';
@@ -25,10 +19,10 @@ jest.mock('@react-navigation/native', () => {
   };
 });
 
-jest.mock('../../../src/components/Input', () => {
+jest.mock('../../../src/components/BorderedTextInput', () => {
   const { TextInput } = require('react-native');
   return {
-    Input: TextInput,
+    BorderedTextInput: TextInput,
   };
 });
 
@@ -38,12 +32,9 @@ describe('SignUp', () => {
 
     const { getByPlaceholderText, getByTestId } = await render(<SignUp />);
 
-    await fireEvent.changeText(getByPlaceholderText('Nome completo'), name);
+    await fireEvent.changeText(getByPlaceholderText('Digite seu nome'), name);
     await fireEvent.changeText(getByPlaceholderText('Digite seu email'), email);
-    await fireEvent.changeText(
-      getByPlaceholderText('Sua senha secreta'),
-      password
-    );
+    await fireEvent.changeText(getByPlaceholderText('●●●●●●●'), password);
 
     await fireEvent.press(getByTestId('submit'));
 
@@ -57,7 +48,7 @@ describe('SignUp', () => {
 
     const { getByPlaceholderText, getByTestId } = await render(<SignUp />);
 
-    const nameInput = getByPlaceholderText('Nome completo');
+    const nameInput = getByPlaceholderText('Digite seu nome');
     await fireEvent.changeText(nameInput, name);
     await fireEvent(nameInput, 'submitEditing');
 
@@ -67,7 +58,7 @@ describe('SignUp', () => {
     await fireEvent.changeText(emailInput, email);
     await fireEvent(emailInput, 'submitEditing');
 
-    const passwordInput = getByPlaceholderText('Sua senha secreta');
+    const passwordInput = getByPlaceholderText('●●●●●●●');
     expect(passwordInput).toHaveAccessibilityValue({ selected: true });
 
     await fireEvent.changeText(passwordInput, password);
