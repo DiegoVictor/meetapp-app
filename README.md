@@ -30,7 +30,6 @@ Click to expand.<br>
 <img src="https://raw.githubusercontent.com/DiegoVictor/meetapp-app/refs/heads/main/screenshots/subscribe.png" width="32%" />
 <img src="https://raw.githubusercontent.com/DiegoVictor/meetapp-app/refs/heads/main/screenshots/profile.png" width="32%" />
 <img src="https://raw.githubusercontent.com/DiegoVictor/meetapp-app/refs/heads/main/screenshots/subscriptions.png" width="32%" />
-<img src="https://raw.githubusercontent.com/DiegoVictor/meetapp-app/refs/heads/main/screenshots/unsubscribe.png" width="32%" />
 
 # Installing
 Easy peasy lemon squeezy:
