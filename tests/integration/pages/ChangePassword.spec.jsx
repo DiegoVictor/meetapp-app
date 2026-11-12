@@ -1,7 +1,7 @@
+import { Alert } from 'react-native';
 import { fireEvent, render } from '@testing-library/react-native';
 import { ChangePassword } from '../../../src/pages/private/User/ChangePassword';
-import { factory } from '../../utils/factory';
-import { signOut, updateProfileRequest } from '../../../src/store/actions/user';
+import { updateProfileRequest } from '../../../src/store/actions/user';
 
 const mockDispatch = jest.fn();
 jest.mock('react-redux', () => {
@@ -16,13 +16,6 @@ jest.mock('@react-navigation/native', () => {
     useNavigation: () => ({
       goBack: (args) => mockGoBack(),
     }),
-  };
-});
-
-jest.mock('../../../src/components/BorderedTextInput', () => {
-  const { TextInput } = require('react-native');
-  return {
-    BorderedTextInput: TextInput,
   };
 });
 
@@ -49,6 +42,49 @@ describe('ChangePassword', () => {
         confirm_password: 'abcdef',
       })
     );
+  });
+
+  it('should not be able to sign in when dispatch fails', async () => {
+    const { getByTestId } = await render(<ChangePassword />);
+
+    mockDispatch.mockImplementationOnce(() => {
+      throw new Error();
+    });
+    const alert = jest.spyOn(Alert, 'alert');
+
+    const oldPassword = getByTestId('old-password');
+    await fireEvent.changeText(oldPassword, '123456');
+    await fireEvent(oldPassword, 'submitEditing');
+
+    const password = getByTestId('password');
+    await fireEvent.changeText(password, 'abcdef');
+    await fireEvent(password, 'submitEditing');
+
+    const confirmPassword = getByTestId('confirm-password');
+    await fireEvent.changeText(confirmPassword, 'abcdef');
+    await fireEvent(confirmPassword, 'submitEditing');
+
+    expect(mockDispatch).toHaveBeenCalledWith(
+      updateProfileRequest({
+        old_password: '123456',
+        password: 'abcdef',
+        confirm_password: 'abcdef',
+      })
+    );
+    expect(alert).toHaveBeenCalledWith(
+      'Erro na atualização',
+      'Ocorreu um erro ao atualizar sua senha.'
+    );
+  });
+
+  it('should be able to check validation errors', async () => {
+    const { getByTestId, getByText } = await render(<ChangePassword />);
+
+    await fireEvent.changeText(getByTestId('old-password'), 'abcdef');
+    await fireEvent.press(getByTestId('submit'));
+
+    expect(mockDispatch).not.toHaveBeenCalled();
+    expect(getByText('O campo senha é obrigatório')).toBeTruthy();
   });
 
   it('should be able to update password pressing submit button', async () => {
