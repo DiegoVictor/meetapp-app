@@ -1,3 +1,4 @@
+import { Alert } from 'react-native';
 import { fireEvent, render } from '@testing-library/react-native';
 import { signInRequest } from '../../../src/store/actions/user';
 import { SignIn } from '../../../src/pages/public/SignIn';
@@ -19,13 +20,6 @@ jest.mock('@react-navigation/native', () => {
   };
 });
 
-jest.mock('../../../src/components/BorderedTextInput', () => {
-  const { TextInput } = require('react-native');
-  return {
-    BorderedTextInput: TextInput,
-  };
-});
-
 describe('SignIn', () => {
   it('should be able to sign in', async () => {
     const { email, password } = await factory.attrs('User');
@@ -38,6 +32,38 @@ describe('SignIn', () => {
     await fireEvent.press(getByTestId('submit'));
 
     expect(mockDispatch).toHaveBeenCalledWith(signInRequest(email, password));
+  });
+
+  it('should not be able to sign in when dispatch fails', async () => {
+    const { email, password } = await factory.attrs('User');
+
+    mockDispatch.mockImplementationOnce(() => {
+      throw new Error();
+    });
+    const alert = jest.spyOn(Alert, 'alert');
+
+    const { getByPlaceholderText, getByTestId } = await render(<SignIn />);
+
+    await fireEvent.changeText(getByPlaceholderText('Digite seu email'), email);
+    await fireEvent.changeText(getByPlaceholderText('●●●●●●●'), password);
+
+    await fireEvent.press(getByTestId('submit'));
+
+    expect(mockDispatch).toHaveBeenCalledWith(signInRequest(email, password));
+    expect(alert).toHaveBeenCalledWith(
+      'Erro na autenticação',
+      'Ocorreu um erro ao fazer login, cheque as credenciais.'
+    );
+  });
+
+  it('should be able to check validation errors', async () => {
+    const { getByText, getByTestId } = await render(<SignIn />);
+
+    await fireEvent.press(getByTestId('submit'));
+
+    expect(mockDispatch).not.toHaveBeenCalled();
+    expect(getByText('O campo email é obrigatório')).toBeTruthy();
+    expect(getByText('O campo senha é obrigatório')).toBeTruthy();
   });
 
   it('should be able to sign in changing input focus and submitting from keyboard', async () => {
